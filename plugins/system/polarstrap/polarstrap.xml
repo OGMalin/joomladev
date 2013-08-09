@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE extension>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>System - Polarstrap</name>
+	<version>1.0.0</version>
+	<creationDate>2013-04-06</creationDate>
+	<author>Odd Gunnar Malin</author>
+	<authorEmail>oddg@sjakk.biz</authorEmail>
+	<authorUrl>http://www.polarchess.net</authorUrl>
+	<copyright>www.polarchess.net</copyright>
+	<description>Including Bootrap and JQuery into a Joomla site</description>
+	<files>
+		<file plugin="polarstrap">polarstrap.php</file>
+		<filename>index.html</filename>
+	</files>
+	<media>
+		<folder>polarstrap</folder>
+	</media>
+ 	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="cssfiles" type="radio" default="1" label="CSS Files" description="CSS Files for Bootstrap, Icomoon, and responsive">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="bootstrap" type="radio" default="1" label="Bootstrap Javascript" description="">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="jquery" type="radio" default="1" label="JQuery" description="">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="jquery_ui" type="radio" default="1" label="JQuery UI" description="">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="noconflict" type="radio" default="1" label="JQuery NoConflict" description="Use this if Mootools are in use">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="inadmin" type="radio" default="0" label="Use in admin panel" description="Normaly no">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
