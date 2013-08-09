@@ -1,19 +1,19 @@
 joomladev
 =========
-What's in here:
+What's in here:<br />
 
-Components
-	com_polarbook
-		Positiondatabase for chess
+Components<br />
+	com_polarbook<br />
+		Positiondatabase for chess<br />
 		
-Modules
-	mod_polarmenu
-		Fork of J3.x menu so botstrap menu works in J2.5.
+Modules<br />
+	mod_polarmenu<br />
+		Fork of J3.x menu so botstrap menu works in J2.5.<br />
 		
-Plugins
-	polarstrap
-		Bootstrap for J2.5+
+Plugins<br />
+	polarstrap<br />
+		Bootstrap for J2.5+<br />
 		
-Templates
-	polartemplate
-		Just a template
+Templates<br />
+	polartemplate<br />
+		Just a template<br />
