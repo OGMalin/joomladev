@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extention version="2.5" type="template" client="site" method="upgrade">
+	<name>PolarTemplate</name>
+	<version>1.0</version>
+	<creationDate>2013-02-12</creationDate>
+	<author>Odd Gunnar Malin</author>
+	<authorEmail>oddg@sjakk.biz</authorEmail>
+	<authorUrl>http://polarchess.net</authorUrl>
+	<copyright>Copyright (C) 2013</copyright>
+	<description>A template with Bootstrap.</description>
+	<files>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<folder>css</folder>
+		<folder>fonts</folder>
+		<folder>html</folder>
+		<folder>img</folder>
+		<folder>js</folder>
+		<folder>less</folder>
+		<folder>js</folder>
+	</files>
+	<positions>
+		<position>top</position>
+		<position>left</position>
+		<position>right</position>
+		<position>bottom</position>
+		<position>debug</position>
+	</positions>
+</extention>
