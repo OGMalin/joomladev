@@ -7,7 +7,7 @@
 	<license></license>
 	<authorEmail>oddg@sjakk.biz</authorEmail>
 	<authorUrl>polarchess.net</authorUrl>
-	<version>2.5.0</version>
+	<version>1.0.0</version>
 	<description>MOD_POLARMENU_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_polarmenu">mod_polarmenu.php</filename>
