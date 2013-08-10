@@ -27,4 +27,4 @@ Templates:
 		Just a template
 	Folders
 		templates/polartemplate
-/pre>
+</pre>
