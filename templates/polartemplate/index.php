@@ -1,5 +1,4 @@
 <?php
-<?php
 /**
  * @version     $Id$
  * @package     Joomla.Site
@@ -27,13 +26,10 @@ $center='span'.(12-$useleft-$useright);
 <head>
 	<meta charset="utf-8">
 	<jdoc:include type="head" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 	<div class="container">
-		<div>
-			<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/img/banner_1200.JPG" />
-		</div>
 		<?php if ($this->countModules('top')) : ?>
 		<div class="row">
 			<jdoc:include type="modules" name="top" style="xhtml" />
@@ -46,11 +42,11 @@ $center='span'.(12-$useleft-$useright);
 		 		</div>
 		  <?php endif ?>
 		  <div class="<?php echo $center ?>">
-		  	<?php if ($this->countModules('above')) ?>
+		  	<?php if ($this->countModules('above')) : ?>
 			 		<jdoc:include type="modules" name="above" style="xhtml" />
 				<?php endif ?>
 			 	<jdoc:include type="component" />
-		  	<?php if ($this->countModules('below')) ?>
+		  	<?php if ($this->countModules('below')) : ?>
 			 		<jdoc:include type="modules" name="below" style="xhtml" />
 				<?php endif ?>
 			</div>
