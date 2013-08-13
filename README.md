@@ -8,6 +8,7 @@ Components:
 	Folders
 		administrator/components/com_polarbook
 		components/com_polarbook
+		media/com_polarbook
 		
 Modules:
 	mod_polarmenu
