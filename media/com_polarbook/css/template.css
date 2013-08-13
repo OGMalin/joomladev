@@ -1,0 +1,73 @@
+.movepath {
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	min-height: 20px;
+/*	max-height: 100px; */
+}
+
+.movelist {
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	min-height: 80px;
+	max-height: 500px;
+}
+
+.icon-chessboard {
+	background: url(../images/chessboard_14x14.png) 100% 0 no-repeat !important;
+}
+
+.move {
+	font-weight: bold;
+}
+
+.level_0_move{
+	color: #000;
+	font-weight: bold;
+}
+
+.level_1_move{
+	color: #c00;
+	font-weight: bold;
+}
+
+.level_2_move{
+	color: #00c;
+	font-weight: bold;
+}
+
+.level_3_move{
+	color: #090;
+	font-weight: bold;
+}
+
+.level_4_move{
+	color: #960;
+	font-weight: bold;
+}
+
+.level_5_move{
+	color: #066;
+	font-weight: bold;
+}
+
+.disabled {
+	color: #999 !important;
+}
+
+.marked {
+/*	opacity:0.25;*/
+	filter:Alpha(opacity=25); /* IE8 and earlier */
+	-moz-box-shadow:    0px 0px 0px 5px #c00 inset;
+  -webkit-box-shadow: 0px 0px 0px 5px #c00 inset;
+  box-shadow:         0px 0px 0px 5px #c00 inset;
+}
+
+.polarbookreader{
+	color: red;
+}
+.polarbookwriter{
+	color: blue;
+}
+.polarbookowner{
+	color: green;
+}
