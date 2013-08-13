@@ -2,45 +2,23 @@
 defined('_JEXEC') or die;
 $user=JFactory::getUser();
 JFactory::getDocument()->addScriptDeclaration("
-	jQuery(document).ready(function(){init();});
-
-	function init()
-	{
-		currentUser.user=" . $user->id . ";
-		if ({$user->guest})
-			currentUser.user=0;
- 		if (currentUser.user<1)
- 			currentUser.name='" . JText::_('COM_POLARBOOK_USER_GUEST') . "';
- 		else
-			currentUser.name='" . $user->name . "';
-		jQuery('#username').text(currentUser.name);
-		
-		pbboard = new ChessBoardView();
-		pbboard.setPieceChar('" . JText::_('COM_POLARBOOK_PIECECHAR') . "');
-		pbboard.id='chessboard';
-		pbboard.setDefaultSize();
-		pbboard.imagedir='" . $this->baseurl . "/media/com_polarbook/images/1/';
-		imageUrl='" . $this->baseurl . "/media/com_polarbook/images/';
-		responseUrl='" . $this->baseurl . "/index.php?option=com_polarbook&amp;';
-		pbboard.moveCallback=moveFromBoard;
-		pbboard.boardCallback=positionFromBoard;
-		
-		pbboard.create();
-		addMovePath(0);
-		setMenu(0);
-		writing(0);
-		reading(0);
 		var book=" . $this->book . ";
 		var moves='" . $this->moves . "';
 		var status='" . $this->status . "';
-		if (moves!='')
-			setMovePathList(moves);
-		if (book)
-			openBook(book);
-		if (status!='')
-			jQuery('#status').text(status);
-				
-	};
+		var userid=" . $user->id . ";
+		var username='';
+		var imageUrl='" . $this->baseurl . "/media/com_polarbook/images/';
+		var responseUrl='" . $this->baseurl . "/index.php?option=com_polarbook&amp;';
+		var imagedir='" . $this->baseurl . "/media/com_polarbook/images/1/';
+		var piecechar='" . JText::_('COM_POLARBOOK_PIECECHAR') . "';
+		
+		if ({$user->guest})
+			userid=0;
+			
+		if (userid<1)
+			username='" . JText::_('COM_POLARBOOK_USER_GUEST') . "';
+		else
+			username='" . $user->name . "';
 ");
 	
 ?>

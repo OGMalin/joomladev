@@ -28,9 +28,10 @@ class PolarbookViewPolarbook extends JViewLegacy
 		if (!isset($this->component))
 				$this->component=array('version' => '');
 		
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js');
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js' );
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js' );
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt',true);
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js','text/javascrpt',true);
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js','text/javascrpt',true);
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js','text/javascrpt',true);
 
 		$doc->addStyleSheet($this->baseurl . '/media/com_polarbook/css/template.css');
 		

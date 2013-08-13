@@ -68,5 +68,9 @@ $center='span'.(12-$useleft-$useright);
 	 	<?php endif ?>
 	</div>
 	<jdoc:include type="modules" name="debug" style="xhtml" />
+
+	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery.min.js"></script>
+	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/bootstrap.min.js"></script>
+	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery-noconflict.js"></script>
 </body>
 </html>

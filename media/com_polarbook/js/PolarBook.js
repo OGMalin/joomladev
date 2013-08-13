@@ -1,6 +1,4 @@
 var pbboard = null;
-var imageUrl = '/';
-var responseUrl = '/';
 var is_reading=0;
 var is_writing=0;
 
@@ -57,6 +55,40 @@ var writemode = false;
  * .error ;
  */
 var practice = new Object();
+
+window.onload=function(){init();};
+//window.addEvent('domready', function() {init();});
+	
+
+
+function init()
+{
+	currentUser.user = userid;
+	currentUser.name = username;
+
+	jQuery('#username').text(currentUser.name);
+
+	pbboard = new ChessBoardView();
+	pbboard.setPieceChar(piecechar);
+	pbboard.id = 'chessboard';
+	pbboard.setDefaultSize();
+	pbboard.imagedir = imagedir;
+	pbboard.moveCallback = moveFromBoard;
+	pbboard.boardCallback = positionFromBoard;
+
+	pbboard.create();
+	addMovePath(0);
+	setMenu(0);
+	writing(0);
+	reading(0);
+	if (moves != '')
+		setMovePathList(moves);
+	if (book)
+		openBook(book);
+	if (status != '')
+		jQuery('#status').text(status);
+
+};
 
 function menuFileNew() {
 	var s;
