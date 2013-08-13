@@ -14,7 +14,7 @@ CREATE TABLE `#__polarbook_book` (
   `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
 
 CREATE TABLE `#__polarbook_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ CREATE TABLE `#__polarbook_data` (
   `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `book_id` (`book_id`),
-  KEY `fen` (`fen`(255))
+  KEY `fen` (`fen`(255)),
   KEY `computer` (`computer`(255))
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
 
