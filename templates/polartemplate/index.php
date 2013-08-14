@@ -20,6 +20,10 @@ $useright=($this->countModules('right')>0)?3:0;
 $center='span'.(12-$useleft-$useright);
 
 //JHtml::_('behavior.modal');
+//$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
+//$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/bootstrap.min.js');
+//$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-noconflict.js');
+	
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" >
@@ -69,8 +73,5 @@ $center='span'.(12-$useleft-$useright);
 	</div>
 	<jdoc:include type="modules" name="debug" style="xhtml" />
 
-	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery.min.js"></script>
-	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/bootstrap.min.js"></script>
-	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery-noconflict.js"></script>
 </body>
 </html>

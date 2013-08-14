@@ -57,7 +57,7 @@ var writemode = false;
 var practice = new Object();
 
 window.onload=function(){init();};
-//window.addEvent('domready', function() {init();});
+//window.addEvent('load', function() {init();});
 	
 
 

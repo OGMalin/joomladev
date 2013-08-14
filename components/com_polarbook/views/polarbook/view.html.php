@@ -28,11 +28,37 @@ class PolarbookViewPolarbook extends JViewLegacy
 		if (!isset($this->component))
 				$this->component=array('version' => '');
 		
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt',true);
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js','text/javascrpt',true);
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js','text/javascrpt',true);
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js','text/javascrpt',true);
-
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt',true);
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js','text/javascrpt',false);
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js','text/javascrpt',false);
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js','text/javascrpt',false);
+//		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js');
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js');
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js');
+		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js');
+		
+		$user=JFactory::getUser();
+		JFactory::getDocument()->addScriptDeclaration("
+			var book=" . $this->book . ";
+			var moves='" . $this->moves . "';
+			var status='" . $this->status . "';
+			var userid=" . $user->id . ";
+			var username='';
+			var imageUrl='" . $this->baseurl . "/media/com_polarbook/images/';
+			var responseUrl='" . $this->baseurl . "/index.php?option=com_polarbook&amp;';
+			var imagedir='" . $this->baseurl . "/media/com_polarbook/images/1/';
+			var piecechar='" . JText::_('COM_POLARBOOK_PIECECHAR') . "';
+		
+			if ({$user->guest})
+				userid=0;
+					
+			if (userid<1)
+				username='" . JText::_('COM_POLARBOOK_USER_GUEST') . "';
+			else
+				username='" . $user->name . "';
+		");
+		
+		
 		$doc->addStyleSheet($this->baseurl . '/media/com_polarbook/css/template.css');
 		
 	
