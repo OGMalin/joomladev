@@ -28,7 +28,6 @@ class AlarmhistoryControllerResponse extends JControllerLegacy
 		
 		$res=$model->queryAlarmhistory($start, $limit, $filter);
 		
-		$res=array('error' => 1);
 		$doc->setMimeEncoding('application/json');
 		echo json_encode($res);
 		$app->close();

@@ -10,6 +10,8 @@
 // No direct access
 defined('_JEXEC') or die;
 
+require_once JPATH_COMPONENT.'/helpers/ifix.php';
+
 jimport('joomla.application.component.modelitem');
 
 class AlarmhistoryModelResponse extends JModelItem
@@ -17,6 +19,8 @@ class AlarmhistoryModelResponse extends JModelItem
 	
 	public function queryAlarmhistory($start, $limit, $filter)
 	{
-		return array('error'=>1);
+		$iFix=new iFixHelper();
+		
+		return $iFix->getData();
 	}
 }
