@@ -1,6 +1,6 @@
 ﻿<?php
 defined('_JEXEC') or die;
-
+jimport( 'joomla.html.html' );
 class PolarbookViewPolarbook extends JViewLegacy
 {
 	function display($tpl = null)
@@ -28,14 +28,18 @@ class PolarbookViewPolarbook extends JViewLegacy
 		if (!isset($this->component))
 				$this->component=array('version' => '');
 		
-// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt',true);
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt',false);
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js','text/javascrpt',false);
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js','text/javascrpt',false);
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js','text/javascrpt',false);
-//		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js');
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js');
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js');
-		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js');
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js');
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js');
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js');
+// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js');
+//		JHtml::script('com_polarbook/jquery-ui.min.js',false,true);
+		JHtml::script('com_polarbook/ChessBoard.js',false,true);
+		JHtml::script('com_polarbook/ChessBoardView.js',false,true);
+		JHtml::script('com_polarbook/PolarBook.js',false,true);
 		
 		$user=JFactory::getUser();
 		JFactory::getDocument()->addScriptDeclaration("

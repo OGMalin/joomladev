@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 $app = JFactory::getApplication();
 $doc = JFactory::getDocument();
 
+$doc->addStyleSheet('templates/'.$this->template.'/css/jquery-ui.min.css');
 $doc->addStyleSheet('templates/'.$this->template.'/css/template.css');
 
 $useleft=($this->countModules('left')>0)?3:0;
@@ -20,10 +21,11 @@ $useright=($this->countModules('right')>0)?3:0;
 $center='span'.(12-$useleft-$useright);
 
 //JHtml::_('behavior.modal');
-//$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
-//$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/bootstrap.min.js');
-//$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-noconflict.js');
-	
+$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
+$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/bootstrap.min.js');
+$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-noconflict.js');
+$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-ui.min.js');
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" >
