@@ -925,7 +925,7 @@ function displayMoveList() {
 		mnr = parseInt(i / 2) + '...';
 	else
 		mnr = parseInt(1 + i / 2) + '.';
-	s = "<table class='table table-condensed'>\n<thead>\n<tr>\n"
+	var s = "<table class='table table-condensed'>\n<thead>\n<tr>\n"
 			+ "<th>Trekk</th><th>#</th><th></th><th></th></tr></thead><tbody>";
 	if (currentPosition.moves) {
 		for ( var i = 0; i < currentPosition.moves.length; i++) {

@@ -7,10 +7,20 @@
  */
 
 	var responseUrl = '/';
-	
+
+
 	function init()
 	{
-		updateList(10,20);
+		jQuery(function() {
+			jQuery( "#datepicker1" ).datepicker(
+					);
+		});
+		jQuery(function() {
+			jQuery( "#datepicker2" ).datepicker();
+		});
+
+//		jQuery.datepicker.regional[ "fr" ].monthNames
+		updateList(0,20);
 	};
 	
 	function updateList(start, limit)
@@ -32,6 +42,12 @@
 				} else
 				{
 					/* Response ok */
+					var list='';
+					for (var i=0; i<json.length; i++)
+					{
+						list+=json[i].EVENTINDEX + ' ' + json[i].EVENTTIME + ' ' + json[i].DESCRIPTION + ' ' + json[i].OPERATOR + '<br />\n';
+					}
+					jQuery('#historylist').html(list);
 				}
 			}
 		}

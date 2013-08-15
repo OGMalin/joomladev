@@ -19,6 +19,7 @@ JFactory::getDocument()->addScriptDeclaration("
 ?>
 <div id='alarmhstory'>
 	<?php echo $this->loadTemplate('navbar'); ?>
-Tidsfølgemelderlisting
+	<div id='historylist'>
+	</div>
 </div>
 <!--  ?php echo $this->loadTemplate('modals'); ?>  -->

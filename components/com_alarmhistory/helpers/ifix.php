@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 class iFixHelper
 {
-	protected $maxrow=10;
+	protected $maxrow=100;
 	protected $username="SCADA";
 	protected $password="SCADA";
 	protected $connection="10.96.100.3/REPO.NTS41";
@@ -22,25 +22,20 @@ class iFixHelper
 	protected $location=0;
 	protected $fromdate=0;
 	protected $todate=0;
-	protected $sort='EVENTTIME';
+	protected $sec1='NETT';
+	protected $first=0;
+	protected $sort='EVENTINDEX';
 	
 	public function getData()
 	{
-		$this->fromdate=time()-(7*24*60*60);
+		$this->fromdate=time()-(1*24*60*60);
 		$this->todate=time();
 		
 		$data1=$this->readFromScada('EVENTS',$this->maxrow);
+//		return $data1;
 		$i=count($data1);
 		$data2=$this->readFromScada('EVENTS_HIS',$this->maxrow-$i);
 		$i+=count($data2);
-		if ($i>=$this->maxrow)
-		{
-			$line[0]="operator_alarm";
-			$line[1]="";
-			$line[2]="Over $this->maxrow linjer, endre søket for å vise alle meldingene.";
-			$line[3]="";
-			$data1[0]=$line;
-		}
 		return array_merge($data1,$data2);
 	}
 	
@@ -51,62 +46,40 @@ class iFixHelper
 		$conn=oci_connect($this->username,$this->password,$this->connection,"AL32UTF8");
 		if (!$conn)
 		{
-			$line[0]='unknown';
-			$line[1]='';
-			$line[3]='';
-			$line[2]="Får ikke koplet til databasen.";
-			$this->_data[0]=$line;
-			return $this->_data;
+			return $data;
 		}
-		$sql="SELECT";
-		$sql.=" TO_CHAR(CAST((EVENTTIME AT LOCAL) AS DATE),'DD-MM-YYYY HH24:MI:SS')";
-		$sql.=",DESCRIPTION";
-		$sql.=",VALUEASC";
-		$sql.=",MSGTYPE";
-		$sql.=",PRIORITY";
-		$sql.=",UNIT";
+		$sql="SELECT *";
 		$sql.=" FROM";
 		$sql.=" $table";
 		$sql.=" WHERE";
-		$sql.=" (ROWNUM <=$max)";
-		if ($this->district>0)
-			$sql.=" AND (DISTRICT=$this->district)";
-		if ($this->location>0)
-			$sql.=" AND (LOCATION=$this->location)";
-		if ($this->searchstring!='')
-			$sql.=" AND ((UPPER(DESCRIPTION) LIKE '%" . $this->searchstring . "%') OR (UPPER(VALUEASC) LIKE '%" . $this->searchstring . "%'))";
-		$sql.=" AND (EVENTTIME >='".date("d.m.Y H:i:s,0",$this->fromdate)."')";
-		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
-		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
-		$sql.=" ORDER BY " . $this->sort . " DESC";
+		$sql.=" (ROWNUM <= " . $max . ")";
+ 		if ($this->first>0)
+ 			$sql.=" AND (EVENTINDEX<" . $this->first . ")";
+		if ($this->sec1!='')
+ 			$sql.=" AND (SEC1 LIKE '" . $this->sec1. "')";
+		// 		if ($this->district>0)
+// 			$sql.=" AND (DISTRICT=$this->district)";
+// 		if ($this->location>0)
+// 			$sql.=" AND (LOCATION=$this->location)";
+// 		if ($this->searchstring!='')
+// 			$sql.=" AND ((UPPER(DESCRIPTION) LIKE '%" . $this->searchstring . "%') OR (UPPER(VALUEASC) LIKE '%" . $this->searchstring . "%'))";
+//  		$sql.=" AND (EVENTTIME >='".date("d.m.Y H:i:s,0",$this->fromdate)."')";
+//  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
+//  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
+		$sql.=" ORDER BY EVENTINDEX DESC";
 		$stid=oci_parse($conn, $sql);
 		if (!$stid)
 		{
-			$line[0]='unknown';
-			$line[1]='';
-			$line[3]='';
-			$line[2]="Feil i sql spørring.";
-			$data[0]=$line;
 			return $data;
 		}
 		if (!oci_execute($stid))
 		{
-			$line[0]='unknown';
-			$line[1]='';
-			$line[3]='';
-			$line[2]="Feil i kjøring spørring:<br /> $sql";
-			$data[0]=$line;
 			return $data;
 		}
 		$i=0;
-		while ($row=oci_fetch_row($stid))
+		while ($row=oci_fetch_assoc($stid))
 		{
-			$j=0;
-			$line[$j++]='';//$this->messageType($row[3],$row[4],$row[5]);
-			$line[$j++]=$row[0];
-			$line[$j++]=$row[1];
-			$line[$j++]=$row[2];
-			$data[$i++]=$line;
+			$data[$i++]=$row;
 		}
 		return $data;
 	}
