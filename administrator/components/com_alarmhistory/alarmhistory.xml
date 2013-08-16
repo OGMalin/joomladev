@@ -12,6 +12,7 @@
 	<description>COM_ALARMHISTORY_XML_DESCRIPTION</description>
 	
 	<scriptfile>script.php</scriptfile>
+	
 	<install>
 		<sql>
 			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
@@ -22,22 +23,25 @@
 			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
 		</sql>
 	</uninstall>
+	
 	<files folder="site">
 		<filename>alarmhistory</filename>
 		<filename>controller.php</filename>
 		<filename>index.html</filename>
 		<folder>controllers</folder>
-			<folder>helpers</folder>
+		<folder>helpers</folder>
 		<folder>language</folder>
 		<folder>models</folder>
 		<folder>views</folder>
 	</files>
+	
 	<administration>
 		<menu img="class:categories">COM_ALARMHISTORY_MENU</menu>
-		<files>
+		<files folder="admin">
 			<filename>alarmhistory.php</filename>
 			<filename>access.xml</filename>
-			<filename>config</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
 			<filename>index.html</filename>
 			<folder>controllers</folder>
 			<folder>helpers</folder>
@@ -46,12 +50,11 @@
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
-		<menu>COM_alarmhistory</menu>
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.sys.ini</language>
+			<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.ini</language>
+			<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.sys.ini</language>
+		</languages>
 	</administration>
-	<languages folder="admin">
-		<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.ini</language>
-		<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.sys.ini</language>
-		<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.ini</language>
-		<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.sys.ini</language>
-	</languages>
 </extension>

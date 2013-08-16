@@ -11,9 +11,7 @@
 defined('_JEXEC') or die;
 
 JFactory::getDocument()->addScriptDeclaration("
-		responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';
-		window.onload=function(){init();};
-//		window.addEvent('domready', function() {init();};
+		var responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';
 ");
 	
 ?>
@@ -22,4 +20,4 @@ JFactory::getDocument()->addScriptDeclaration("
 	<div id='historylist'>
 	</div>
 </div>
-<!--  ?php echo $this->loadTemplate('modals'); ?>  -->
+<?php echo $this->loadTemplate('modals'); ?>

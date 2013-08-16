@@ -3,6 +3,8 @@
 	<fieldset name="component"
 		label="COM_ALARMHISTORY_COMPONENT_LABEL"
 		description="COM_ALARMHISTORY_COMPONENT_DESC">
+		<field description="Beskrivelse" label="Bruker" name="scada_user" default="200" type="text" size="40"/>
+		<field description="Beskrivelse" label="Passord" name="scada_password" default="200" type="text" size="40"/>
 	</fieldset>
 
 	<fieldset name="permissions"
