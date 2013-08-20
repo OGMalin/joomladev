@@ -33,6 +33,13 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 		// Add the admin view title
 		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_MANAGE_TITLE'));
 		
+			JToolbarHelper::addNew('alarmhistory.add');
+
+		if ($canDo->get('core.edit'))
+		{
+			JToolbarHelper::editList('alarmhistory.edit');
+		}
+		
 		if ($canDo->get('core.admin'))
 		{
 			JToolbarHelper::preferences('com_alarmhistory');

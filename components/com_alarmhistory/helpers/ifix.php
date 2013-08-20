@@ -10,13 +10,14 @@
 // No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.helper');
 
 class iFixHelper
 {
 	protected $maxrow=100;
-	protected $username="SCADA";
-	protected $password="SCADA";
-	protected $connection="10.96.100.3/REPO.NTS41";
+	protected $username="";
+	protected $password="";
+	protected $connection="";
 	protected $searchstring='';
 	protected $district=0;
 	protected $location=0;
@@ -25,6 +26,14 @@ class iFixHelper
 	protected $sec1='NETT';
 	protected $first=0;
 	protected $sort='EVENTINDEX';
+	
+	public function __construct($config = array())
+	{
+			$params=JComponentHelper::getParams('com_alarmhistory');
+			$this->connection=$params->get('scada_server','');
+			$this->username=$params->get('scada_user','');
+			$this->password=$params->get('scada_password','');
+	}
 	
 	public function getData()
 	{
