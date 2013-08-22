@@ -10,4 +10,4 @@
 // No direct access
 defined('_JEXEC') or die;
 ?>
-Tidsfølgemelder
+Tidsfølgemelder:sections

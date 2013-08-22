@@ -14,8 +14,9 @@ class AlarmhistoryHelper
 {
 	public static function addSubmenu($vName)
 	{
-		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SITES'),'index?option=com_alarmhistory&view=sites',$vName=='sites');
-		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SECTIONS'),'index?option=com_alarmhistory&view=sections',$vName=='sections');
+		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_ALARMHISTORY'),'index.php?option=com_alarmhistory&view=alarmhistory',$vName=='alarmhistory');
+		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SITES'),'index.php?option=com_alarmhistory&view=sites',$vName=='sites');
+		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SECTIONS'),'index.php?option=com_alarmhistory&view=sections',$vName=='sections');
 	}
 	
 	public static function getActions($categoryId = 0)
