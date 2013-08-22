@@ -14,18 +14,18 @@ class AlarmhistoryController extends JControllerLegacy
 		$layout = $this->input->get('layout', 'default');
 		$id     = $this->input->getInt('id');
 		
-		if ($view == 'site' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
-		{
-			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
-			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect(JRoute::_('index.php?option=com_alarmhistory&view=alarmhistory', false));
-			return false;
-		} else if ($view == 'section' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
-		{
-			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
-			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect(JRoute::_('index.php?option=com_alarmhistory&view=alarmhistory', false));
-		}
+// 		if ($view == 'site' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
+// 		{
+// 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
+// 			$this->setMessage($this->getError(), 'error');
+// 			$this->setRedirect(JRoute::_('index.php?option=com_alarmhistory&view=alarmhistory', false));
+// 			return false;
+// 		} else if ($view == 'section' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
+// 		{
+// 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
+// 			$this->setMessage($this->getError(), 'error');
+// 			$this->setRedirect(JRoute::_('index.php?option=com_alarmhistory&view=alarmhistory', false));
+// 		}
 		
 		// Load submenu
 		AlarmhistoryHelper::addSubmenu($view);

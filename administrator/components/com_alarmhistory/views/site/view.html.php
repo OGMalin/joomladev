@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
  * @subpackage  component
  * @since       1.0
  */
-class AlarmhistoryViewSections extends JViewLegacy
+class AlarmhistoryViewSite extends JViewLegacy
 {
 	protected $items;
 	protected $pagination;
@@ -44,37 +44,18 @@ class AlarmhistoryViewSections extends JViewLegacy
 	
 	protected function addToolbar()
 	{
-		$state = $this->get('State');
 		$canDo = AlarmhistoryHelper::getActions();
 		
 		// Add the admin view title
 		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'));
 		
-		if ($canDo->get('core.create'))
-		{
-			JToolbarHelper::addNew('section.add');
-		}
+		JToolbarHelper::addNew('alarmhistory.add');
 
  		if ($canDo->get('core.edit'))
  		{
- 			JToolbarHelper::editList('section.edit');
+ 			JToolbarHelper::editList('alarmhistory.edit');
  		}
 		
- 		if ($canDo->get('core.edit.state'))
- 		{
- 			JToolbarHelper::publishList('sections.publish','JTOOLBAR_PUBLISH');
- 			JToolbarHelper::publishList('sections.unpublish','JTOOLBAR_UNPUBLISH');
- 			JToolbarHelper::publishList('sections.archive','JTOOLBAR_ARCHIVE');
- 		}
- 		
- 		if (($state->get('filter.published') == -2) && ($canDo->get('core.delete')))
- 		{
- 			JToolbarHelper::deleteList('','sections.delete','JTOOLBAR_EMPTY_TRASH');
- 		}else if ($canDo->get('core.edit.state'))
- 		{
- 			JToolbarHelper::trash('sections.delete','JTOOLBAR_EMPTY_TRASH');
- 		}
- 		
 		if ($canDo->get('core.admin'))
 		{
 			JToolbarHelper::preferences('com_alarmhistory');
