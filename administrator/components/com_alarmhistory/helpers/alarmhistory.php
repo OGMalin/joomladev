@@ -12,6 +12,12 @@ defined('_JEXEC') or die;
 
 class AlarmhistoryHelper
 {
+	public static function addSubmenu($vName)
+	{
+		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SITES'),'index?option=com_alarmhistory&view=sites',$vName=='sites');
+		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SECTIONS'),'index?option=com_alarmhistory&view=sections',$vName=='sections');
+	}
+	
 	public static function getActions($categoryId = 0)
 	{
 		$user	= JFactory::getUser();
@@ -21,8 +27,7 @@ class AlarmhistoryHelper
 		{
 			$assetName = 'com_alarmhistory';
 			$level = 'component';
-		}
-		else
+		}else
 		{
 			$assetName = 'com_alarmhistory.category.'.(int) $categoryId;
 			$level = 'category';

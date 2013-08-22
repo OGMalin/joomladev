@@ -20,9 +20,25 @@ defined('_JEXEC') or die;
  */
 class AlarmhistoryViewAlarmhistory extends JViewLegacy
 {
+	protected $items;
+	protected $pagination;
+	protected $state;
+	
 	public function display($tpl=null)
 	{
+		$this->items		= $this->get('Items');
+		$this->pagination	= $this->get('Pagination');
+		$this->state		= $this->get('State');
+		
+			// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			JError::raiseError(500, implode("\n", $errors));
+			return false;
+		}
+
 		$this->addToolbar();
+		
 		parent::display($tpl);
 	}
 	
@@ -31,7 +47,14 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 		$canDo = AlarmhistoryHelper::getActions();
 		
 		// Add the admin view title
-		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_ALARMHISTORY_TITLE'));
+		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'));
+		
+		JToolbarHelper::addNew('alarmhistory.add');
+
+// 		if ($canDo->get('core.edit'))
+// 		{
+// 			JToolbarHelper::editList('alarmhistory.edit');
+// 		}
 		
 		if ($canDo->get('core.admin'))
 		{
