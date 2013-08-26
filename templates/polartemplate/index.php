@@ -51,8 +51,9 @@ $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-
 		  	<?php if ($this->countModules('above')) : ?>
 			 		<jdoc:include type="modules" name="above" style="xhtml" />
 				<?php endif ?>
-			 	<jdoc:include type="component" />
-		  	<?php if ($this->countModules('below')) : ?>
+				<jdoc:include type="message" />
+				<jdoc:include type="component" />
+			 	<?php if ($this->countModules('below')) : ?>
 			 		<jdoc:include type="modules" name="below" style="xhtml" />
 				<?php endif ?>
 			</div>
