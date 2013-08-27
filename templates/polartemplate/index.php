@@ -37,9 +37,7 @@ $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-
 <body>
 	<div class="container">
 		<?php if ($this->countModules('top')) : ?>
-		<div class="row">
 			<jdoc:include type="modules" name="top" style="xhtml" />
-		</div>
 		<?php endif ?>
 		<div class="row">
 			<?php if ($useleft) : ?>
