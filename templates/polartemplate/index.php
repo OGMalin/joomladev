@@ -18,7 +18,7 @@ $doc->addStyleSheet('templates/'.$this->template.'/css/template.css');
 
 $useleft=($this->countModules('left')>0)?3:0;
 $useright=($this->countModules('right')>0)?3:0;
-$center='span'.(12-$useleft-$useright);
+$center='col-md-'.(12-$useleft-$useright);
 
 //JHtml::_('behavior.modal');
 $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
@@ -41,7 +41,7 @@ $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-
 		<?php endif ?>
 		<div class="row">
 			<?php if ($useleft) : ?>
-		  	<div class="span3">
+		  	<div class="col-md-3">
 			 		<jdoc:include type="modules" name="left" style="xhtml" />
 		 		</div>
 		  <?php endif ?>
@@ -56,7 +56,7 @@ $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-
 				<?php endif ?>
 			</div>
 			<?php if ($useright) : ?>
-			  <div class="span3">
+			  <div class="col-md-3">
 					<jdoc:include type="modules" name="right" style="xhtml" />
 				</div>
 			<?php endif ?>
