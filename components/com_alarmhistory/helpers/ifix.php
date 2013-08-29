@@ -37,6 +37,9 @@ class iFixHelper
 	
 	public function getData()
 	{
+		if ($this->connection=="test")
+			return $this->testdata();
+
 		$this->fromdate=time()-(1*24*60*60);
 		$this->todate=time();
 		
@@ -91,5 +94,45 @@ class iFixHelper
 			$data[$i++]=$row;
 		}
 		return $data;
+	}
+	
+	protected function testdata()
+	{
+		$data=array();
+		for ($i=1000;$i>0;$i--)
+		{
+			array_push($data, 
+				array(
+					"ROW"=>$i,
+					"EVENTINDEX"=>$i,
+					"NODENAME"=>"Node",
+					"TAG"=>"Tag$i",
+					"DESCRIPTION"=>"Melding: $i",
+					"VALUEASC"=>"Alarm",
+					"UNIT"=>"KV",
+					"ALMSTATUS"=>"Node",
+					"UNIT"=>"Node",
+					"ALMSTATUS"=>"Node",
+					"MSGTYPE"=>"Node",
+					"PRIORITY"=>"Node",
+					"LOCATION"=>"Node",
+					"DISTRICT"=>"Node",
+					"REGION"=>"Node",
+					"FIELD"=>"Node",
+					"OPERATOR"=>"Node",
+					"NODEOPER"=>"Node",
+					"NODEPHYS"=>"Node",
+					"ALMX1"=>"Node",
+					"ALMX2"=>"Node",
+					"EVENTTIME"=>"2013-08-26 15:36:45:0054",
+					"COMMENTED"=>"Kommentar",
+					"SYNT"=>"Node",
+					"SEC1"=>"NETT",
+					"SEC2"=>"Node",
+					"SEC3"=>"Node"
+				));
+		}
+		return array_slice($data,$this->first,$this->maxrow);
+		
 	}
 }
