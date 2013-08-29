@@ -20,6 +20,7 @@ $useleft=($this->countModules('left')>0)?3:0;
 $useright=($this->countModules('right')>0)?3:0;
 $center='col-md-'.(12-$useleft-$useright);
 
+
 //JHtml::_('behavior.modal');
 $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
 $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/bootstrap.min.js');
@@ -33,6 +34,10 @@ $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-
 	<meta charset="utf-8">
 	<jdoc:include type="head" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--[if lt IE 9]>
+		<script src="<?php echo $this->baseurl . '/templates/' . $this->template ?>/js/html5shiv.js"></script>
+		<script src="<?php echo $this->baseurl . '/templates/' . $this->template ?>/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
 	<div class="container">

@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 ?>
 <div id='polarbook'>
-	<?php echo $this->loadTemplate('navbar'); ?>
+	<?php echo $this->loadTemplate('navbar'.$this->bootstrapv); ?>
 	<div class="row">
 		<div class="span7" id="chessboard"></div>
 		<div class="well span5">
@@ -24,4 +24,4 @@ defined('_JEXEC') or die;
 		</tr>
 	</table>
 </div>
-<?php echo $this->loadTemplate('modals'); ?>
+<?php echo $this->loadTemplate('modals'.$this->bootstrapv); ?>

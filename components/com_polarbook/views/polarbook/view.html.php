@@ -3,15 +3,22 @@ defined('_JEXEC') or die;
 jimport( 'joomla.html.html' );
 class PolarbookViewPolarbook extends JViewLegacy
 {
+	protected $book;
+	protected $moves;
+	protected $status;
+	protected $bootstrapv;
+	
 	function display($tpl = null)
 	{
 		$app=JFactory::getApplication();
 		$doc = JFactory::getDocument();
 		$db = JFactory::getDbo();
+		$params=JComponentHelper::getParams('com_polarbook');
 		$this->input = $app->input;
 		$this->book=$this->input->getInt('book',0);
 		$this->moves=urldecode($this->input->getString('moves',''));
 		$this->status=urldecode($this->input->getString('status',''));
+		$this->bootstrapv=$params->get('bootstrapv','2');
 		
 		// Get component description
 		$query=$db->getQuery(true);

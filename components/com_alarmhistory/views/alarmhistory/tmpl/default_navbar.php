@@ -1,13 +1,13 @@
- <nav class="navbar">
-<!--   <div class="navbar navbar-inverse"> -->
- 	<div class="navbar-inner">
-		<div class="container">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<div class="navbar">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</a>
-			<div class="nav-collapse">
+			</button>
+			</div>
+			<div class="collapse navbar-collapse">
 				<form class="navbar-form">
 				<select class='input-small' id='sec1'>
 					<option value=''>Alt</option>

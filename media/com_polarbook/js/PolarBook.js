@@ -138,7 +138,7 @@ function menuFileOpen(func) {
 					if (!json || (json.error && (json.error>0))) {
 						jQuery("#status").text('Error: ' + (json ? json.error : 'Missing answer'));
 					} else {
-						var s="<select id='fileopenname'>\n";
+						var s="<select class='form-control' id='fileopenname'>\n";
 						for ( var i=0; i<json.length;i++) {
 							if (json[i]['id']){
 								s+="<option value='"+json[i]['id']+"'";
@@ -249,7 +249,7 @@ function menuFileTrash(func) {
 					if (!json || (json.error && (json.error>0))) {
 						jQuery("#status").text('Error: ' + (json ? json.error : 'Missing answer'));
 					} else {
-						var s="<select id='filetrashname'>\n";
+						var s="<select class='form-control' id='filetrashname'>\n";
 						for ( var i=0; i<json.length;i++) {
 							if (json[i]['id'])
 								s+="<option value='"+json[i]['id']+"'>"+json[i]['name']+"</option>\n";
@@ -333,7 +333,7 @@ function menuBookImportBook(func)
 					if (!json || (json.error && (json.error>0))) {
 						jQuery("#status").text('Error: ' + (json ? json.error : 'Missing answer'));
 					} else {
-						var s="<select id='bookimportbookname' multiple>\n";
+						var s="<select class='form-control' id='bookimportbookname' multiple>\n";
 						for ( var i=0; i<json.length;i++) {
 							if (json[i]['id'] && (json[i]['id']!=currentBook.id)){
 								s+="<option value='"+json[i]['id']+"'";
@@ -425,7 +425,7 @@ function menuBookProperty(func) {
 					jQuery("#status").text('Error: ' + (json ? json.error : 'Missing answer'));
 				} else {
 					var i;
-					var s="<select id='bookpropertyuserread' multiple>\n";
+					var s="<select class='form-control' id='bookpropertyuserread' multiple>\n";
 					for ( i=0; i<json.length;i++) {
 						if ((json[i]['id'])&&(json[i]['id']!=currentUser.user)&&(json[i]['id']!=currentBook.user)){
 							s+="<option value='"+json[i]['id']+"'";
