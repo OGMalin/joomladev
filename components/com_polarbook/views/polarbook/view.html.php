@@ -6,7 +6,7 @@ class PolarbookViewPolarbook extends JViewLegacy
 	protected $book;
 	protected $moves;
 	protected $status;
-	protected $bootstrapv;
+//	protected $bootstrapv;
 	
 	function display($tpl = null)
 	{
@@ -18,7 +18,7 @@ class PolarbookViewPolarbook extends JViewLegacy
 		$this->book=$this->input->getInt('book',0);
 		$this->moves=urldecode($this->input->getString('moves',''));
 		$this->status=urldecode($this->input->getString('status',''));
-		$this->bootstrapv=$params->get('bootstrapv','2');
+//		$this->bootstrapv=$params->get('bootstrapv','2');
 		
 		// Get component description
 		$query=$db->getQuery(true);
@@ -34,8 +34,10 @@ class PolarbookViewPolarbook extends JViewLegacy
 		};
 		if (!isset($this->component))
 				$this->component=array('version' => '');
-		
-// 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt',false);
+
+		JHtml::_('bootstrap.framework');
+//		JHtml::_('jquery.ui');
+// 		$doc->addScript($this->baseurl . '/media/com_polarbook/js/jquery-ui.min.js','text/javascrpt');
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js','text/javascrpt',false);
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js','text/javascrpt',false);
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js','text/javascrpt',false);
@@ -43,7 +45,7 @@ class PolarbookViewPolarbook extends JViewLegacy
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoard.js');
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/ChessBoardView.js');
 // 		$doc->addScript( $this->baseurl . '/media/com_polarbook/js/PolarBook.js');
-//		JHtml::script('com_polarbook/jquery-ui.min.js',false,true);
+		JHtml::script('com_polarbook/jquery-ui.min.js',false,true);
 		JHtml::script('com_polarbook/ChessBoard.js',false,true);
 		JHtml::script('com_polarbook/ChessBoardView.js',false,true);
 		JHtml::script('com_polarbook/PolarBook.js',false,true);

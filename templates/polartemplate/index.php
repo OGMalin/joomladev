@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 $app = JFactory::getApplication();
 $doc = JFactory::getDocument();
 
-$doc->addStyleSheet('templates/'.$this->template.'/css/jquery-ui.min.css');
+//$doc->addStyleSheet('templates/'.$this->template.'/css/jquery-ui.min.css');
 $doc->addStyleSheet('templates/'.$this->template.'/css/template.css');
 
 $useleft=($this->countModules('left')>0)?3:0;
@@ -21,11 +21,13 @@ $useright=($this->countModules('right')>0)?3:0;
 $center='col-md-'.(12-$useleft-$useright);
 
 
+JHtml::_('bootstrap.framework');
+
 //JHtml::_('behavior.modal');
-$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
-$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/bootstrap.min.js');
-$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-noconflict.js');
-$doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-ui.min.js');
+// $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
+// $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/bootstrap.min.js');
+// $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-noconflict.js');
+// $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-ui.min.js');
 
 ?>
 <!DOCTYPE html>
@@ -34,15 +36,16 @@ $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery-
 	<meta charset="utf-8">
 	<jdoc:include type="head" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--[if lt IE 9]>
-		<script src="<?php echo $this->baseurl . '/templates/' . $this->template ?>/js/html5shiv.js"></script>
-		<script src="<?php echo $this->baseurl . '/templates/' . $this->template ?>/js/respond.min.js"></script>
+ 	<!--[if lt IE 9]>
+		<script src="../../media/jui/js/html5.js"></script>
 	<![endif]-->
 </head>
 <body>
 	<div class="container">
 		<?php if ($this->countModules('top')) : ?>
-			<jdoc:include type="modules" name="top" style="xhtml" />
+			<div class="row">
+				<jdoc:include type="modules" name="top" style="xhtml" />
+			</div>
 		<?php endif ?>
 		<div class="row">
 			<?php if ($useleft) : ?>
