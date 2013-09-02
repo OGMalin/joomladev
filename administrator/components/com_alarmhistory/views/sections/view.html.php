@@ -21,21 +21,23 @@ defined('_JEXEC') or die;
 class AlarmhistoryViewSections extends JViewLegacy
 {
 	protected $items;
-	protected $pagination;
-	protected $state;
+	protected $form;
+// 	protected $pagination;
+// 	protected $state;
 	
 	public function display($tpl=null)
 	{
 		$this->items		= $this->get('Items');
-		$this->pagination	= $this->get('Pagination');
-		$this->state		= $this->get('State');
+		$this->form = $this->get('Form');
+// 		$this->pagination	= $this->get('Pagination');
+// 		$this->state		= $this->get('State');
 		
-			// Check for errors.
-// 		if (count($errors = $this->get('Errors')))
-// 		{
-// 			JError::raiseError(500, implode("\n", $errors));
-// 			return false;
-// 		}
+		// Check for errors.
+ 		if (count($errors = $this->get('Errors')))
+ 		{
+ 			JError::raiseError(500, implode("\n", $errors));
+ 			return false;
+ 		}
 
 		$this->addToolbar();
 		
@@ -44,7 +46,7 @@ class AlarmhistoryViewSections extends JViewLegacy
 	
 	protected function addToolbar()
 	{
-		$state = $this->get('State');
+//		$state = $this->get('State');
 		$canDo = AlarmhistoryHelper::getActions();
 		
 		// Add the admin view title
@@ -60,20 +62,20 @@ class AlarmhistoryViewSections extends JViewLegacy
  			JToolbarHelper::editList('section.edit');
  		}
 		
- 		if ($canDo->get('core.edit.state'))
- 		{
- 			JToolbarHelper::publishList('sections.publish','JTOOLBAR_PUBLISH');
- 			JToolbarHelper::publishList('sections.unpublish','JTOOLBAR_UNPUBLISH');
- 			JToolbarHelper::publishList('sections.archive','JTOOLBAR_ARCHIVE');
- 		}
+//  		if ($canDo->get('core.edit.state'))
+//  		{
+//  			JToolbarHelper::publishList('sections.publish','JTOOLBAR_PUBLISH');
+//  			JToolbarHelper::publishList('sections.unpublish','JTOOLBAR_UNPUBLISH');
+//  			JToolbarHelper::publishList('sections.archive','JTOOLBAR_ARCHIVE');
+//  		}
  		
- 		if (($state->get('filter.published') == -2) && ($canDo->get('core.delete')))
- 		{
- 			JToolbarHelper::deleteList('','sections.delete','JTOOLBAR_EMPTY_TRASH');
- 		}else if ($canDo->get('core.edit.state'))
- 		{
- 			JToolbarHelper::trash('sections.delete','JTOOLBAR_EMPTY_TRASH');
- 		}
+//  		if (($state->get('filter.published') == -2) && ($canDo->get('core.delete')))
+//  		{
+//  			JToolbarHelper::deleteList('','sections.delete','JTOOLBAR_EMPTY_TRASH');
+//  		}else if ($canDo->get('core.edit.state'))
+//  		{
+//  			JToolbarHelper::trash('sections.delete','JTOOLBAR_EMPTY_TRASH');
+//  		}
  		
 		if ($canDo->get('core.admin'))
 		{

@@ -10,7 +10,7 @@
 // No direct access
 defined('_JEXEC') or die;
 
-class AlarmhistoryControllerSite extends JControllerForm
+class AlarmhistoryControllerSection extends JControllerForm
 {
 	
 }

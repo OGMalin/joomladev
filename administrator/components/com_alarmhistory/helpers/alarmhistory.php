@@ -19,6 +19,13 @@ class AlarmhistoryHelper
 		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SECTIONS'),'index.php?option=com_alarmhistory&view=sections',$vName=='sections');
 	}
 	
+	/**
+	 * Function to check the permission for the group the user are member of
+	 * 
+	 * @param number $categoryId
+	 * @return JObject
+	 */
+	
 	public static function getActions($categoryId = 0)
 	{
 		$user	= JFactory::getUser();
