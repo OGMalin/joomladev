@@ -47,7 +47,7 @@ class AlarmhistoryViewSites extends JViewLegacy
 		$canDo = AlarmhistoryHelper::getActions();
 		
 		// Add the admin view title
-		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'));
+		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SITES_TITLE'));
 		
 		JToolbarHelper::addNew('alarmhistory.add');
 

@@ -1,23 +1,18 @@
-<div class="navbar navbar-default">
-	<div class="container">
-		<div class="navbar-header">
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" type="button">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse">
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
 			<form class="navbar-form">
-				<select class='input-sm' id='sec1'>
+				<select class='span2' id='section'>
 					<option value=''>Alt</option>
 					<option value='KRAFT'>Produksjon</option>
 					<option value='NETT'>Nett</option>
 				</select>
-				<input class='input-sm col-lg-2' type='text' placeholder='Søketekst'>
-				<input class='input-sm col-lg-1' type="text" id="datepicker1" />
-				<input class='input-sm col-lg-1' type="text" id="datepicker2" />
-			</form>
-    </div>
+				<select class='span2' id='site'>
+					<option value=''>Alt</option>
+				</select>
+				<input class='span2' type='text' placeholder='Søketekst'>
+				<?php echo JHtml::_('calendar',date('m.d.Y',time()),'Fra','fromdate');//,'%d.%m.%Y'); ?>
+    	</form>
+		</div>
 	</div>
 </div>

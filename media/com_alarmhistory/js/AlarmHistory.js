@@ -12,18 +12,18 @@ var debug=true;
 var msgList=new Array();
 function init()
 {
-	jQuery(function() {
-		jQuery( "#datepicker1" ).datepicker();
-	});
-	jQuery(function() {
-		jQuery( "#datepicker2" ).datepicker();
-	});
-
-	jQuery.datepicker.setDefaults({
-		monthNames: [ "Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember" ],
-		dayNamesMin: [ "Sø", "Ma", "Ti", "On", "To", "Fr", "Lø" ],
-		firstDay: 1
-	});
+//	jQuery(function() {
+//		jQuery( "#datepicker1" ).datepicker();
+//	});
+//	jQuery(function() {
+//		jQuery( "#datepicker2" ).datepicker();
+//	});
+//
+//	jQuery.datepicker.setDefaults({
+//		monthNames: [ "Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember" ],
+//		dayNamesMin: [ "Sø", "Ma", "Ti", "On", "To", "Fr", "Lø" ],
+//		firstDay: 1
+//	});
 	
 	getList();
 };

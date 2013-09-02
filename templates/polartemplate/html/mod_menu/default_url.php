@@ -26,7 +26,7 @@ else { $linktype = $item->title;
 $flink = $item->flink;
 $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
 $toggle = $item->parent ? " data-toggle='dropdown' ":"";
-$caret =  $item->parent ? " <b class='caret'></b>":"";
+$caret =  $item->parent ? " <i class='caret'></i>":"";
 
 switch ($item->browserNav) :
 	default:

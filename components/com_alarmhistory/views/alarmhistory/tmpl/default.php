@@ -11,8 +11,11 @@
 defined('_JEXEC') or die;
 
 JFactory::getDocument()->addScriptDeclaration("
-		var responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';
+		var responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';				
 ");
+
+// Kalenderfunksjonen trenger mootools
+JHtml::_('behavior.framework');
 	
 ?>
 <div id='alarmhstory'>

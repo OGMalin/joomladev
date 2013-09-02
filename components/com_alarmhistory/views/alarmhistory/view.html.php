@@ -14,12 +14,12 @@ defined('_JEXEC') or die;
 class AlarmhistoryViewAlarmhistory extends JViewLegacy
 {
 	protected $items;
+	protected $fromCalendar;
 	
 	public function display($tpl = null)
 	{
 		$doc = JFactory::getDocument();
 		$this->items = $this->get('Items');
-		
 		if (count($errors = $this->get('Errors')))
 		{
 			JError::raisError(500, implode("\n", $errors));
