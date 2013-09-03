@@ -28,17 +28,24 @@ function init()
 	getList();
 };
 	
-function getList()
+
+function dateChanged()
 {
-	var filter='';
-	var start=0;
+	var s = jQuery('#setdate').val();
+	var d = new Date(s.substr(6,4),s.substr(3,2),s.substr(0,2),12,0,0,0);
+	var t = d.getTime();
+	getList('eventdate='+t);
+}
+
+function getList(filter='')
+{
 	var limit=0;
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : { start : start, limit : limit, filter : filter },
+		data : filter ,
 		timeout : 60000,
 		success : function(json)
 		{
@@ -57,10 +64,10 @@ function getList()
 
 function showList()
 {
-	var list="<table class='table-hover table-condensed'>";
+	var list = "<table class='table-hover table-condensed'>";
 	for (var i=0;i<msgList.length;i++)
 	{
-		list+="<tr onclick='showProperty(" + i + ");return false;'>";
+		list+="<tr class=\"" + messageClass(i) + "\" onclick='showProperty(" + i + ");return false;'>";
 		list+="<td>" + msgList[i].EVENTTIME.substr(0,22) + "</td>";
 		list+="<td>" + msgList[i].DESCRIPTION + "</td>";
 		list+="<td>" + msgList[i].VALUEASC + "</td>";
@@ -68,6 +75,11 @@ function showList()
 	}
 	list+="</table>\n"
 	jQuery('#historylist').html(list);
+}
+
+function messageClass(i)
+{
+	return (msgList[i].MSGTYPE+'-'+msgList[i].PRIORITY+ (msgList[i].UNIT?'-'+msgList[i].UNIT:''));
 }
 
 function showProperty(index)

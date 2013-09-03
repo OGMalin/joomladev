@@ -14,7 +14,8 @@ jimport('joomla.application.component.helper');
 
 class iFixHelper
 {
-	protected $maxrow=100;
+	public $limit=10;
+	public $eventdate=0;
 	protected $username="";
 	protected $password="";
 	protected $connection="";
@@ -43,10 +44,10 @@ class iFixHelper
 		$this->fromdate=time()-(1*24*60*60);
 		$this->todate=time();
 		
-		$data1=$this->readFromScada('EVENTS',$this->maxrow);
+		$data1=$this->readFromScada('EVENTS',$this->limit);
 //		return $data1;
 		$i=count($data1);
-		$data2=$this->readFromScada('EVENTS_HIS',$this->maxrow-$i);
+		$data2=$this->readFromScada('EVENTS_HIS',$this->limit-$i);
 		$i+=count($data2);
 		return array_merge($data1,$data2);
 	}
@@ -78,6 +79,11 @@ class iFixHelper
 //  		$sql.=" AND (EVENTTIME >='".date("d.m.Y H:i:s,0",$this->fromdate)."')";
 //  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
 //  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
+		if ($this->eventdate)
+		{
+			$sql.=" AND (EVENTTIME >='".date("d.m.Y H:i:s,0",$this->eventdate)."')";
+			$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->eventdate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
+		}
 		$sql.=" ORDER BY EVENTINDEX DESC";
 		$stid=oci_parse($conn, $sql);
 		if (!$stid)
@@ -93,6 +99,7 @@ class iFixHelper
 		{
 			$data[$i++]=$row;
 		}
+		$data['sql']=$sql;
 		return $data;
 	}
 	

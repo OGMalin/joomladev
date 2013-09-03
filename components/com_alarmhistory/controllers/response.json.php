@@ -23,10 +23,10 @@ class AlarmhistoryControllerResponse extends JControllerLegacy
 
 		$this->input = $app->input;
 		$start=$this->input->getInt('start',0);
-		$limit=$this->input->getInt('limit',10);
-		$filter=urldecode($this->input->getString('filter',''));
+		$limit=$this->input->getInt('limit',20);
+		$eventdate=$this->input->getInt('eventdate',0);
 		
-		$res=$model->queryAlarmhistory($start, $limit, $filter);
+		$res=$model->queryAlarmhistory($start, $limit, $eventdate);
 		
 		$doc->setMimeEncoding('application/json');
 		echo json_encode($res);

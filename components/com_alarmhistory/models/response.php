@@ -17,10 +17,12 @@ jimport('joomla.application.component.modelitem');
 class AlarmhistoryModelResponse extends JModelItem
 {
 	
-	public function queryAlarmhistory($start, $limit, $filter)
+	public function queryAlarmhistory($start, $limit, $eventdate)
 	{
 		$iFix=new iFixHelper();
 		
+		$ifix->limit=$limit;
+		$ifix->eventdate=$eventdate;
 		return $iFix->getData();
 	}
 }

@@ -13,12 +13,13 @@ defined('_JEXEC') or die;
 $app = JFactory::getApplication();
 $doc = JFactory::getDocument();
 
-//$doc->addStyleSheet('templates/'.$this->template.'/css/jquery-ui.min.css');
-$doc->addStyleSheet('templates/'.$this->template.'/css/template.css');
+$doc->addStyleSheet('templates/' . $this->template . '/css/template.css');
+if (JPath::find('templates/' . $this->template . '/css/', 'custom.css'))
+	$doc->addStyleSheet('templates/'.$this->template.'/css/custom.css');
 
 $useleft=($this->countModules('left')>0)?3:0;
 $useright=($this->countModules('right')>0)?3:0;
-$center='col-md-'.(12-$useleft-$useright);
+$center='span'.(12-$useleft-$useright);
 
 
 JHtml::_('bootstrap.framework');
@@ -37,7 +38,7 @@ JHtml::_('bootstrap.framework');
 	<jdoc:include type="head" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<!--[if lt IE 9]>
-		<script src="../../media/jui/js/html5.js"></script>
+		<script src="media/jui/js/html5.js"></script>
 	<![endif]-->
 </head>
 <body>

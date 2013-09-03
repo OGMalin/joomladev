@@ -10,17 +10,17 @@
 // No direct access
 defined('_JEXEC') or die;
 
+JHtml::_('behavior.calendar');	
 JFactory::getDocument()->addScriptDeclaration("
 		var responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';				
 ");
 
 // Kalenderfunksjonen trenger mootools
 JHtml::_('behavior.framework');
-	
 ?>
 <div id='alarmhstory'>
 	<?php echo $this->loadTemplate('navbar'); ?>
 	<div id='historylist'>
 	</div>
 </div>
-<?php echo $this->loadTemplate('modals'); ?>
+<?php  echo $this->loadTemplate('modals'); ?>
