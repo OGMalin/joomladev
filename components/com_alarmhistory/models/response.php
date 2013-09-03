@@ -21,8 +21,8 @@ class AlarmhistoryModelResponse extends JModelItem
 	{
 		$iFix=new iFixHelper();
 		
-		$ifix->limit=$limit;
-		$ifix->eventdate=$eventdate;
+		$iFix->limit=$limit;
+		$iFix->eventdate=$eventdate;
 		return $iFix->getData();
 	}
 }

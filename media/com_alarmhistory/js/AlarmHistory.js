@@ -32,8 +32,8 @@ function init()
 function dateChanged()
 {
 	var s = jQuery('#setdate').val();
-	var d = new Date(s.substr(6,4),s.substr(3,2),s.substr(0,2),12,0,0,0);
-	var t = d.getTime();
+	var d = new Date(parseInt(s.substr(6,4)),parseInt(s.substr(3,2)),parseInt(s.substr(0,2)),0,0,0,0);
+	var t = d.getTime()/1000;
 	getList('eventdate='+t);
 }
 

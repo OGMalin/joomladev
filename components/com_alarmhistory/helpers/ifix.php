@@ -80,10 +80,7 @@ class iFixHelper
 //  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
 //  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
 		if ($this->eventdate)
-		{
-			$sql.=" AND (EVENTTIME >='".date("d.m.Y H:i:s,0",$this->eventdate)."')";
 			$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->eventdate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
-		}
 		$sql.=" ORDER BY EVENTINDEX DESC";
 		$stid=oci_parse($conn, $sql);
 		if (!$stid)
@@ -99,7 +96,6 @@ class iFixHelper
 		{
 			$data[$i++]=$row;
 		}
-		$data['sql']=$sql;
 		return $data;
 	}
 	
@@ -114,8 +110,9 @@ class iFixHelper
 					"EVENTINDEX"=>$i,
 					"NODENAME"=>"Node",
 					"TAG"=>"Tag$i",
-					"DESCRIPTION"=>"Melding: $i",
-					"VALUEASC"=>"Alarm",
+//					"DESCRIPTION"=>"Melding: $i",
+					"DESCRIPTION"=>date("d.m.Y H:i:s,0",$this->eventdate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980))),
+					"VALUEASC"=>$this->eventdate,
 					"UNIT"=>"KV",
 					"ALMSTATUS"=>"Node",
 					"UNIT"=>"Node",
@@ -135,11 +132,11 @@ class iFixHelper
 					"COMMENTED"=>"Kommentar",
 					"SYNT"=>"Node",
 					"SEC1"=>"NETT",
-					"SEC2"=>"Node",
-					"SEC3"=>"Node"
+ 					"SEC2"=>"NONE",
+ 					"SEC3"=>"NONE"
 				));
 		}
-		return array_slice($data,$this->first,$this->maxrow);
+		return array_slice($data,$this->first,$this->limit);
 		
 	}
 }
