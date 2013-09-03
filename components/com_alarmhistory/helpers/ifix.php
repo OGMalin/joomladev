@@ -66,8 +66,8 @@ class iFixHelper
 		$sql.=" $table";
 		$sql.=" WHERE";
 		$sql.=" (ROWNUM <= " . $max . ")";
- 		if ($this->first>0)
- 			$sql.=" AND (EVENTINDEX<" . $this->first . ")";
+//  		if ($this->first>0)
+//  			$sql.=" AND (EVENTINDEX <" . $this->first . ")";
 		if ($this->sec1!='')
  			$sql.=" AND (SEC1 LIKE '" . $this->sec1. "')";
 		// 		if ($this->district>0)
@@ -80,8 +80,8 @@ class iFixHelper
 //  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
 //  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
 		if ($this->eventdate)
-			$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->eventdate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
-		$sql.=" ORDER BY EVENTINDEX DESC";
+			$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60))."')";
+		$sql.=" ORDER BY EVENTTIME DESC";
 		$stid=oci_parse($conn, $sql);
 		if (!$stid)
 		{
@@ -96,6 +96,7 @@ class iFixHelper
 		{
 			$data[$i++]=$row;
 		}
+//		$data[0]['DESCRIPTION']=urlencode($sql);
 		return $data;
 	}
 	

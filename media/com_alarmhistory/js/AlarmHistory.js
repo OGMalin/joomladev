@@ -39,13 +39,13 @@ function dateChanged()
 
 function getList(filter='')
 {
-	var limit=0;
+	var limit=20;
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : filter ,
+		data : filter + '&limit=' + limit ,
 		timeout : 60000,
 		success : function(json)
 		{
