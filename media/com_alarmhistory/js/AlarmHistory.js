@@ -38,15 +38,21 @@ function dateChanged()
 	getList('eventdate='+t);
 }
 
+function sectionChanged()
+{
+	getList();
+}
+
 function getList(filter='')
 {
-	var limit=20;
+	var limit=30;
+	var sec1=jQuery('#section option:selected').val();
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : filter + '&limit=' + limit ,
+		data : filter + '&limit=' + limit + '&sec1=' + sec1,
 		timeout : 60000,
 		success : function(json)
 		{
@@ -69,7 +75,7 @@ function showList()
 	for (var i=0;i<msgList.length;i++)
 	{
 		list+="<tr class=\"" + messageClass(i) + "\" onclick='showProperty(" + i + ");return false;'>";
-		list+="<td>" + msgList[i].EVENTTIME.substr(0,22) + "</td>";
+		list+="<td>" + msgList[i].EVENTDATE + "</td>";
 		list+="<td>" + msgList[i].DESCRIPTION + "</td>";
 		list+="<td>" + msgList[i].VALUEASC + "</td>";
 		list+="</tr>\n";
@@ -105,6 +111,7 @@ function showProperty(index)
 	jQuery('#NODEPHYS').html(msgList[index].NODEPHYS);
 	jQuery('#ALMX1').html(msgList[index].ALMX1);
 	jQuery('#ALMX2').html(msgList[index].ALMX2);
+	jQuery('#EVENTDATE').html(msgList[index].EVENTDATE);
 	jQuery('#EVENTTIME').html(msgList[index].EVENTTIME);
 	jQuery('#COMMENTED').html(msgList[index].COMMENTED);
 	jQuery('#SYNT').html(msgList[index].SYNT);

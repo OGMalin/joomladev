@@ -28,6 +28,7 @@ defined('_JEXEC') or die;
 			<tr><td>NODEPHYS:</td><td id="NODEPHYS"></td></tr>
 			<tr><td>ALMX1:</td><td id="ALMX1"></td></tr>
 			<tr><td>ALMX2:</td><td id="ALMX2"></td></tr>
+			<tr><td>EVENTDATE:</td><td id="EVENTDATE"></td></tr>
 			<tr><td>EVENTTIME:</td><td id="EVENTTIME"></td></tr>
 			<tr><td>COMMENTED:</td><td id="COMMENTED"></td></tr>
 			<tr><td>SYNT:</td><td id="SYNT"></td></tr>

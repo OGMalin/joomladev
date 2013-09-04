@@ -16,6 +16,7 @@ class iFixHelper
 {
 	public $limit=10;
 	public $eventdate=0;
+	public  $sec1='';
 	protected $username="";
 	protected $password="";
 	protected $connection="";
@@ -24,7 +25,6 @@ class iFixHelper
 	protected $location=0;
 	protected $fromdate=0;
 	protected $todate=0;
-	protected $sec1='NETT';
 	protected $first=0;
 	protected $sort='EVENTINDEX';
 	
@@ -45,15 +45,27 @@ class iFixHelper
 		$this->todate=time();
 		
 		$data1=$this->readFromScada('EVENTS',$this->limit);
-//		return $data1;
 		$i=count($data1);
-		$data2=$this->readFromScada('EVENTS_HIS',$this->limit-$i);
-		$i+=count($data2);
-		return array_merge($data1,$data2);
+		if ($i<$this->limit)
+		{
+			$data2=$this->readFromScada('EVENTS_HIS',$this->limit-$i);
+//			$i+=count($data2);
+			return array_merge($data1,$data2);
+		}
+		return $data1;
 	}
 	
 	protected function readFromScada($table, $max)
 	{
+// select * 
+//   from ( select /*+ FIRST_ROWS(n) */ 
+//   a.*, ROWNUM rnum 
+//       from ( your_query_goes_here, 
+//       with order by ) a 
+//       where ROWNUM <= 
+//       :MAX_ROW_TO_FETCH ) 
+// where rnum  >= :MIN_ROW_TO_FETCH;
+		
 		$data=array();
 		$line=array();
 		$conn=oci_connect($this->username,$this->password,$this->connection,"AL32UTF8");
@@ -61,15 +73,40 @@ class iFixHelper
 		{
 			return $data;
 		}
-		$sql="SELECT *";
-		$sql.=" FROM";
+		$sql="SELECT * FROM ( SELECT";
+		$sql.=" EVENTINDEX";
+		$sql.=",NODENAME";
+		$sql.=",TAG";
+		$sql.=",DESCRIPTION";
+		$sql.=",VALUEASC";
+		$sql.=",UNIT";
+		$sql.=",ALMSTATUS";
+		$sql.=",MSGTYPE";
+		$sql.=",PRIORITY";
+		$sql.=",LOCATION";
+		$sql.=",DISTRICT";
+		$sql.=",REGION";
+		$sql.=",FIELD";
+		$sql.=",OPERATOR";
+		$sql.=",NODEOPER";
+		$sql.=",NODEPHYS";
+		$sql.=",ALMX1";
+		$sql.=",ALMX2";
+		$sql.=",TO_CHAR(CAST((EVENTTIME AT LOCAL) AS DATE),'DD-MM-YYYY HH24:MI:SS') AS EVENTDATE";
+		$sql.=",EVENTTIME";
+		$sql.=",COMMENTED";
+		$sql.=",SYNT";
+		$sql.=",SEC1";
+		$sql.=",SEC2";
+		$sql.=",SEC3";
+
+		$sql .= " FROM";
 		$sql.=" $table";
 		$sql.=" WHERE";
-		$sql.=" (ROWNUM <= " . $max . ")";
 //  		if ($this->first>0)
 //  			$sql.=" AND (EVENTINDEX <" . $this->first . ")";
 		if ($this->sec1!='')
- 			$sql.=" AND (SEC1 LIKE '" . $this->sec1. "')";
+ 			$sql.=" (SEC1 LIKE '" . $this->sec1. "')";
 		// 		if ($this->district>0)
 // 			$sql.=" AND (DISTRICT=$this->district)";
 // 		if ($this->location>0)
@@ -80,8 +117,10 @@ class iFixHelper
 //  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
 //  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
 		if ($this->eventdate)
-			$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60))."')";
-		$sql.=" ORDER BY EVENTTIME DESC";
+			$sql.=" AND (EVENTTIME < '".date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60))."')";
+		$sql.=" ORDER BY EVENTTIME DESC )";
+		$sql.=" WHERE ROWNUM <= " . $max;
+//		echo $sql;
 		$stid=oci_parse($conn, $sql);
 		if (!$stid)
 		{
@@ -112,7 +151,7 @@ class iFixHelper
 					"NODENAME"=>"Node",
 					"TAG"=>"Tag$i",
 //					"DESCRIPTION"=>"Melding: $i",
-					"DESCRIPTION"=>date("d.m.Y H:i:s,0",$this->eventdate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980))),
+					"DESCRIPTION"=>date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60)),
 					"VALUEASC"=>$this->eventdate,
 					"UNIT"=>"KV",
 					"ALMSTATUS"=>"Node",
