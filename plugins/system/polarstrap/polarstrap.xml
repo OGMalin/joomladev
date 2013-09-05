@@ -19,7 +19,7 @@
  	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="cssfiles" type="radio" default="1" label="CSS Files" description="CSS Files for Bootstrap, Icomoon, and responsive">
+				<field name="cssfiles" type="radio" default="0" label="CSS Files" description="CSS Files for Bootstrap, Icomoon, and responsive">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
@@ -31,7 +31,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="jquery_ui" type="radio" default="1" label="JQuery UI" description="">
+				<field name="jquery_ui" type="radio" default="0" label="JQuery UI" description="">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
