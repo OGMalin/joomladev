@@ -1,8 +1,11 @@
 joomladev
 =========
+
+This is my development folder for Joomla! development. Released extentions are put into their respective repository.
 <pre>What's in here:
 
 Components:
+=========
 	com_polarbook
 		Positiondatabase for chess.
 	Folders
