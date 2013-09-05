@@ -102,11 +102,12 @@ class iFixHelper
 
 		$sql .= " FROM";
 		$sql.=" $table";
-		$sql.=" WHERE";
+		$where = array();
+		$whereId = 0;
 //  		if ($this->first>0)
 //  			$sql.=" AND (EVENTINDEX <" . $this->first . ")";
 		if ($this->sec1!='')
- 			$sql.=" (SEC1 LIKE '" . $this->sec1. "')";
+ 			$where[$whereId++]="(SEC1 LIKE '" . $this->sec1. "')";
 		// 		if ($this->district>0)
 // 			$sql.=" AND (DISTRICT=$this->district)";
 // 		if ($this->location>0)
@@ -117,7 +118,18 @@ class iFixHelper
 //  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
 //  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";
 		if ($this->eventdate)
-			$sql.=" AND (EVENTTIME < '".date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60))."')";
+			$where[$whereId++] ="(EVENTTIME < '".date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60))."')";
+		if (count($where))
+		{
+			$sql.=" WHERE";
+			for ($i=0;$i<count($where);$i++)
+			{
+				if ($i>0)
+					$sql .= " AND";
+				$sql .= " " . $where[$i];
+			}
+		}
+		
 		$sql.=" ORDER BY EVENTTIME DESC )";
 		$sql.=" WHERE ROWNUM <= " . $max;
 //		echo $sql;

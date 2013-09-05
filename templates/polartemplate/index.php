@@ -12,6 +12,8 @@ defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
 $doc = JFactory::getDocument();
+$jversion = new JVersion();
+$version = $jversion->getShortVersion();
 
 $doc->addStyleSheet('templates/' . $this->template . '/css/template.css');
 if (JPath::find('templates/' . $this->template . '/css/', 'custom.css'))
@@ -21,8 +23,9 @@ $useleft=($this->countModules('left')>0)?3:0;
 $useright=($this->countModules('right')>0)?3:0;
 $center='span'.(12-$useleft-$useright);
 
-
-JHtml::_('bootstrap.framework');
+// Earlier versions of Joomla don't have Bootstrap, use a plugin (Polarstrap) to enable bootstrap.
+if (version_compare($version, '3.0', 'ge'))
+	JHtml::_('bootstrap.framework');
 
 //JHtml::_('behavior.modal');
 // $doc->addScript( $this->baseurl . '/templates/' . $this->template . '/js/jquery.min.js');
@@ -82,6 +85,5 @@ JHtml::_('bootstrap.framework');
 	 	<?php endif ?>
 	</div>
 	<jdoc:include type="modules" name="debug" style="xhtml" />
-
 </body>
 </html>

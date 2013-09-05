@@ -45,7 +45,7 @@ function sectionChanged()
 
 function getList(filter='')
 {
-	var limit=30;
+	var limit=100;
 	var sec1=jQuery('#section option:selected').val();
 	jQuery.ajax({
 		cache : false,

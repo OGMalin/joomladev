@@ -10,7 +10,6 @@
 // No direct access
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.calendar');	
 JFactory::getDocument()->addScriptDeclaration("
 		var responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';				
 ");
