@@ -32,9 +32,7 @@ class plgSystemPolarstrap extends JPlugin
 			$doc->addScript('media/polarstrap/js/jquery-noconflict.js');
 		if ($useJquery_ui)
 		{
-//			$doc->addStyleSheet('media/polarstrap/css/jquery-ui.min.css');
-//			$doc->addScript('media/polarstrap/js/jquery-ui.min.js');
-			$doc->addStyleSheet('media/polarstrap/css/jquery-ui-1.10.3.custom.min.css');
+			$doc->addStyleSheet('media/polarstrap/css/jquery-ui.min.css');
 			$doc->addScript('media/polarstrap/js/jquery-ui.min.js');
 		}
 		if ($useBootstrap)
