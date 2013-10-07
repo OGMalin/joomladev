@@ -53,7 +53,7 @@ if (version_compare($version, '3.0', 'ge'))
 		<?php endif ?>
 		<div class="row">
 			<?php if ($useleft) : ?>
-		  	<div class="col-md-3">
+		  	<div class="span3">
 			 		<jdoc:include type="modules" name="left" style="xhtml" />
 		 		</div>
 		  <?php endif ?>
@@ -68,7 +68,7 @@ if (version_compare($version, '3.0', 'ge'))
 				<?php endif ?>
 			</div>
 			<?php if ($useright) : ?>
-			  <div class="col-md-3">
+			  <div class="span3">
 					<jdoc:include type="modules" name="right" style="xhtml" />
 				</div>
 			<?php endif ?>
