@@ -10,8 +10,8 @@
 <!-- 				<select class='span2' id='site'> -->
 <!-- 					<option value=''>Alt</option> -->
 <!-- 				</select> -->
-				<input class='span2' type='text' placeholder='Søketekst'>
-				<?php echo JHtml::_('calendar',date('d.m.Y',time()),'Fra','setdate','%d.%m.%Y', 'onchange="dateChanged();return false;"'); ?>
+<!-- 				<input class='span2' type='text' placeholder='Søketekst'> -->
+				<?php /* echo JHtml::_('calendar',date('d.m.Y',time()),'Fra','setdate','%d.%m.%Y', 'onchange="dateChanged();return false;"'); */ ?>
     	</form>
 		</div>
 	</div>
