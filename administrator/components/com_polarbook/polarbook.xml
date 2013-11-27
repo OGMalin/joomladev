@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0.0" method="upgrade">
 	<name>COM_POLARBOOK</name>
-	<creationDate>October 2012</creationDate>
+	<creationDate>November 2013</creationDate>
 	<author>Odd Gunnar Malin</author>
 	<authorEmail>oddg@sjakk.biz</authorEmail>
-	<copyright>Copyright 2012</copyright>
+	<copyright>Copyright 2013</copyright>
 	<license>Private</license>
 	<version>0.0.1</version>
 	<description>COM_POLARBOOK_DESC</description>
