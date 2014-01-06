@@ -10,9 +10,12 @@ class AlarmhistoryController extends JControllerLegacy
  	{
 		require_once JPATH_COMPONENT.'/helpers/alarmhistory.php';
 		
-		$view 	= $this->input->get('view', 'alarmhistory');
-		$layout = $this->input->get('layout', 'default');
-		$id     = $this->input->getInt('id');
+// 		$view 	= $this->input->get('view', 'alarmhistory');
+		$view		= JFactory::getApplication()->input->getCmd('view', 'alarmhistory');
+		JFactory::getApplication()->input->set('view', $view);
+
+		// 		$layout = $this->input->get('layout', 'default');
+// 		$id     = $this->input->getInt('id');
 		
 // 		if ($view == 'site' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
 // 		{
@@ -28,10 +31,10 @@ class AlarmhistoryController extends JControllerLegacy
 // 		}
 		
 		// Load submenu
-		AlarmhistoryHelper::addSubmenu($view);
+// 		AlarmhistoryHelper::addSubmenu($view);
 		
 		
-    parent::display();
+		parent::display($cachable, $urlparams);
 
 		return $this;
 	}

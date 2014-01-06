@@ -5,6 +5,10 @@
       readonly="true" class="readonly"
       description="JGLOBAL_FIELD_ID_DESC"/>
 
+		<field name="created_by" type="createdby" default="" 
+			label="COM_ALARM_FORM_LBL_SITE_CREATED_BY"
+			description="COM_ALARM_FORM_DESC_SITE_CREATED_BY"  />
+			 
     <field name="title" type="text" class="inputbox"
       size="40" label="JGLOBAL_TITLE"
       description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
@@ -12,6 +16,43 @@
     <field name="alias" type="text" class="inputbox"
       size="40" label="JFIELD_ALIAS_LABEL"
       description="COM_ALARMHISTORY_FIELD_ALIAS_DESC" />
+
+		<field name="field" type="text" size="40" class="inputbox"
+			label="COM_ALARM_FORM_LBL_SITE_FIELD"
+			description="COM_ALARM_FORM_DESC_SITE_FIELD" 
+			filter="safehtml" /> 
+
+		<field name="region" type="text" size="40" class="inputbox"
+			label="COM_ALARM_FORM_LBL_SITE_REGION"
+			description="COM_ALARM_FORM_DESC_SITE_REGION" 
+			filter="safehtml" /> 
+
+		<field name="district" type="text" size="40" class="inputbox"
+			label="COM_ALARM_FORM_LBL_SITE_DISTRICT"
+			description="COM_ALARM_FORM_DESC_SITE_DISTRICT" 
+			filter="safehtml" /> 
+
+		<field name="location" type="text" size="40" class="inputbox"
+			label="COM_ALARM_FORM_LBL_SITE_LOCATION"
+			description="COM_ALARM_FORM_DESC_SITE_LOCATION" 
+			filter="safehtml" /> 
+
+		<field name="section" type="text" size="40" class="inputbox"
+			label="COM_ALARM_FORM_LBL_SITE_SECTION"
+			description="COM_ALARM_FORM_DESC_SITE_SECTION" 
+			default="0" 
+			filter="safehtml" /> 
+
+		<field name="state" type="list" label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
+			class="inputbox" size="1" default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+    </field> 
+
+		<field name="checked_out" type="hidden" filter="unset" />
+		
+		<field name="checked_out_time" type="hidden" filter="unset" />
 
   </fieldset>
 </form>

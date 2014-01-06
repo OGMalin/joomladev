@@ -7,7 +7,7 @@
 	<copyright>Copyright 2013. All rights reserved.	</copyright>
 	<license>GNU General Public License version 2 or later.</license>
 	<authorEmail>oddg@sjakk.biz</authorEmail>
-	<authorUrl>polarchess.net</authorUrl>
+	<authorUrl>http://polarchess.net</authorUrl>
 	<version>1.0.0</version>
 	<description>COM_ALARMHISTORY_XML_DESCRIPTION</description>
 	
@@ -37,7 +37,7 @@
 	
 	<administration>
 		<menu img="class:categories">COM_ALARMHISTORY_MENU</menu>
-		<files folder="admin">
+		<files folder="administrator">
 			<filename>alarmhistory.php</filename>
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
@@ -50,7 +50,7 @@
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
-		<languages folder="admin">
+		<languages folder="administrator">
 			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.ini</language>
 			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.sys.ini</language>
 			<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.ini</language>

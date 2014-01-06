@@ -12,40 +12,31 @@ defined('_JEXEC') or die;
 
 class AlarmhistoryHelper
 {
-	public static function addSubmenu($vName)
+	public static function addSubmenu($vName = '')
 	{
-		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_ALARMHISTORY'),'index.php?option=com_alarmhistory&view=alarmhistory',$vName=='alarmhistory');
-		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SITES'),'index.php?option=com_alarmhistory&view=sites',$vName=='sites');
-		JSubMenuHelper::addEntry(JText::_('COM_ALARMHISTORY_SUBMENU_SECTIONS'),'index.php?option=com_alarmhistory&view=sections',$vName=='sections');
+		JHtmlSidebar::addEntry(JText::_('COM_ALARMHISTORY_TITLE_ALARMHISTORY'),'index.php?option=com_alarmhistory&view=alarmhistory',$vName=='alarmhistory');
+		JHtmlSidebar::addEntry(JText::_('COM_ALARMHISTORY_TITLE_SITES'),'index.php?option=com_alarmhistory&view=sites',$vName=='sites');
+		JHtmlSidebar::addEntry(JText::_('COM_ALARMHISTORY_TITLE_SECTIONS'),'index.php?option=com_alarmhistory&view=sections',$vName=='sections');
 	}
 	
 	/**
 	 * Function to check the permission for the group the user are member of
 	 * 
-	 * @param number $categoryId
 	 * @return JObject
 	 */
 	
-	public static function getActions($categoryId = 0)
+	public static function getActions()
 	{
 		$user	= JFactory::getUser();
 		$result	= new JObject;
 
-		if (empty($categoryId))
-		{
-			$assetName = 'com_alarmhistory';
-			$level = 'component';
-		}else
-		{
-			$assetName = 'com_alarmhistory.category.'.(int) $categoryId;
-			$level = 'category';
-		}
+		$assetName = 'com_alarmhistory';
 
-		$actions = JAccess::getActions('com_alarmhistory', $level);
+		$actions = array('core.admin', 'core.manage', 'core.create', 'core.edit', 'core.edit.own', 'core.edit.state', 'core.delete');
 
 		foreach ($actions as $action)
 		{
-			$result->set($action->name,	$user->authorise($action->name, $assetName));
+			$result->set($action,	$user->authorise($action->name, $assetName));
 		}
 
 		return $result;

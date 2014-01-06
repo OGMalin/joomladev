@@ -12,5 +12,9 @@ defined('_JEXEC') or die;
 
 class AlarmhistoryControllerSite extends JControllerForm
 {
-	
+	function __construct()
+	{
+		$this->view_list = 'sites';
+		parent::__construct();
+	}
 }
