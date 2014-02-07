@@ -79,7 +79,7 @@ if (version_compare($version, '3.0', 'ge'))
 			</div>
 	 	<?php endif ?>
 	 	<?php if ($this->countModules('footer')) : ?>
-		 	<div class="row">
+			<div class="row">
 				<jdoc:include type="modules" name="footer" style="xhtml" />
 			</div>
 	 	<?php endif ?>
