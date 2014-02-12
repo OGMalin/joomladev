@@ -10,6 +10,7 @@ window.onload=function(){init();};
 
 var debug=true;
 var msgList=new Array();
+
 function init()
 {
 //	jQuery(function() {
@@ -58,7 +59,7 @@ function getList(filter='')
 		{
 			if (!json || (json.error && (json.error>0)))
 			{
-				/* Skriv errormelding */
+				/* Skriv feilmelding */
 			} else
 			{
 				/* Response ok */
@@ -89,6 +90,9 @@ function messageClass(i)
 	return (msgList[i].MSGTYPE+'-'+msgList[i].PRIORITY+ (msgList[i].UNIT?'-'+msgList[i].UNIT:''));
 }
 
+/**
+ * Viser alle egenskapene til en melding for bruk til å finne ukjente meldinger.
+ */
 function showProperty(index)
 {
 	jQuery('#listProperty').modal();
