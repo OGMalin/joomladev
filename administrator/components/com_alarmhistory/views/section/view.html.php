@@ -31,11 +31,11 @@ class AlarmhistoryViewSection extends JViewLegacy
 		$this->state		= $this->get('State');
 		
 			// Check for errors.
-// 		if (count($errors = $this->get('Errors')))
-// 		{
-// 			JError::raiseError(500, implode("\n", $errors));
-// 			return false;
-// 		}
+ 		if (count($errors = $this->get('Errors')))
+ 		{
+ 			JError::raiseError(500, implode("\n", $errors));
+ 			return false;
+ 		}
 
 		$this->addToolbar();
 		
@@ -45,6 +45,7 @@ class AlarmhistoryViewSection extends JViewLegacy
 	protected function addToolbar()
 	{
 		$canDo = AlarmhistoryHelper::getActions();
+		$bar = JToolbar::getInstance('toolbar');
 		
 		// Add the admin view title
 		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'));

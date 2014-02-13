@@ -4,14 +4,14 @@ defined('_JEXEC') or die;
 class AlarmhistoryController extends JControllerLegacy
 {
 	// Not needed when the component name and the default view are the same 
-	protected $default_view = 'alarmhistory';
+//	protected $default_view = 'alarmhistory';
 	
  	function display($cachable = false, $urlparams = false)
  	{
 		require_once JPATH_COMPONENT.'/helpers/alarmhistory.php';
 		
 // 		$view 	= $this->input->get('view', 'alarmhistory');
-		$view		= JFactory::getApplication()->input->getCmd('view', 'alarmhistory');
+		$view		= JFactory::getApplication()->input->getCmd('view', 'sections');
 		JFactory::getApplication()->input->set('view', $view);
 
 		// 		$layout = $this->input->get('layout', 'default');
@@ -39,3 +39,4 @@ class AlarmhistoryController extends JControllerLegacy
 		return $this;
 	}
 }
+

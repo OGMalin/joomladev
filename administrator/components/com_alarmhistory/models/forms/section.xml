@@ -10,15 +10,15 @@
       description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
 
     <field name="SEC1" type="text" class="inputbox"
-      size="40" label="JFIELD_ALIAS_LABEL"
+      size="40" label="COM_ALARMHISTORY_SEC1_LABEL"
       description="COM_ALARMHISTORY_FIELD_SEC1_DESC" />
 
     <field name="SEC2" type="text" class="inputbox"
-      size="40" label="JFIELD_ALIAS_LABEL"
+      size="40" label="COM_ALARMHISTORY_SEC2_LABEL"
       description="COM_ALARMHISTORY_FIELD_SEC2_DESC" />
 
     <field name="SEC3" type="text" class="inputbox"
-      size="40" label="JFIELD_ALIAS_LABEL"
+      size="40" label="COM_ALARMHISTORY_SEC3_LABEL"
       description="COM_ALARMHISTORY_FIELD_SEC3_DESC" />
 
   </fieldset>

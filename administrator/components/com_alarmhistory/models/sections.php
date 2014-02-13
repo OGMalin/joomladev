@@ -10,6 +10,8 @@
 // No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.modellist');
+
 class AlarmhistoryModelSections extends JModelList
 {
 	public function __construct($config = array())
@@ -19,8 +21,9 @@ class AlarmhistoryModelSections extends JModelList
 			$config['filter_fields'] = array(
 					'id', 'a.id',
 					'title', 'a.title',
-					'alias', 'a.alias',
-					'SEC1', 'a.SEC1'
+					'SEC1', 'a.SEC1',
+					'SEC2', 'a.SEC2',
+					'SEC3', 'a.SEC3',
 			);
 		}
 
@@ -29,29 +32,45 @@ class AlarmhistoryModelSections extends JModelList
 
 	protected function populateState($ordering = 'a.title', $direction = 'asc')
 	{
-		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
+		$app = JFactory::getApplication('administrator');
+		
+		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
 
-		$published = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
+		$published = $app->getUserStateFromRequest($this->context . '.filter.state', 'filter_published', '', 'string');
 		$this->setState('filter.state', $published);
 
+		$params = JComponentHelper::getParams('com_alarmhistory');
+		$this->setState('params', $params);
+		
 		parent::populateState($ordering, $direction);
 	}
 
+	protected function getStoreId($id = '')
+	{
+		// Compile the store id.
+		$id.= ':' . $this->getState('filter.search');
+		$id.= ':' . $this->getState('filter.state');
+
+		return parent::getStoreId($id);
+	}
+	
 	protected function getListQuery()
 	{
-		$db    = $this->getDbo();
-		$query  = $db->getQuery(true);
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
 
-		$query->select(
-				$this->getState(
-						'list.select',
-						'a.id, a.title, a.alias, a.SEC1'
-				)
-		);
+		$query->select($this->getState('list.select','a.*'));
 		$query->from($db->quoteName('#__alarmhistory_section').' AS a');
 		
-
+		
 		return $query;
+	}
+
+	public function getItems()
+	{
+		$items = parent::getItems();
+
+		return $items;
 	}
 }

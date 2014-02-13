@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id$ -->
 <config>
 	<fieldset name="component"
 		label="COM_ALARMHISTORY_COMPONENT_LABEL"
@@ -20,3 +19,4 @@
 			section="component" />
 	</fieldset>
 </config>
+

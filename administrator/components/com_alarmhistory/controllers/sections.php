@@ -10,11 +10,14 @@
 // No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.controlleradmin');
+
 class AlarmhistoryControllerSections extends JControllerAdmin
 {
-	public function getModel($name = 'Section', $prefix = 'AlarmhistoryModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'section', $prefix = 'AlarmhistoryModel')
 	{
-		$model = parent::getModel($name, $prefix, $config);
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
 	}
 }
+
