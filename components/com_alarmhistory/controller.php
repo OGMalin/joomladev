@@ -10,6 +10,6 @@
 // No direct access
 defined('_JEXEC') or die;
 
-class alarmhistoryController extends JControllerLegacy
+class AlarmhistoryController extends JControllerLegacy
 {
 }

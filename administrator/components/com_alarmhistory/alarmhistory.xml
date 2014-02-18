@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id$ -->
 <extension type="component" version="3.0" method="upgrade">
 	<name>com_alarmhistory</name>
 	<author>Odd Gunnar Malin</author>
@@ -23,7 +22,9 @@
 			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
 		</sql>
 	</uninstall>
-	
+
+	<!-- Kopier filer som tilhører 'frontend' -->
+	<!-- folder="site" peker på katalogen i installasjonsfilen (zip-pakken) -->	
 	<files folder="site">
 		<filename>alarmhistory.php</filename>
 		<filename>controller.php</filename>
@@ -35,9 +36,11 @@
 		<folder>views</folder>
 	</files>
 	
+	<!-- Kopier filer som tilhører 'backend' -->
+	<!-- folder="admin" peker på katalogen i installasjonsfilen (zip-pakken) -->	
 	<administration>
 		<menu img="class:categories">COM_ALARMHISTORY_MENU</menu>
-		<files folder="administrator">
+		<files folder="admin">
 			<filename>alarmhistory.php</filename>
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
