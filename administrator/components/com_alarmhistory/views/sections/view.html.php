@@ -23,15 +23,15 @@ jimport('joomla.application.component.view');
 class AlarmhistoryViewSections extends JViewLegacy
 {
 	protected $items;
-	protected $form;
-// 	protected $pagination;
+//	protected $form;
+ 	protected $pagination;
 // 	protected $state;
 	
 	public function display($tpl=null)
 	{
 		$this->items		= $this->get('Items');
 //		$this->form = $this->get('Form');
-// 		$this->pagination	= $this->get('Pagination');
+ 		$this->pagination	= $this->get('Pagination');
 // 		$this->state		= $this->get('State');
 		
 		// Check for errors.
@@ -41,9 +41,9 @@ class AlarmhistoryViewSections extends JViewLegacy
  			return false;
  		}
 
-		$this->addToolbar();
+// 		$this->addToolbar();
 		
-		$this->sidebar = JHtmlSidebar::render();
+// 		$this->sidebar = JHtmlSidebar::render();
 		parent::display($tpl);
 	}
 	

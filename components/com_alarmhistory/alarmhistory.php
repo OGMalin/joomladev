@@ -1,9 +1,9 @@
 <?php
 /**
+ * @package     Alarmhistory for Joomla 3.x
  * @version     1.0.0
- * @package     Joomla.Site
- * @subpackage  com_alarmhistory
- * @copyright   Copyright 2013. All rights reserved.
+ * @author      Odd Gunnar Malin
+ * @copyright   Copyright 2014. All rights reserved.
  * @license     GNU General Public License version 2 or later.
  */
 

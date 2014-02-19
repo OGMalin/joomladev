@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<!-- Translation of these strings are in /administrator/com_polarbook/language/nn-NN/nn-NN.com_polarbook.sys.ini -->
+	<!-- Translation of these strings are in /administrator/com_alarmhistory/language/nn-NN/nn-NN.com_alarmhistory.sys.ini -->
+	<!-- Dette er hva du vil finne når du skall legge inn denne visningen i ett menyvalg -->
 	<layout title="COM_ALARMHISTORY_ALARMHISTORY_VIEW_DEFAULT_TITLE">
 		<message>COM_ALARMHISTORY_ALARMHISTORY_VIEW_DEFAULT_DESC</message>
 	</layout>
