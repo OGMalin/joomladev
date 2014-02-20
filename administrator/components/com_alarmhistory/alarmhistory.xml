@@ -46,6 +46,7 @@
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
+			<filename>script.php</filename>
 			<folder>controllers</folder>
 			<folder>helpers</folder>
 			<folder>models</folder>
@@ -53,7 +54,7 @@
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
-		<languages folder="administrator">
+		<languages folder="admin">
 			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.ini</language>
 			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.sys.ini</language>
 			<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.ini</language>

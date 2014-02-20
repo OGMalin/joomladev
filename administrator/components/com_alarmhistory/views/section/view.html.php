@@ -1,34 +1,26 @@
-
 <?php
 /**
- * @version     $Id$
- * @package     Joomla.Admin
- * @subpackage  com_alarmhistory
- * @copyright   Copyright 2013. All rights reserved.
+ * @package     Alarmhistory for Joomla 3.x
+ * @version     1.0.0
+ * @author      Odd Gunnar Malin
+ * @copyright   Copyright 2014. All rights reserved.
  * @license     GNU General Public License version 2 or later.
  */
 
 // No direct access
 defined('_JEXEC') or die;
 
-/**
- * alarmhistory view.
- *
- * @package     Joomla.Admin
- * @subpackage  component
- * @since       1.0
- */
+jimport('joomla.application.component.view');
+
 class AlarmhistoryViewSection extends JViewLegacy
 {
-	protected $items;
-	protected $pagination;
-	protected $state;
+ 	protected $item;
+	protected $form=null;
 	
 	public function display($tpl=null)
 	{
-		$this->items		= $this->get('Items');
-		$this->pagination	= $this->get('Pagination');
-		$this->state		= $this->get('State');
+		$form = $this->get('Form');
+		$item = $this->get('Item');
 		
 			// Check for errors.
  		if (count($errors = $this->get('Errors')))
@@ -37,29 +29,28 @@ class AlarmhistoryViewSection extends JViewLegacy
  			return false;
  		}
 
+ 		$this->form = $form;
+ 		$this->item = $item;
+ 		
 		$this->addToolbar();
 		
 		parent::display($tpl);
+		
 	}
 	
 	protected function addToolbar()
 	{
-		$canDo = AlarmhistoryHelper::getActions();
-		$bar = JToolbar::getInstance('toolbar');
+		$input = JFactory::getApplication()->input;
+		$input->set('hidemainmenu',true);
+		$isNew = ($this->idem->id == 0);
 		
 		// Add the admin view title
-		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'));
+		JToolbarHelper::title($isNew ? JText::_('COM_ALARMHISTORY_SECTION_NEW')
+																 : JText::_('COM_ALARMHISTORY_SECTION_EDIT'));
+		JToolbarHelper::save('section.save');
+		JToolbarHelper::cancel('sectiob.cancel', $isNew ? 'JTOOLBAR_CANCEL'
+																										: 'JTOOLBAR_CLOSE');
 		
-		JToolbarHelper::addNew('alarmhistory.add');
-
- 		if ($canDo->get('core.edit'))
- 		{
- 			JToolbarHelper::editList('alarmhistory.edit');
- 		}
-		
-		if ($canDo->get('core.admin'))
-		{
-			JToolbarHelper::preferences('com_alarmhistory');
-		}
 	}
+	
 }

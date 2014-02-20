@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 
 class AlarmhistoryController extends JControllerLegacy
 {
-	// Not needed when the component name and the default view are the same 
 //	protected $default_view = 'alarmhistory';
 	
  	function display($cachable = false, $urlparams = false)
@@ -22,29 +21,11 @@ class AlarmhistoryController extends JControllerLegacy
 		$view		= JFactory::getApplication()->input->getCmd('view', 'sections');
 		JFactory::getApplication()->input->set('view', $view);
 
-		// 		$layout = $this->input->get('layout', 'default');
-// 		$id     = $this->input->getInt('id');
-		
-// 		if ($view == 'site' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
-// 		{
-// 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
-// 			$this->setMessage($this->getError(), 'error');
-// 			$this->setRedirect(JRoute::_('index.php?option=com_alarmhistory&view=alarmhistory', false));
-// 			return false;
-// 		} else if ($view == 'section' && $layout == 'edit' && !$this->checkEditId('com_alarmhistory.edit.alarmhistory', $id))
-// 		{
-// 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
-// 			$this->setMessage($this->getError(), 'error');
-// 			$this->setRedirect(JRoute::_('index.php?option=com_alarmhistory&view=alarmhistory', false));
-// 		}
-		
-		// Load submenu
-// 		AlarmhistoryHelper::addSubmenu($view);
-		
+		$layout = $this->input->get('layout', 'default');
 		
 		parent::display($cachable, $urlparams);
 
-//		return $this;
+		return $this;
 	}
 }
 

@@ -1,20 +1,22 @@
 <?php
 /**
- * @version     $Id$
- * @package     Joomla.Admin
- * @subpackage  com_alarmhistory
- * @copyright   Copyright 2013. All rights reserved.
+ * @package     Alarmhistory for Joomla 3.x
+ * @version     1.0.0
+ * @author      Odd Gunnar Malin
+ * @copyright   Copyright 2014. All rights reserved.
  * @license     GNU General Public License version 2 or later.
  */
 
 // No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.modeladmin');
+
 class AlarmhistoryModelSection extends JModelAdmin
 {
 	protected $text_prefix = 'COM_ALARMHISTORY';
 
-	public function getTable($type = 'Site', $prefix = 'AlarmhistoryTable', $config = array())
+	public function getTable($type = 'Section', $prefix = 'AlarmhistoryTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -23,7 +25,7 @@ class AlarmhistoryModelSection extends JModelAdmin
 	{
 		$app = JFactory::getApplication();
 
-		$form = $this->loadForm('com_alarmhistory.alarmhistory', 'alarmhistory', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_alarmhistory.section', 'section', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
@@ -34,7 +36,7 @@ class AlarmhistoryModelSection extends JModelAdmin
 
 	protected function loadFormData()
 	{
-		$data = JFactory::getApplication()->getUserState('com_alarmhistory.edit.alarmhistory.data', array());
+		$data = JFactory::getApplication()->getUserState('com_alarmhistory.edit.section.data', array());
 
 		if (empty($data))
 		{
@@ -44,8 +46,8 @@ class AlarmhistoryModelSection extends JModelAdmin
 		return $data;
 	}
 
-	protected function prepareTable($table)
-	{
-		$table->title    = htmlspecialchars_decode($table->title, ENT_QUOTES);
-	}
+// 	protected function prepareTable($table)
+// 	{
+// 		$table->title    = htmlspecialchars_decode($table->title, ENT_QUOTES);
+// 	}
 }

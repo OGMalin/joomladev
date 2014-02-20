@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 class AlarmhistoryHelper
 {
-	public static function addSubmenu($vName = '')
+	public static function addSubmenu($vName='')
 	{
 //		JHtmlSidebar::addEntry(JText::_('COM_ALARMHISTORY_TITLE_ALARMHISTORY'),'index.php?option=com_alarmhistory&view=alarmhistory',$vName=='alarmhistory');
 //		JHtmlSidebar::addEntry(JText::_('COM_ALARMHISTORY_TITLE_SITES'),'index.php?option=com_alarmhistory&view=sites',$vName=='sites');

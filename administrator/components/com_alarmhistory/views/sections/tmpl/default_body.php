@@ -17,6 +17,7 @@ defined('_JEXEC') or die;
 			<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 		</td>
 		<td>
+			<?php echo $item->title; ?>
 		</td>
 		<td>
 			<?php echo $item->id; ?>

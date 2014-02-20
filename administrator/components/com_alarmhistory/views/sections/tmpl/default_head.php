@@ -9,12 +9,15 @@
 
 // No direct access
 defined('_JEXEC') or die;
+$listOrder = '';
+$listDirn = '';
 ?>
 <tr>
 	<th width="20">
 		<?php echo JHtml::_('grid.checkall');?>
 	</th>
 	<th>
+		<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'title', $listDirn, $listOrder); ?>
 	</th>
 	<th>
 	</th>
