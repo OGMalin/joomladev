@@ -16,11 +16,13 @@ class AlarmhistoryViewSection extends JViewLegacy
 {
  	protected $item;
 	protected $form=null;
+	protected $state;
 	
 	public function display($tpl=null)
 	{
 		$form = $this->get('Form');
 		$item = $this->get('Item');
+		$state = $this->get('State');
 		
 			// Check for errors.
  		if (count($errors = $this->get('Errors')))
@@ -31,7 +33,8 @@ class AlarmhistoryViewSection extends JViewLegacy
 
  		$this->form = $form;
  		$this->item = $item;
- 		
+ 		$this->state = $state;
+ 			
 		$this->addToolbar();
 		
 		parent::display($tpl);

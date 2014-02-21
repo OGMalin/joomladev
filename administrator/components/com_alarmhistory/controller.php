@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.controller');
+
 class AlarmhistoryController extends JControllerLegacy
 {
 //	protected $default_view = 'alarmhistory';

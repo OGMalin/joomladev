@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @package     Alarmhistory for Joomla 3.x
