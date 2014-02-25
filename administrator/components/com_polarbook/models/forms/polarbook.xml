@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL"
+			readonly="true" class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC" />
+		<field name="name" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_NAME"
+			description="COM_POLARBOOK_BOOK_FIELD_NAME_DESC" />
+		<field name="user" type="user" 
+			label="COM_POLARBOOK_BOOK_FIELD_USER"
+			description="COM_POLARBOOK_BOOK_FIELD_USER_DESC" />
+		<field name="trashed" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_TRASHED"
+			description="COM_POLARBOOK_BOOK_FIELD_TRASHED_DESC" />
+		<field name="public" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_PUBLIC"
+			description="COM_POLARBOOK_BOOK_FIELD_PUBLIC_DESC" />
+		<field name="member" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_MEMBER"
+			description="COM_POLARBOOK_BOOK_FIELD_MEMBER_DESC" />
+		<field name="readuser" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_READUSER"
+			description="COM_POLARBOOK_BOOK_FIELD_READUSER_DESC" />
+		<field name="writeuser" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_WRITEUSER"
+			description="COM_POLARBOOK_BOOK_FIELD_WRITEUSER_DESC" />
+		<field name="created" type="calendar" class="inputbox" size="22"
+			format="%Y-%m-%d %H:%M:%S"
+			filter="user_utc" 
+			label="COM_POLARBOOK_BOOK_FIELD_CREATED"
+			description="COM_POLARBOOK_BOOK_FIELD_CREATED_DESC" />
+		<field name="comment" type="text" class="inputbox" size="40" 
+			label="COM_POLARBOOK_BOOK_FIELD_COMMENT"
+			description="COM_POLARBOOK_BOOK_FIELD_COMMENT_DESC" />
+	</fieldset>
+</form>

@@ -24,7 +24,7 @@ class PolarbookModelImport extends JModelItem
 		$file=$input->files->get('userfile');
 		if ($file['error']>0)
 			return "Error uploading file, error:" .$file['error'];
-		if ($file['size']>100000)
+		if ($file['size']>1000000)
 			return "File too big";
 		if ($file['size']==0)
 			return "File empty";

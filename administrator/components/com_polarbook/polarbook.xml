@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.0.0" method="upgrade">
+<extension type="component" version="3.0" method="upgrade">
 	<name>COM_POLARBOOK</name>
-	<creationDate>November 2013</creationDate>
+	<creationDate>February 2014</creationDate>
 	<author>Odd Gunnar Malin</author>
 	<authorEmail>oddg@sjakk.biz</authorEmail>
-	<copyright>Copyright 2013</copyright>
-	<license>Private</license>
-	<version>0.0.1</version>
-	<description>COM_POLARBOOK_DESC</description>
+	<authorUrl>polarchess.net</authorUrl>
+	<copyright>Copyright 2014</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>COM_POLARBOOK_XML_DESCRIPTION</description>
 
 	<install>
 		<sql>
@@ -58,6 +59,7 @@
 			<folder>language</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
+			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
 	</administration>

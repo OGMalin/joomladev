@@ -6,14 +6,19 @@ defined('_JEXEC') or die;
  * @author oddg
  *
  */
-class PolarbookViewPolarbook extends JViewLegacy
+class PolarbookViewPolarbooks extends JViewLegacy
 {
-	/**
-	 * (non-PHPdoc)
-	 * @see JViewLegacy::display()
-	 */
+	protected $items;
+	
 	public function display($tpl=null)
 	{
+		$this->items = $this->get('Items');
+		
+		if (count($errors = $this->get('Errors')))
+		{
+			JError::raiseError(500, implode("\n", $errors));
+			return false;
+		}
 		$this->addToolbar();
 		parent::display($tpl);
 	}
@@ -24,6 +29,11 @@ class PolarbookViewPolarbook extends JViewLegacy
 		
 		// Add the admin view title
 		JToolbarHelper::title(JText::_('COM_POLARBOOK_POLARBOOK_TITLE'));
+		
+		if ($canDo->get('core.edit'))
+		{
+			JToolbarHelper::editList('polarbook.edit');
+		}
 		
 		if ($canDo->get('core.admin')){
 			JToolbarHelper::preferences('com_polarbook');
