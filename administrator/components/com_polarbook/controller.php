@@ -11,14 +11,25 @@ defined('_JEXEC') or die;
 
 class PolarbookController extends JControllerLegacy
 {
- 	function display($cachable = false, $urlparams = false)
+	protected $default_view = 'polarbooks';
+	
+	function display($cachable = false, $urlparams = false)
  	{
 		require_once JPATH_COMPONENT.'/helpers/polarbook.php';
+		
 		$view = $this->input->get('view', 'polarbooks');
 		$layout = $this->input->get('layout', 'default');
 		$id = $this->input->getInt('id');
 		
- 		parent::display();
+		if ($view == 'polarbook' && $layout == 'edit' && !$this->checkEditId('com_polarbook.edit.polarbook', $id))
+		{
+			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
+			$this->setMessage($this->getError(), 'error');
+			$this->setRedirect(JRoute::_('index.php?option=com_polarbook&view=polarbooks', false));
+			return false;
+		}
+		
+    parent::display();
  		return $this;
  	}
 }
