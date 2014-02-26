@@ -15,14 +15,12 @@ jimport('joomla.application.component.view');
 class AlarmhistoryViewSection extends JViewLegacy
 {
  	protected $item;
-	protected $form=null;
-	protected $state;
+	protected $form;
 	
 	public function display($tpl=null)
 	{
-		$form = $this->get('Form');
-		$item = $this->get('Item');
-		$state = $this->get('State');
+		$this->item = $this->get('Item');
+		$this->form = $this->get('Form');
 		
 			// Check for errors.
  		if (count($errors = $this->get('Errors')))
@@ -31,10 +29,6 @@ class AlarmhistoryViewSection extends JViewLegacy
  			return false;
  		}
 
- 		$this->form = $form;
- 		$this->item = $item;
- 		$this->state = $state;
- 			
 		$this->addToolbar();
 		
 		parent::display($tpl);
@@ -45,15 +39,18 @@ class AlarmhistoryViewSection extends JViewLegacy
 	{
 		$input = JFactory::getApplication()->input;
 		$input->set('hidemainmenu',true);
-		$isNew = ($this->idem->id == 0);
 		
 		// Add the admin view title
-		JToolbarHelper::title($isNew ? JText::_('COM_ALARMHISTORY_SECTION_NEW')
-																 : JText::_('COM_ALARMHISTORY_SECTION_EDIT'));
+		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_MANAGE_SECTION'), '');
 		JToolbarHelper::save('section.save');
-		JToolbarHelper::cancel('sectiob.cancel', $isNew ? 'JTOOLBAR_CANCEL'
-																										: 'JTOOLBAR_CLOSE');
 		
+		if (empty($this->item->id))
+		{
+			JToolbarHelper::cancel('section.cancel');
+		}else
+		{
+			JToolbarHelper::cancel('section.cancel', 'JTOOLBAR_CLOSE');
+		}
 	}
 	
 }

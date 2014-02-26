@@ -19,12 +19,6 @@ class AlarmhistoryHelper
 		JHtmlSidebar::addEntry(JText::_('COM_ALARMHISTORY_TITLE_SECTIONS'),'index.php?option=com_alarmhistory&view=sections',$vName=='sections');
 	}
 	
-	/**
-	 * Function to check the permission for the group the user are member of
-	 * 
-	 * @return JObject
-	 */
-	
 	public static function getActions()
 	{
 		$user	= JFactory::getUser();

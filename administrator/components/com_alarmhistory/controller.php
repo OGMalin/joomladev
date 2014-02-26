@@ -13,17 +13,16 @@ jimport('joomla.application.component.controller');
 
 class AlarmhistoryController extends JControllerLegacy
 {
-//	protected $default_view = 'alarmhistory';
+	protected $default_view = 'sections';
 	
  	function display($cachable = false, $urlparams = false)
  	{
 		require_once JPATH_COMPONENT.'/helpers/alarmhistory.php';
 		
-// 		$view 	= $this->input->get('view', 'alarmhistory');
-		$view		= JFactory::getApplication()->input->getCmd('view', 'sections');
-		JFactory::getApplication()->input->set('view', $view);
-
+		$view = $this->input->get('view', 'sections');
 		$layout = $this->input->get('layout', 'default');
+		$id = $this->input->get('id');
+		
 		
 		parent::display($cachable, $urlparams);
 

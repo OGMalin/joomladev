@@ -5,8 +5,8 @@
 	<creationDate>13.08.2013</creationDate>
 	<copyright>Copyright 2013. All rights reserved.	</copyright>
 	<license>GNU General Public License version 2 or later.</license>
-	<authorEmail>oddg@sjakk.biz</authorEmail>
-	<authorUrl>http://polarchess.net</authorUrl>
+	<authorEmail>odd-gunnar.malin@varanger-kraft.no</authorEmail>
+	<authorUrl>http://varanger-kraftnett.no</authorUrl>
 	<version>1.0.0</version>
 	<description>COM_ALARMHISTORY_XML_DESCRIPTION</description>
 	
@@ -48,17 +48,12 @@
 			<filename>index.html</filename>
 			<filename>script.php</filename>
 			<folder>controllers</folder>
+			<folder>language</folder>
 			<folder>helpers</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
-		<languages folder="admin">
-			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.ini</language>
-			<language tag="en-GB">language/en-GB/en-GB.com_alarmhistory.sys.ini</language>
-			<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.ini</language>
-			<language tag="nb-NO">language/nb-NO/nb-NO.com_alarmhistory.sys.ini</language>
-		</languages>
 	</administration>
 </extension>

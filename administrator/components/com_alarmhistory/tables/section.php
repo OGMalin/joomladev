@@ -1,9 +1,9 @@
 <?php
 /**
- * @version     $Id$
- * @package     Alarmhistory
- * @subpackage  com_alarmhistory
- * @copyright   Copyright 2013. All rights reserved.
+ * @package     Alarmhistory for Joomla 3.x
+ * @version     1.0.0
+ * @author      Odd Gunnar Malin
+ * @copyright   Copyright 2014. All rights reserved.
  * @license     GNU General Public License version 2 or later.
  */
 
@@ -21,14 +21,18 @@ jimport('joomla.database.table');
  */
 class AlarmhistoryTableSection extends JTable
 {
-	var $id =null;
-	var $title = null;
-	var $SEC1 = null;
-	var $SEC2 = null;
-	var $SEC3 = null;
-	
-	public function __construct($db)
+	public function __construct(&$db)
 	{
 		parent::__construct('#__alarmhistory_section', 'id', $db);
+	}
+	
+	public function bind($array, $ignore='')
+	{
+		return parent::bind($array, $ignore);
+	}
+	
+	public function store($updateNulls=false)
+	{
+		return parent::store($updateNulls);
 	}
 }

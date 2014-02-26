@@ -21,7 +21,7 @@ jimport('joomla.application.component.controller');
 
 $controller = JControllerLegacy::getInstance('Alarmhistory');
 
-$controller->execute(JFactory::getApplication()->input->getCmd('task'));
+$controller->execute(JFactory::getApplication()->input->get('task'));
 
 $controller->redirect();
 

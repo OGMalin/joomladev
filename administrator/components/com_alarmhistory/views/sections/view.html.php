@@ -22,14 +22,12 @@ jimport('joomla.application.component.view');
 class AlarmhistoryViewSections extends JViewLegacy
 {
 	protected $items;
- 	protected $pagination;
- 	protected $state;
+	protected $state;
 	
 	public function display($tpl=null)
 	{
-		$state		= $this->get('State');
-		$items		= $this->get('Items');
- 		$pagination	= $this->get('Pagination');
+		$this->items = $this->get('Items');
+		$this->state = $this->get('State');
 		
 		// Check for errors.
  		if (count($errors = $this->get('Errors')))
@@ -38,24 +36,17 @@ class AlarmhistoryViewSections extends JViewLegacy
  			return false;
  		}
 
- 		$this->state = $state;
- 		$this->items = $items;
- 		$this->pagination = $pagination;
- 		
- 		AlarmhistoryHelper::addSubmenu('sections');
- 		
  		$this->addToolbar();
 		
-// 		$this->sidebar = JHtmlSidebar::render();
 		parent::display($tpl);
 	}
 	
-	protected function addToolbar($total=null)
+	protected function addToolbar()
 	{
-		require_once JPATH_COMPONENT . '/helpers/alarmhistory.php';
+//		require_once JPATH_COMPONENT . '/helpers/alarmhistory.php';
 		
-		$state = $this->get('State');
-		$canDo = AlarmhistoryHelper::getActions($state->get('filter.category_id'));
+		$canDo = AlarmhistoryHelper::getActions();
+		$bar = JToolbar::getInstance('toolbar');
 	
 		// Add the admin view title
 		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'),'section');
@@ -70,18 +61,18 @@ class AlarmhistoryViewSections extends JViewLegacy
 			JToolbarHelper::editList('section.edit','JTOOLBAR_EDIT');
 		}
 		
-		if (isset($this->items[0]->state))
-		{
-			if ($state->get('filter.state') == -2 && $canDo->get('core.delete'))
-			{
-				JToolBarHelper::deleteList('', 'sections.delete','JTOOLBAR_EMPTY_TRASH');
-				JToolBarHelper::divider();
-			} else if ($canDo->get('core.edit.state'))
-			{
-				JToolBarHelper::trash('sections.trash','JTOOLBAR_TRASH');
-				JToolBarHelper::divider();
-			}
-		}
+// 		if (isset($this->items[0]->state))
+// 		{
+// 			if ($state->get('filter.state') == -2 && $canDo->get('core.delete'))
+// 			{
+// 				JToolBarHelper::deleteList('', 'sections.delete','JTOOLBAR_EMPTY_TRASH');
+// 				JToolBarHelper::divider();
+// 			} else if ($canDo->get('core.edit.state'))
+// 			{
+// 				JToolBarHelper::trash('sections.trash','JTOOLBAR_TRASH');
+// 				JToolBarHelper::divider();
+// 			}
+// 		}
 		if ($canDo->get('core.admin'))
 		{
 			JToolBarHelper::preferences('com_alarmhistory');

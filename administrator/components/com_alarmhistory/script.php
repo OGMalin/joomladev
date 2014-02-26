@@ -29,7 +29,7 @@ class Com_AlarmhistoryInstallerScript
 	 */
 	function install($parent)
 	{
-		// Add custom code.
+		$parent->getParent()->setRedirectURL('index.php?option=com_alarmhistory');
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Com_AlarmhistoryInstallerScript
 	 */
 	function uninstall($parent)
 	{
-		// Add custom code.
+		echo '<p>' . JText::_('COM_ALARMHISTORY_UNINSTALL_TEXT') . '</p>';
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Com_AlarmhistoryInstallerScript
 	 */
 	function update($parent)
 	{
-		// Add custom code.
+		echo '<p>' . JText::_('COM_ALARMHISTORY_UPDATE_TEXT') . '</p>';
 	}
 
 	/**
@@ -72,7 +72,7 @@ class Com_AlarmhistoryInstallerScript
 	 */
 	function preflight($type, $parent)
 	{
-		// Add custom code.
+		echo '<p>' . JText::_('COM_ALARMHISTORY_PREFLIGHT' . $type . '_TEXT') . '</p>';
 	}
 
 	/**
@@ -87,8 +87,8 @@ class Com_AlarmhistoryInstallerScript
 	 */
 	function postflight($type, $parent)
 	{
-		// Add custom code.
 		// Note: this file is executed in the tmp folder if using the upload method.
+		echo '<p>' . JText::_('COM_ALARMHISTORY_POSTFLIGHT' . $type . '_TEXT') . '</p>';
 	}
 }
 

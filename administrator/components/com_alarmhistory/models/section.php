@@ -16,7 +16,7 @@ class AlarmhistoryModelSection extends JModelAdmin
 {
 	protected $text_prefix = 'COM_ALARMHISTORY';
 
-	public function getTable($type = 'section', $prefix = 'AlarmhistoryTable', $config = array())
+	public function getTable($type = 'Section', $prefix = 'AlarmhistoryTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -46,8 +46,8 @@ class AlarmhistoryModelSection extends JModelAdmin
 		return $data;
 	}
 
-// 	protected function prepareTable($table)
-// 	{
-// 		$table->title    = htmlspecialchars_decode($table->title, ENT_QUOTES);
-// 	}
+ 	protected function prepareTable($table)
+ 	{
+ 		$table->title    = htmlspecialchars_decode($table->title, ENT_QUOTES);
+ 	}
 }

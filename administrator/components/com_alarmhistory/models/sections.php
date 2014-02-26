@@ -14,24 +14,24 @@ jimport('joomla.application.component.modellist');
 
 class AlarmhistoryModelSections extends JModelList
 {
-// 	public function __construct($config = array())
-// 	{
-// 		if (empty($config['filter_fields']))
-// 		{
-// 			$config['filter_fields'] = array(
-// 					'id', 'a.id',
-// 					'title', 'a.title',
-// 					'SEC1', 'a.SEC1',
-// 					'SEC2', 'a.SEC2',
-// 					'SEC3', 'a.SEC3',
-// 			);
-// 		}
+ 	public function __construct($config = array())
+ 	{
+ 		if (empty($config['filter_fields']))
+ 		{
+ 			$config['filter_fields'] = array(
+ 					'id', 'a.id',
+ 					'title', 'a.title',
+ 					'SEC1', 'a.SEC1',
+ 					'SEC2', 'a.SEC2',
+ 					'SEC3', 'a.SEC3',
+ 			);
+ 		}
 
-// 		parent::__construct($config);
-// 	}
+ 		parent::__construct($config);
+ 	}
 
-// 	protected function populateState($ordering = 'a.title', $direction = 'asc')
-// 	{
+ 	protected function populateState($ordering = null, $direction = null)
+ 	{
 // 		$app = JFactory::getApplication('administrator');
 		
 // 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
@@ -43,8 +43,8 @@ class AlarmhistoryModelSections extends JModelList
 // 		$params = JComponentHelper::getParams('com_alarmhistory');
 // 		$this->setState('params', $params);
 		
-// 		parent::populateState($ordering, $direction);
-// 	}
+ 		parent::populateState('a.title', 'asc');
+ 	}
 
 // 	protected function getStoreId($id = '')
 // 	{
@@ -60,10 +60,12 @@ class AlarmhistoryModelSections extends JModelList
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 
-		$query
-			->select('*')
-			->from('#__alarmhistory_section');
+		$query->select('*');
+		$query->from($db->quoteName('#__alarmhistory_section') . ' AS a');
 		
+		$orderCol = $this->state->get('list.ordering');
+		$orderDirn = $this->state->get('list.direction');
+		$query->order($db->escape($orderCol . ' ' . $orderDirn));
 		
 		return $query;
 	}
