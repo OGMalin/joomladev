@@ -6,7 +6,7 @@ defined('_JEXEC') or die;
  * @author oddg
  *
  */
-class PolarbookViewPolarbooks extends JViewLegacy
+class PolarbookViewBooks extends JViewLegacy
 {
 	protected $items;
 	

@@ -9,6 +9,6 @@
 
 defined('_JEXEC') or die;
 
-class PolarbookControllerPolarbook extends JControllerForms
+class PolarbookControllerBook extends JControllerForms
 {
 }

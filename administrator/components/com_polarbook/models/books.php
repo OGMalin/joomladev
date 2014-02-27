@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-class PolarbookModelPolarbooks extends JModelList
+class PolarbookModelBooks extends JModelList
 {
 	public function __construct($config = array())
 	{

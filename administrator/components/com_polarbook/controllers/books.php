@@ -9,9 +9,9 @@
 
 defined('_JEXEC') or die;
 
-class PolarbookControllerPolarbooks extends JControllerAdmin
+class PolarbookControllerBooks extends JControllerAdmin
 {
-	public function getModel($name = 'Polarbook', $prefix = 'PolarbookModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Book', $prefix = 'PolarbookModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
