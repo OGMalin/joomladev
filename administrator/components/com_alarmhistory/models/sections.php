@@ -24,6 +24,7 @@ class AlarmhistoryModelSections extends JModelList
  					'SEC1', 'a.SEC1',
  					'SEC2', 'a.SEC2',
  					'SEC3', 'a.SEC3',
+ 					'ordering', 'a.ordering'
  			);
  		}
 
@@ -43,7 +44,7 @@ class AlarmhistoryModelSections extends JModelList
 // 		$params = JComponentHelper::getParams('com_alarmhistory');
 // 		$this->setState('params', $params);
 		
- 		parent::populateState('a.title', 'asc');
+ 		parent::populateState('a.ordering', 'asc');
  	}
 
 // 	protected function getStoreId($id = '')

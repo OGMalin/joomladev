@@ -6,6 +6,8 @@ CREATE TABLE `#__alarmhistory_site` (
   `DISTRICT` int(11) NOT NULL DEFAULT '0',
   `LOCATION` int(11) NOT NULL DEFAULT '0',
   `section` int(11) NOT NULL DEFAULT '0',
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -15,5 +17,6 @@ CREATE TABLE `#__alarmhistory_section` (
   `SEC1` varchar(21) NOT NULL DEFAULT '',
   `SEC2` varchar(21) NOT NULL DEFAULT '',
   `SEC3` varchar(21) NOT NULL DEFAULT '',
+  `ordering` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

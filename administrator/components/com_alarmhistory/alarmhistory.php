@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 // Sjekk at brukeren har lov å administrere.
 if (!JFactory::getUser()->authorise('core.manage', 'com_alarmhistory'))
 {
-	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'));
+	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
 // Importer 'controller' biblioteket
