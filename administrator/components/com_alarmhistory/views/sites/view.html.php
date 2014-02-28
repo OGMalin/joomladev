@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
-class AlarmhistoryViewSections extends JViewLegacy
+class AlarmhistoryViewSites extends JViewLegacy
 {
 	protected $items;
 	
@@ -20,8 +20,8 @@ class AlarmhistoryViewSections extends JViewLegacy
 	{
 		$this->items = $this->get('Items');
 		
-		AlarmhistoryHelper::addSubmenu('sections');
-		
+		AlarmhistoryHelper::addSubmenu('sites');
+
 		// Check for errors.
  		if (count($errors = $this->get('Errors')))
  		{
@@ -30,22 +30,23 @@ class AlarmhistoryViewSections extends JViewLegacy
  		}
 
  		$this->addToolbar();
- 		
- 		$this->sidebar = JHtmlSidebar::render();
 		
-		parent::display($tpl);
+ 		$this->sidebar = JHtmlSidebar::render();
+ 		
+ 		parent::display($tpl);
 	}
 	
 	protected function addToolbar()
 	{
 		// Add the admin view title
-		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'),'section');
+		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SITES_TITLE'),'site');
 		
-		JToolbarHelper::addNew('section.add','JTOOLBAR_NEW');
-		JToolbarHelper::editList('section.edit','JTOOLBAR_EDIT');
-		JToolBarHelper::deleteList('', 'sections.delete','JTOOLBAR_EMPTY_TRASH');
+		JToolbarHelper::addNew('site.add','JTOOLBAR_NEW');
+		JToolbarHelper::editList('site.edit','JTOOLBAR_EDIT');
+		JToolBarHelper::deleteList('', 'site.delete','JTOOLBAR_EMPTY_TRASH');
 		
 		JToolBarHelper::preferences('com_alarmhistory');
+		
 	}
 	
 }

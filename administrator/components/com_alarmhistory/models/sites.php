@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
 
-class AlarmhistoryModelSections extends JModelList
+class AlarmhistoryModelSites extends JModelList
 {
  	public function __construct($config = array())
  	{
@@ -21,9 +21,11 @@ class AlarmhistoryModelSections extends JModelList
  			$config['filter_fields'] = array(
  					'id', 'a.id',
  					'title', 'a.title',
- 					'SEC1', 'a.SEC1',
- 					'SEC2', 'a.SEC2',
- 					'SEC3', 'a.SEC3'
+ 					'FIELD', 'a.FIELD',
+ 					'REGION', 'a.REGION',
+ 					'DISTRICT', 'a.DISTRICT',
+ 					'LOCATION', 'a.LOCATION',
+ 					'section', 'a.section'
  			);
  		}
 
@@ -36,7 +38,7 @@ class AlarmhistoryModelSections extends JModelList
 		$query = $db->getQuery(true);
 
 		$query->select('*');
-		$query->from($db->quoteName('#__alarmhistory_section') . ' AS a');
+		$query->from($db->quoteName('#__alarmhistory_site') . ' AS a');
 		
 		return $query;
 	}

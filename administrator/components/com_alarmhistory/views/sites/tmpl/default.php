@@ -10,13 +10,13 @@
 defined('_JEXEC') or die;
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_alarmhistory&view=sections'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_alarmhistory&view=sites'); ?>" method="post" name="adminForm" id="adminForm">
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
 	<div id="j-main-container" class="span10">
 		<div class="clearfix"> </div>
-		<table class="table table-striped" id="sectionList">
+		<table class="table table-striped" id="siteList">
 			<thead>
 				<tr>
 					<th width="1%">
@@ -26,13 +26,19 @@ defined('_JEXEC') or die;
 						<?php echo JText::_('JGLOBAL_TITLE'); ?>
 					</th>
 					<th class="nowrap">
-						<?php echo JText::_('COM_ALARMHISTORY_HEADING_SEC1'); ?>
+						<?php echo JText::_('COM_ALARMHISTORY_HEADING_FIELD'); ?>
 					</th>
 					<th class="nowrap">
-						<?php echo JText::_('COM_ALARMHISTORY_HEADING_SEC2'); ?>
+						<?php echo JText::_('COM_ALARMHISTORY_HEADING_REGION'); ?>
 					</th>
 					<th class="nowrap">
-						<?php echo JText::_('COM_ALARMHISTORY_HEADING_SEC3'); ?>
+						<?php echo JText::_('COM_ALARMHISTORY_HEADING_DISTRICT'); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JText::_('COM_ALARMHISTORY_HEADING_LOCATION'); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JText::_('COM_ALARMHISTORY_HEADING_SECTION'); ?>
 					</th>
 					<th class="nowrap">
 						<?php echo JText::_('JGRID_HEADING_ID'); ?>
@@ -47,13 +53,15 @@ defined('_JEXEC') or die;
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 						</td>
 						<td class="nowrap has-context">
-							<a href="<?php echo JRoute::_('index.php?option=com_alarmhistory&task=section.edit&id='.(int) $item->id); ?>">
+							<a href="<?php echo JRoute::_('index.php?option=com_alarmhistory&task=site.edit&id='.(int) $item->id); ?>">
 								<?php echo $this->escape($item->title); ?>
 							</a>
 						</td>
-						<td><?php echo $this->escape($item->SEC1); ?></td>
-						<td><?php echo $this->escape($item->SEC2); ?></td>
-						<td><?php echo $this->escape($item->SEC3); ?></td>
+						<td><?php echo $this->escape($item->FIELD); ?></td>
+						<td><?php echo $this->escape($item->REGION); ?></td>
+						<td><?php echo $this->escape($item->DISTRICT); ?></td>
+						<td><?php echo $this->escape($item->LOCATION); ?></td>
+						<td><?php echo $this->escape($item->section); ?></td>
 						<td><?php echo $this->escape($item->id); ?></td>
 					</tr>
 				<?php endforeach; ?>

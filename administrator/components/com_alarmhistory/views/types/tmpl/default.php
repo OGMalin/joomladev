@@ -1,0 +1,118 @@
+<?php
+/**
+ * @package     Alarmhistory for Joomla 3.x
+ * @version     1.0.0
+ * @author      Odd Gunnar Malin
+ * @copyright   Copyright 2014. All rights reserved.
+ * @license     GNU General Public License version 2 or later.
+ */
+
+defined('_JEXEC') or die;
+
+$user		= JFactory::getUser();
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
+$saveOrder	= $listOrder == 'a.ordering';
+if ($saveOrder)
+{
+	$saveOrderingUrl = 'index.php?option=com_alarmhistory&task=types.saveOrderAjax&tmpl=component';
+	JHtml::_('sortablelist.sortable', 'folioList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
+}
+$sortFields = $this->getSortFields();
+?>
+<script type="text/javascript">
+	Joomla.orderTable = function()
+	{
+		table = document.getElementById("sortTable");
+		direction = document.getElementById("directionTable");
+		order = table.options[table.selectedIndex].value;
+		if (order != '<?php echo $listOrder; ?>')
+		{
+			dirn = 'asc';
+		}
+		else
+		{
+			dirn = direction.options[direction.selectedIndex].value;
+		}
+		Joomla.tableOrdering(order, dirn, '');
+	}
+</script>
+<form action="<?php echo JRoute::_('index.php?option=com_alarmhistory&view=types'); ?>" method="post" name="adminForm" id="adminForm">
+	<div id="j-sidebar-container" class="span2">
+		<?php echo $this->sidebar; ?>
+	</div>
+	<div id="j-main-container" class="span10">
+		<div class="clearfix"> </div>
+		<table class="table table-striped" id="typeList">
+			<thead>
+				<tr>
+					<th width="1%" class="nowrap center">
+						<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
+					</th>
+					<th width="1%">
+						<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+					</th>
+					<th class="title">
+						<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_STYLE', 'a.style', $listDirn, $listOrder); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_UNIT', 'a.UNIT', $listDirn, $listOrder); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_ALMSTATUS', 'a.ALMSTATUS', $listDirn, $listOrder); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_MSGTYPE', 'a.MSGTYPE', $listDirn, $listOrder); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_PRIORITY', 'a.PRIORITY', $listDirn, $listOrder); ?>
+					</th>
+					<th class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($this->items as $i => $item) :
+				 ?>
+					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="1">
+						<td class="order nowrap center">
+						<?php
+							$disableClassName = '';
+							$disabledLabel	  = '';
+							if (!$saveOrder) :
+								$disabledLabel    = JText::_('JORDERINGDISABLED');
+								$disableClassName = 'inactive tip-top';
+							endif; ?>
+						<span class="sortable-handler hasTooltip <?php echo $disableClassName?>" title="<?php echo $disabledLabel?>">
+							<i class="icon-menu"></i>
+						</span>
+						<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="width-20 text-area-order " />
+					</td>
+						<td class="center">
+							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+						</td>
+						<td class="nowrap has-context">
+							<a href="<?php echo JRoute::_('index.php?option=com_alarmhistory&task=type.edit&id='.(int) $item->id); ?>">
+								<?php echo $this->escape($item->title); ?>
+							</a>
+						</td>
+						<td><?php echo $this->escape($item->style); ?></td>
+						<td><?php echo $this->escape($item->UNIT); ?></td>
+						<td><?php echo $this->escape($item->ALMSTATUS); ?></td>
+						<td><?php echo $this->escape($item->MSGTYPE); ?></td>
+						<td><?php echo $this->escape($item->PRIORITY); ?></td>
+						<td><?php echo $this->escape($item->id); ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+
+		<input type="hidden" name="task" value="" />
+		<input type="hidden" name="boxchecked" value="0" />
+		<?php echo JHtml::_('form.token'); ?>
+	</div>
+</form>

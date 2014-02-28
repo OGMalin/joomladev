@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
 
-class AlarmhistoryModelSections extends JModelList
+class AlarmhistoryModelTypes extends JModelList
 {
  	public function __construct($config = array())
  	{
@@ -21,22 +21,35 @@ class AlarmhistoryModelSections extends JModelList
  			$config['filter_fields'] = array(
  					'id', 'a.id',
  					'title', 'a.title',
- 					'SEC1', 'a.SEC1',
- 					'SEC2', 'a.SEC2',
- 					'SEC3', 'a.SEC3'
+ 					'style', 'a.style',
+ 					'UNIT', 'a.UNIT',
+ 					'ALMSTATUS', 'a.ALMSTATUS',
+ 					'MSGTYPE', 'a.MSGTYPE',
+ 					'PRIORITY', 'a.PRIORITY',
+ 					'ordering', 'a.ordering'
  			);
  		}
 
  		parent::__construct($config);
  	}
 
+ 	protected function populateState($ordering = null, $direction = null)
+ 	{
+ 		parent::populateState('a.ordering', 'asc');
+ 	}
+ 	
+ 	
 	protected function getListQuery()
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 
 		$query->select('*');
-		$query->from($db->quoteName('#__alarmhistory_section') . ' AS a');
+		$query->from($db->quoteName('#__alarmhistory_type') . ' AS a');
+		
+		$orderCol	= $this->state->get('list.ordering');
+		$orderDirn	= $this->state->get('list.direction');
+		$query->order($db->escape($orderCol.' '.$orderDirn));
 		
 		return $query;
 	}

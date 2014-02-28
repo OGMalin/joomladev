@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset name="site">
+    <field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL"
+      readonly="true" class="readonly"
+      description="JGLOBAL_FIELD_ID_DESC"/>
+
+    <field name="title" type="text" class="inputbox"
+      size="40" label="JGLOBAL_TITLE"
+      description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
+
+    <field name="FIELD" type="text" class="inputbox"
+      size="40" label="COM_ALARMHISTORY_FIELD_LABEL"
+      description="COM_ALARMHISTORY_FIELD_FIELD_DESC" />
+
+    <field name="REGION" type="text" class="inputbox"
+      size="40" label="COM_ALARMHISTORY_REGION_LABEL"
+      description="COM_ALARMHISTORY_FIELD_REGION_DESC" />
+
+    <field name="DISTRICT" type="text" class="inputbox"
+      size="40" label="COM_ALARMHISTORY_DISTRICT_LABEL"
+      description="COM_ALARMHISTORY_FIELD_DISTRICT_DESC" />
+
+    <field name="LOCATION" type="text" class="inputbox"
+      size="40" label="COM_ALARMHISTORY_LOCATION_LABEL"
+      description="COM_ALARMHISTORY_FIELD_LOCATION_DESC" />
+
+    <field name="section" type="sql" default="0"
+      label="COM_ALARMHISTORY_SECTION_LABEL"
+      description="COM_ALARMHISTORY_FIELD_SECTION_DESC"
+      query="SELECT id AS value, title AS section FROM #__alarmhistory_section ORDER BY title" />
+      
+  </fieldset>
+</form>

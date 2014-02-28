@@ -12,15 +12,17 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
-class AlarmhistoryViewSections extends JViewLegacy
+class AlarmhistoryViewTypes extends JViewLegacy
 {
 	protected $items;
+	protected $state;
 	
 	public function display($tpl=null)
 	{
 		$this->items = $this->get('Items');
+		$this->state = $this->get('State');
 		
-		AlarmhistoryHelper::addSubmenu('sections');
+		AlarmhistoryHelper::addSubmenu('types');
 		
 		// Check for errors.
  		if (count($errors = $this->get('Errors')))
@@ -39,13 +41,21 @@ class AlarmhistoryViewSections extends JViewLegacy
 	protected function addToolbar()
 	{
 		// Add the admin view title
-		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_SECTIONS_TITLE'),'section');
+		JToolbarHelper::title(JText::_('COM_ALARMHISTORY_TITLE_TYPES'),'type');
 		
-		JToolbarHelper::addNew('section.add','JTOOLBAR_NEW');
-		JToolbarHelper::editList('section.edit','JTOOLBAR_EDIT');
-		JToolBarHelper::deleteList('', 'sections.delete','JTOOLBAR_EMPTY_TRASH');
+		JToolbarHelper::addNew('type.add','JTOOLBAR_NEW');
+		JToolbarHelper::editList('type.edit','JTOOLBAR_EDIT');
+		JToolBarHelper::deleteList('', 'types.delete','JTOOLBAR_EMPTY_TRASH');
 		
 		JToolBarHelper::preferences('com_alarmhistory');
 	}
 	
+	protected function getSortFields()
+	{
+		return array(
+			'a.ordering' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.title' => JText::_('JGLOBAL_TITLE'),
+			'a.id' => JText::_('JGRID_HEADING_ID')
+		);
+	}
 }
