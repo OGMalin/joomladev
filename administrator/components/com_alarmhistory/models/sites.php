@@ -25,20 +25,30 @@ class AlarmhistoryModelSites extends JModelList
  					'REGION', 'a.REGION',
  					'DISTRICT', 'a.DISTRICT',
  					'LOCATION', 'a.LOCATION',
- 					'section', 'a.section'
+ 					'section', 'a.section',
+ 					'ordering', 'a.ordering'
  			);
  		}
 
  		parent::__construct($config);
  	}
 
-	protected function getListQuery()
+ 	protected function populateState($ordering = null, $direction = null)
+ 	{
+ 		parent::populateState('a.ordering', 'asc');
+ 	}
+ 	
+ 	protected function getListQuery()
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 
 		$query->select('*');
 		$query->from($db->quoteName('#__alarmhistory_site') . ' AS a');
+		
+		$orderCol	= $this->state->get('list.ordering');
+		$orderDirn	= $this->state->get('list.direction');
+		$query->order($db->escape($orderCol . ' ' . $orderDirn));
 		
 		return $query;
 	}

@@ -15,10 +15,12 @@ jimport('joomla.application.component.view');
 class AlarmhistoryViewSites extends JViewLegacy
 {
 	protected $items;
+	protected $state;
 	
 	public function display($tpl=null)
 	{
 		$this->items = $this->get('Items');
+		$this->state = $this->get('State');
 		
 		AlarmhistoryHelper::addSubmenu('sites');
 
@@ -43,10 +45,17 @@ class AlarmhistoryViewSites extends JViewLegacy
 		
 		JToolbarHelper::addNew('site.add','JTOOLBAR_NEW');
 		JToolbarHelper::editList('site.edit','JTOOLBAR_EDIT');
-		JToolBarHelper::deleteList('', 'site.delete','JTOOLBAR_EMPTY_TRASH');
+		JToolBarHelper::deleteList('', 'sites.delete','JTOOLBAR_EMPTY_TRASH');
 		
 		JToolBarHelper::preferences('com_alarmhistory');
-		
 	}
 	
+	protected function getSortFields()
+	{
+		return array(
+			'a.ordering' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.title' => JText::_('JGLOBAL_TITLE'),
+			'a.id' => JText::_('JGRID_HEADING_ID')
+		);
+	}
 }

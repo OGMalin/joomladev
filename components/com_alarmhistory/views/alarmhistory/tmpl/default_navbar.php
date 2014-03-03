@@ -2,10 +2,10 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<form class="navbar-form">
-				<select class='span2' id='section' onchange='sectionChanged()'>
-					<option value=''>Alt</option>
-					<option value='KRAFT'>Produksjon</option>
-					<option value='NETT'>Nett</option>
+ 				<select class='span2' id='section' onchange='sectionChanged()'>
+<!-- 					<option value=''>Alt</option> -->
+<!-- 					<option value='KRAFT'>Produksjon</option> -->
+<!-- 					<option value='NETT'>Nett</option> -->
 				</select>
 <!-- 				<select class='span2' id='site'> -->
 <!-- 					<option value=''>Alt</option> -->

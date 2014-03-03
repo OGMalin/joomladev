@@ -18,12 +18,15 @@ jimport('joomla.application.component.view');
 class AlarmhistoryViewAlarmhistory extends JViewLegacy
 {
 	protected $items;
-	protected $fromCalendar;
+	protected $form;
 	
 	public function display($tpl = null)
 	{
 		$doc = JFactory::getDocument();
+
 		$this->items = $this->get('Items');
+		$this->form = $this->get('Form');
+		
 		if (count($errors = $this->get('Errors')))
 		{
 			JError::raisError(500, implode("\n", $errors));

@@ -38,7 +38,6 @@ class AlarmhistoryModelTypes extends JModelList
  		parent::populateState('a.ordering', 'asc');
  	}
  	
- 	
 	protected function getListQuery()
 	{
 		$db = $this->getDbo();
@@ -49,7 +48,7 @@ class AlarmhistoryModelTypes extends JModelList
 		
 		$orderCol	= $this->state->get('list.ordering');
 		$orderDirn	= $this->state->get('list.direction');
-		$query->order($db->escape($orderCol.' '.$orderDirn));
+		$query->order($db->escape($orderCol . ' ' . $orderDirn));
 		
 		return $query;
 	}

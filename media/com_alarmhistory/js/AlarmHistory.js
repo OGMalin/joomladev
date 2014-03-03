@@ -13,6 +13,8 @@ var msgList=new Array();
 
 function init()
 {
+	
+
 //	jQuery(function() {
 //		jQuery( "#datepicker1" ).datepicker();
 //	});
@@ -91,7 +93,7 @@ function messageClass(i)
 }
 
 /**
- * Viser alle egenskapene til en melding for bruk til å finne ukjente meldinger.
+ * Viser alle egenskapene til en melding for bruk til ï¿½ finne ukjente meldinger.
  */
 function showProperty(index)
 {

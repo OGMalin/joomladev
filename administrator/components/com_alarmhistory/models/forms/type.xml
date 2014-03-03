@@ -9,8 +9,12 @@
       size="40" label="JGLOBAL_TITLE"
       description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
 
-    <field name="style" type="text" class="inputbox"
+    <!--  field name="style" type="text" class="inputbox"
       size="40" label="COM_ALARMHISTORY_STYLE_LABEL"
+      description="COM_ALARMHISTORY_FIELD_STYLE_DESC" / -->
+
+    <field name="style" type="color" default="#000000"
+      label="COM_ALARMHISTORY_STYLE_LABEL"
       description="COM_ALARMHISTORY_FIELD_STYLE_DESC" />
 
     <field name="UNIT" type="text" class="inputbox"

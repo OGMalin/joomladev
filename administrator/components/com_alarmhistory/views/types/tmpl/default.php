@@ -16,7 +16,7 @@ $saveOrder	= $listOrder == 'a.ordering';
 if ($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_alarmhistory&task=types.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'folioList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
+	JHtml::_('sortablelist.sortable', 'typeList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 $sortFields = $this->getSortFields();
 ?>
@@ -29,8 +29,7 @@ $sortFields = $this->getSortFields();
 		if (order != '<?php echo $listOrder; ?>')
 		{
 			dirn = 'asc';
-		}
-		else
+		}else
 		{
 			dirn = direction.options[direction.selectedIndex].value;
 		}
@@ -80,18 +79,18 @@ $sortFields = $this->getSortFields();
 				 ?>
 					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="1">
 						<td class="order nowrap center">
-						<?php
-							$disableClassName = '';
-							$disabledLabel	  = '';
-							if (!$saveOrder) :
-								$disabledLabel    = JText::_('JORDERINGDISABLED');
-								$disableClassName = 'inactive tip-top';
-							endif; ?>
-						<span class="sortable-handler hasTooltip <?php echo $disableClassName?>" title="<?php echo $disabledLabel?>">
-							<i class="icon-menu"></i>
-						</span>
-						<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="width-20 text-area-order " />
-					</td>
+							<?php
+								$disableClassName = '';
+								$disabledLabel	  = '';
+								if (!$saveOrder) :
+									$disabledLabel    = JText::_('JORDERINGDISABLED');
+									$disableClassName = 'inactive tip-top';
+								endif; ?>
+							<span class="sortable-handler hasTooltip <?php echo $disableClassName; ?>" title="<?php echo $disabledLabel; ?>">
+								<i class="icon-menu"></i>
+							</span>
+							<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="width-20 text-area-order " />
+						</td>
 						<td class="center">
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 						</td>
@@ -113,6 +112,8 @@ $sortFields = $this->getSortFields();
 
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
+		<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
+		<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 	</div>
 </form>
