@@ -15,7 +15,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 $saveOrder	= $listOrder == 'a.ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_alarmhistory&task=sites.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_alarmhistory&task=sections.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'sectionList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 $sortFields = $this->getSortFields();

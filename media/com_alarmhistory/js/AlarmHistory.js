@@ -1,8 +1,8 @@
 /**
- * @version     $Id$
- * @package     Joomla.Site
- * @subpackage  com_alarmhistory
- * @copyright   Copyright 2013. All rights reserved.
+ * @package     Alarmhistory for Joomla 3.x
+ * @version     1.0.0
+ * @author      Odd Gunnar Malin
+ * @copyright   Copyright 2014. All rights reserved.
  * @license     GNU General Public License version 2 or later.
  */
 
@@ -13,8 +13,17 @@ var msgList=new Array();
 
 function init()
 {
+	var defSection=0;
+	// Oppdater områdeliste
+	var s="<option value='0'></option>\n";
+	for (var i=0; i<sections.length; i++)
+	{
+		s += "<option value='"+sections[i][0]+"'>"+sections[i][1]+"</options>\n";
+	}
+	jQuery('#section').html(s);
 	
-
+	updateSiteList(defSection);
+	
 //	jQuery(function() {
 //		jQuery( "#datepicker1" ).datepicker();
 //	});
@@ -30,7 +39,18 @@ function init()
 	
 	getList();
 };
-	
+
+function updateSiteList(section)
+{
+	// Oppdater stasjonsliste
+	s="<option value='0'></option>\n";
+	for (var i=0; i<sites.length; i++)
+	{
+		if (!section || (section==sites[i][6]))
+			s += "<option value='"+sites[i][0]+"'>"+sites[i][1]+"</options>\n";
+	}
+	jQuery('#site').html(s);
+}
 
 function dateChanged()
 {
@@ -49,7 +69,8 @@ function sectionChanged()
 function getList(filter='')
 {
 	var limit=100;
-	var sec1=jQuery('#section option:selected').val();
+	var s1=jQuery('#section option:selected').val();
+	var sec1=getSectionSec1(s1);
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
@@ -70,6 +91,16 @@ function getList(filter='')
 			}
 		}
 	});
+}
+
+function getSectionSec1(id)
+{
+	for (var i=0; i<sections.length;i++)
+	{
+		if (sections[i][0]==id)
+			return sections[i][2];
+	}
+	return '';
 }
 
 function showList()

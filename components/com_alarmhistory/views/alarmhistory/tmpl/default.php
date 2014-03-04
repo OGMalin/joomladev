@@ -17,7 +17,7 @@ JFactory::getDocument()->addScriptDeclaration("
 // Kalenderfunksjonen trenger mootools
 //JHtml::_('behavior.framework');
 ?>
-<div id='alarmhstory'>
+<div class='container' id='alarmhstory'>
 	<?php echo $this->loadTemplate('navbar'); ?>
 	<div id='historylist'>
 	</div>
