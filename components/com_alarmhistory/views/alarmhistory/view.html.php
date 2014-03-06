@@ -33,7 +33,7 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 		$doc->addScriptDeclaration("
 				var sections = new Array();
 				var sites = new Array();
-				var styles = new Array();
+				var types = new Array();
 		");
 		
 		// Hent områder

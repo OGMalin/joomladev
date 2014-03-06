@@ -63,6 +63,8 @@ function dateChanged()
 
 function sectionChanged()
 {
+	var sec=jQuery('#section option:selected').val();
+	updateSiteList(sec);
 	getList();
 }
 
