@@ -8,7 +8,7 @@
  				</select>
  				<input class='span2' type='text' placeholder='Søketekst' id="searchtext">
 				<!--  ?php echo JHtml::_('calendar',date('d.m.Y',time()),'Fra','setdate','%d.%m.%Y', 'onchange="dateChanged();return false;"'); ? -->
-				<?php echo JHtml::_('calendar',date('d.m.Y',time()),'','setdate','%d.%m.%Y'); ?>
+				<?php echo JHtml::_('calendar',date('d.m.Y',time()),'','setdate','%d.%m.%Y', array('onchange','dateChanged();return false;')); ?>
  				<div style="padding-right:10px;" class="pull-right"><a href="#" onclick="getList();return false;"><i class="icon-search"></i></a></div>
 				<div style="padding-right:10px;" class="pull-right" id="refreshing"><i class="icon-refresh"></i></div>
 			</form>

@@ -58,7 +58,7 @@ function dateChanged()
 //	var d = new Date(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)),0,0,0,0);
 	var d = Date.UTC(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)));
 	var t = d/1000;
-	getList('eventdate='+t);
+	getList('&eventdate='+t);
 }
 
 function sectionChanged()
@@ -68,7 +68,7 @@ function sectionChanged()
 //	getList();
 }
 
-function getList()
+function getList(filter='')
 {
 	jQuery('#refreshing').html("<i class='icon-refresh'></i>");
 	var limit=100;
@@ -87,7 +87,7 @@ function getList()
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : 'limit=' + limit + sec + sit + "&setdate=" + setdate + "&searchtext=" + search,
+		data : 'limit=' + limit + filter + sec + sit + "&setdate=" + setdate + "&searchtext=" + search,
 		timeout : 60000,
 		success : function(json)
 		{
