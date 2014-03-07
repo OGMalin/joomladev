@@ -13,12 +13,12 @@ var msgList=new Array();
 
 function init()
 {
-	var defSection=0;
+//	var defSection=0;
 	// Oppdater områdeliste
 	var s="<option value='0'></option>\n";
 	for (var i=0; i<sections.length; i++)
 	{
-		s += "<option value='"+sections[i][0]+"'>"+sections[i][1]+"</options>\n";
+		s += "<option value='"+sections[i][0]+"'" + (defSection==sections[i][0]?" selected":"")+">"+sections[i][1]+"</options>\n";
 	}
 	jQuery('#section').html(s);
 	
@@ -65,20 +65,29 @@ function sectionChanged()
 {
 	var sec=jQuery('#section option:selected').val();
 	updateSiteList(sec);
-	getList();
+//	getList();
 }
 
-function getList(filter='')
+function getList()
 {
+	jQuery('#refreshing').html("<i class='icon-refresh'></i>");
 	var limit=100;
-	var s1=jQuery('#section option:selected').val();
-	var sec1=getSectionSec1(s1);
+	var secI=getSectionIndex(jQuery('#section option:selected').val());
+	var sitI=getSiteIndex(jQuery('#site option:selected').val());
+	var sec='';
+	var sit='';
+	if (secI>=0)
+		sec="&sec="+sections[secI][2];
+	if (sitI>=0)
+		sit="&field="+sites[sitI][2]+"&region="+sites[sitI][3]+"&district="+sites[sitI][4]+"&location="+sites[sitI][5];
+	var setdate=jQuery('#setdate').val();
+	var search=jQuery('#searchtext').val();
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : filter + '&limit=' + limit + '&sec1=' + sec1,
+		data : 'limit=' + limit + sec + sit + "&setdate=" + setdate + "&searchtext=" + search,
 		timeout : 60000,
 		success : function(json)
 		{
@@ -91,18 +100,29 @@ function getList(filter='')
 				msgList=json;
 				showList();
 			}
+			jQuery('#refreshing').html("");
 		}
 	});
 }
 
-function getSectionSec1(id)
+function getSectionIndex(id)
 {
 	for (var i=0; i<sections.length;i++)
 	{
 		if (sections[i][0]==id)
-			return sections[i][2];
+			return i;
 	}
-	return '';
+	return -1;
+}
+
+function getSiteIndex(id)
+{
+	for (var i=0; i<sites.length;i++)
+	{
+		if (sites[i][0]==id)
+			return i;
+	}
+	return -1;
 }
 
 function showList()
@@ -131,6 +151,48 @@ function messageClass(i)
 function showProperty(index)
 {
 	jQuery('#listProperty').modal();
+	// Sjekk treff i databasen
+	// Section
+	var i;
+	var s='';
+	for (i=0;i<sections.length;i++)
+	{
+		if ((sections[i][2]==msgList[index].SEC1) ||
+			(sections[i][2]==msgList[index].SEC2) ||
+			(sections[i][2]==msgList[index].SEC3))
+		{
+			s+=sections[i][1]+'('+sections[i][0]+') ';
+		}
+	}
+	jQuery('#msgSection').html(s);
+	// Site
+	s='';
+	for (i=0;i<sites.length;i++)
+	{
+		if ((sites[i][2]==msgList[index].FIELD) &&
+			(sites[i][3]==msgList[index].REGION) &&
+			(sites[i][4]==msgList[index].DISTRICT) &&
+			(sites[i][5]==msgList[index].LOCATION))
+		{
+			s+=sites[i][1]+'('+sites[i][0]+') ';
+		}
+	}
+	jQuery('#msgSite').html(s);
+	// Type
+	s='';
+	for (i=0;i<types.length;i++)
+	{
+		if ((types[i][3]==msgList[index].UNIT) &&
+			(types[i][4]==msgList[index].ALMSTATUS) &&
+			(types[i][5]==msgList[index].MSGTYPE) &&
+			(types[i][6]==msgList[index].PRIORITY))
+		{
+			s+=types[i][1]+'('+types[i][0]+') ';
+		}
+	}
+	jQuery('#msgType').html(s);
+	
+	UNIT, ALMSTATUS, MSGTYPE, PRIORITY	
 	jQuery('#ROW').html(msgList[index].ROW);
 	jQuery('#EVENTINDEX').html(msgList[index].EVENTINDEX);
 	jQuery('#NODENAME').html(msgList[index].NODENAME);

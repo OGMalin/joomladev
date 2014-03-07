@@ -16,13 +16,15 @@ class iFixHelper
 {
 	public $limit=10;
 	public $eventdate=0;
-	public  $sec1='';
+	public $sec='';
+	public $district='';
+	public $location='';
+	public $field='';
+	public $region='';
+	public $searchtext='';
 	protected $username="";
 	protected $password="";
 	protected $connection="";
-	protected $searchstring='';
-	protected $district=0;
-	protected $location=0;
 	protected $fromdate=0;
 	protected $todate=0;
 	protected $first=0;
@@ -106,14 +108,18 @@ class iFixHelper
 		$whereId = 0;
 //  		if ($this->first>0)
 //  			$sql.=" AND (EVENTINDEX <" . $this->first . ")";
-		if ($this->sec1!='')
- 			$where[$whereId++]="(SEC1 LIKE '" . $this->sec1. "')";
-		// 		if ($this->district>0)
-// 			$sql.=" AND (DISTRICT=$this->district)";
-// 		if ($this->location>0)
-// 			$sql.=" AND (LOCATION=$this->location)";
-// 		if ($this->searchstring!='')
-// 			$sql.=" AND ((UPPER(DESCRIPTION) LIKE '%" . $this->searchstring . "%') OR (UPPER(VALUEASC) LIKE '%" . $this->searchstring . "%'))";
+		if ($this->sec!='')
+ 			$where[$whereId++]="((SEC1 = '" . $this->sec . "') OR (SEC2 = '" . $this->sec . "') OR (SEC3 = '" . $this->sec . "'))";
+ 		if ($this->district>0)
+ 			$where[$whereId++]="(DISTRICT = " . $this->district . ")";
+ 		if ($this->district>0)
+ 			$where[$whereId++]="(FIELD = " . $this->field . ")";
+ 		if ($this->district>0)
+ 			$where[$whereId++]="(REGION = " . $this->region . ")";
+ 		if ($this->district>0)
+ 			$where[$whereId++]="(LOCATION = " . $this->location . ")";
+ 		if ($this->searchtext!='')
+ 			$where[$whereId++]="(DESCRIPTION LIKE '%" . $this->searchtext . "%')";
 //  		$sql.=" AND (EVENTTIME >='".date("d.m.Y H:i:s,0",$this->fromdate)."')";
 //  		$sql.=" AND (EVENTTIME <'".date("d.m.Y H:i:s,0",$this->todate+(mktime(0,0,0,1,2,1980)-mktime(0,0,0,1,1,1980)))."')";
 //  		$sql.=" AND (MSGTYPE <> 'OPERATOR')";

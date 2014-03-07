@@ -55,13 +55,7 @@ $sortFields = $this->getSortFields();
 						<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 					</th>
 					<th class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_SEC1', 'a.SEC1', $listDirn, $listOrder); ?>
-					</th>
-					<th class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_SEC2', 'a.SEC2', $listDirn, $listOrder); ?>
-					</th>
-					<th class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_SEC3', 'a.SEC3', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_SEC', 'a.SEC', $listDirn, $listOrder); ?>
 					</th>
 					<th class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -93,9 +87,7 @@ $sortFields = $this->getSortFields();
 								<?php echo $this->escape($item->title); ?>
 							</a>
 						</td>
-						<td><?php echo $this->escape($item->SEC1); ?></td>
-						<td><?php echo $this->escape($item->SEC2); ?></td>
-						<td><?php echo $this->escape($item->SEC3); ?></td>
+						<td><?php echo $this->escape($item->SEC); ?></td>
 						<td><?php echo $this->escape($item->id); ?></td>
 					</tr>
 				<?php endforeach; ?>

@@ -38,7 +38,7 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 		
 		// Hent områder
 		$query=$db->getQuery(true);
-		$query->select('id, title, SEC1');
+		$query->select('id, title, SEC');
 		$query->from('#__alarmhistory_section');
 		$query->order('ordering');
 		$db->setQuery($query);

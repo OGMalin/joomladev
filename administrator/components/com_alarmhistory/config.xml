@@ -6,6 +6,10 @@
 		<field description="Beskrivelse" label="COM_ALARMHISTORY_SCADA_SERVER" name="scada_server" default="" type="text" size="40"/>
 		<field description="Beskrivelse" label="COM_ALARMHISTORY_SCADA_USER" name="scada_user" default="" type="text" size="40"/>
 		<field description="Beskrivelse" label="COM_ALARMHISTORY_SCADA_PASSWORD" name="scada_password" default="" type="text" size="40"/>
+    <field name="section" type="sql" default="0"
+      label="COM_ALARMHISTORY_SECTION_LABEL"
+      description="COM_ALARMHISTORY_FIELD_SECTION_DESC"
+      query="SELECT id AS value, title AS section FROM #__alarmhistory_section ORDER BY ordering" />
 	</fieldset>
 
 	<fieldset name="permissions"
