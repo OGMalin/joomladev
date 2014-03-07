@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 JFactory::getDocument()->addScriptDeclaration("
 		var responseUrl='" . $this->baseurl . "/index.php?option=com_alarmhistory&amp;';
 		var defSection=" . JComponentHelper::getParams('com_alarmhistory')->get('section') . ";	
+		var debug=" . JComponentHelper::getParams('com_alarmhistory')->get('debug','false') . ";	
 ");
 
 // Kalenderfunksjonen trenger mootools

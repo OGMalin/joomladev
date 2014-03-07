@@ -8,8 +8,8 @@
 
 window.onload=function(){init();};
 
-var debug=true;
 var msgList=new Array();
+var start=0;
 
 function init()
 {
@@ -54,11 +54,10 @@ function updateSiteList(section)
 
 function dateChanged()
 {
-	var s = jQuery('#setdate').val();
-//	var d = new Date(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)),0,0,0,0);
-	var d = Date.UTC(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)));
-	var t = d/1000;
-	getList('&eventdate='+t);
+//	var s = jQuery('#setdate').val();
+//	var d = Date.UTC(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)));
+//	var t = d/1000;
+//	getList('&eventdate='+t);
 }
 
 function sectionChanged()
@@ -68,10 +67,29 @@ function sectionChanged()
 //	getList();
 }
 
-function getList(filter='')
+function getPage(forward)
+{
+	var limit=jQuery('#limit option:selected').val();
+	if (forward)
+		start-=limit;
+	else
+		start+=limit;
+	if (start<0)
+		start=0;
+	getList();
+		
+}
+
+function searchList()
+{
+	start=0;
+	getList();
+}
+
+function getList()
 {
 	jQuery('#refreshing').html("<i class='icon-refresh'></i>");
-	var limit=100;
+	var limit=jQuery('#limit option:selected').val();
 	var secI=getSectionIndex(jQuery('#section option:selected').val());
 	var sitI=getSiteIndex(jQuery('#site option:selected').val());
 	var sec='';
@@ -80,14 +98,17 @@ function getList(filter='')
 		sec="&sec="+sections[secI][2];
 	if (sitI>=0)
 		sit="&field="+sites[sitI][2]+"&region="+sites[sitI][3]+"&district="+sites[sitI][4]+"&location="+sites[sitI][5];
-	var setdate=jQuery('#setdate').val();
-	var search=jQuery('#searchtext').val();
+	var searchtext="&searchtext=" + jQuery('#searchtext').val();
+	var s = jQuery('#setdate').val();
+	var d = Date.UTC(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)));
+	var t = d/1000;
+	var eventdate = '&eventdate='+t;
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : 'limit=' + limit + filter + sec + sit + "&setdate=" + setdate + "&searchtext=" + search,
+		data : 'limit=' + limit + '&start=' + start + sec + sit + eventdate + searchtext,
 		timeout : 60000,
 		success : function(json)
 		{
@@ -130,14 +151,83 @@ function showList()
 	var list = "<table class='table-hover table-condensed'>";
 	for (var i=0;i<msgList.length;i++)
 	{
-		list+="<tr class=\"" + messageClass(i) + "\" onclick='showProperty(" + i + ");return false;'>";
-		list+="<td>" + msgList[i].EVENTDATE + "</td>";
+		if (debug)
+			list+="<tr style='color:" + messageStyle(i) + "' onclick='showProperty(" + i + ");return false;'>";
+		else
+			list+="<tr style='color:" + messageStyle(i) + "'>";
+		list+="<td>";
+		if (debug)
+			list+=checkIfExist(i);
+		list+=msgList[i].EVENTDATE + "</td>";
 		list+="<td>" + msgList[i].DESCRIPTION + "</td>";
 		list+="<td>" + msgList[i].VALUEASC + "</td>";
 		list+="</tr>\n";
 	}
 	list+="</table>\n"
 	jQuery('#historylist').html(list);
+}
+
+function checkIfExist(index)
+{
+	var i;
+	var sec='*O*';
+	var typ='*T*';
+	var sit='*S*';
+	
+	// type
+	for (i=0;i<types.length;i++)
+	{
+		if ((types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT)) &&
+			(types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS)) &&
+			(types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE)) &&
+			(types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY)))
+		{
+			typ='';
+			break;
+		}
+	}
+
+	// Område
+	for (i=0;i<sections.length;i++)
+	{
+		if ((sections[i][2]==msgList[index].SEC1) ||
+			(sections[i][2]==msgList[index].SEC2) ||
+			(sections[i][2]==msgList[index].SEC3))
+		{
+			sec='';
+			break;
+		}
+	}
+
+	// Site
+	for (i=0;i<sites.length;i++)
+	{
+		if ((sites[i][2]==msgList[index].FIELD) &&
+			(sites[i][3]==msgList[index].REGION) &&
+			(sites[i][4]==msgList[index].DISTRICT) &&
+			(sites[i][5]==msgList[index].LOCATION))
+		{
+			sit='';
+			break;
+		}
+	}
+
+	return sec+sit+typ;
+}
+
+function messageStyle(index)
+{
+	for (i=0;i<types.length;i++)
+	{
+		if ((types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT)) &&
+			(types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS)) &&
+			(types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE)) &&
+			(types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY)))
+		{
+			return types[i][2];
+		}
+	}
+	return '#000000';
 }
 
 function messageClass(i)
@@ -182,10 +272,10 @@ function showProperty(index)
 	s='';
 	for (i=0;i<types.length;i++)
 	{
-		if ((types[i][3]==msgList[index].UNIT) &&
-			(types[i][4]==msgList[index].ALMSTATUS) &&
-			(types[i][5]==msgList[index].MSGTYPE) &&
-			(types[i][6]==msgList[index].PRIORITY))
+		if ((types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT)) &&
+				(types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS)) &&
+				(types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE)) &&
+				(types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY)))
 		{
 			s+=types[i][1]+'('+types[i][0]+') ';
 		}

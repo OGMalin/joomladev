@@ -10,6 +10,7 @@
       label="COM_ALARMHISTORY_SECTION_LABEL"
       description="COM_ALARMHISTORY_FIELD_SECTION_DESC"
       query="SELECT id AS value, title AS section FROM #__alarmhistory_section ORDER BY ordering" />
+     <field name="debug" type="checkbox" class="inputbox" label="Debug" description="debug" value="false" filter="boolean" />
 	</fieldset>
 
 	<fieldset name="permissions"

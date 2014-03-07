@@ -29,6 +29,7 @@ class AlarmhistoryModelResponse extends JModelItem
 		$iFix->location=$location;
 		$iFix->region=$region;
 		$iFix->searchtext=$searchtext;
+		$iFix->start=$start;
 		return $iFix->getData();
 	}
 }

@@ -22,12 +22,12 @@ class iFixHelper
 	public $field='';
 	public $region='';
 	public $searchtext='';
+	public $start=0;
 	protected $username="";
 	protected $password="";
 	protected $connection="";
 	protected $fromdate=0;
 	protected $todate=0;
-	protected $first=0;
 	protected $sort='EVENTINDEX';
 	
 	public function __construct($config = array())
