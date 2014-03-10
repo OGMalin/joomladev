@@ -9,7 +9,7 @@
 window.onload=function(){init();};
 
 var msgList=new Array();
-var start=0;
+var start=1;
 
 function init()
 {
@@ -69,20 +69,20 @@ function sectionChanged()
 
 function getPage(forward)
 {
-	var limit=jQuery('#limit option:selected').val();
+	var limit=parseInt(jQuery('#limit option:selected').val());
 	if (forward)
 		start-=limit;
 	else
 		start+=limit;
-	if (start<0)
-		start=0;
+	if (start<1)
+		start=1;
 	getList();
 		
 }
 
 function searchList()
 {
-	start=0;
+	start=1;
 	getList();
 }
 
@@ -148,6 +148,7 @@ function getSiteIndex(id)
 
 function showList()
 {
+	var miss;
 	var list = "<table class='table-hover table-condensed'>";
 	for (var i=0;i<msgList.length;i++)
 	{
@@ -157,7 +158,11 @@ function showList()
 			list+="<tr style='color:" + messageStyle(i) + "'>";
 		list+="<td>";
 		if (debug)
-			list+=checkIfExist(i);
+		{
+			miss=checkIfExist(i);
+			if (miss!='')
+				list+="<a title='Mangler:\n"+miss+"'>*</a> ";
+		}
 		list+=msgList[i].EVENTDATE + "</td>";
 		list+="<td>" + msgList[i].DESCRIPTION + "</td>";
 		list+="<td>" + msgList[i].VALUEASC + "</td>";
@@ -170,9 +175,9 @@ function showList()
 function checkIfExist(index)
 {
 	var i;
-	var sec='*O*';
-	var typ='*T*';
-	var sit='*S*';
+	var sec='Område\n';
+	var typ='Meldingstype\n';
+	var sit='Stasjon\n';
 	
 	// type
 	for (i=0;i<types.length;i++)
