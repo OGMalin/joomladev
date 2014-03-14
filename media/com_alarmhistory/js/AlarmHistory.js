@@ -10,10 +10,10 @@ window.onload=function(){init();};
 
 var msgList=new Array();
 var start=1;
+var auto=0;
 
 function init()
 {
-//	var defSection=0;
 	// Oppdater områdeliste
 	var s="<option value='0'></option>\n";
 	for (var i=0; i<sections.length; i++)
@@ -24,19 +24,6 @@ function init()
 	
 	updateSiteList(defSection);
 	
-//	jQuery(function() {
-//		jQuery( "#datepicker1" ).datepicker();
-//	});
-//	jQuery(function() {
-//		jQuery( "#datepicker2" ).datepicker();
-//	});
-//
-//	jQuery.datepicker.setDefaults({
-//		monthNames: [ "Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember" ],
-//		dayNamesMin: [ "Sø", "Ma", "Ti", "On", "To", "Fr", "Lø" ],
-//		firstDay: 1
-//	});
-	
 	getList();
 };
 
@@ -46,29 +33,42 @@ function updateSiteList(section)
 	s="<option value='0'></option>\n";
 	for (var i=0; i<sites.length; i++)
 	{
-		if (!section || (section==sites[i][6]))
+		if (!section || (section==sites[i][3]))
 			s += "<option value='"+sites[i][0]+"'>"+sites[i][1]+"</options>\n";
 	}
 	jQuery('#site').html(s);
 }
 
-function dateChanged()
+function autoChanged()
 {
-//	var s = jQuery('#setdate').val();
-//	var d = Date.UTC(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)));
-//	var t = d/1000;
-//	getList('&eventdate='+t);
+	var a=jQuery('#auto').is(':checked');
+	if (a)
+	{
+		auto=setInterval(function(){getList()},refreshinterval*1000);
+	}else if (auto)
+	{
+		clearInterval(auto);
+		auto=0;
+	}
+	msgList=new Array();
+	getList();
 }
 
 function sectionChanged()
 {
 	var sec=jQuery('#section option:selected').val();
 	updateSiteList(sec);
-//	getList();
+	searchList();
 }
 
 function getPage(forward)
 {
+	if (auto)
+	{
+		clearInterval(auto);
+		auto=0;
+		jQuery('#auto').prop('checked', false);
+	}
 	var limit=parseInt(jQuery('#limit option:selected').val());
 	if (forward)
 		start-=limit;
@@ -83,6 +83,12 @@ function getPage(forward)
 function searchList()
 {
 	start=1;
+	if (auto)
+	{
+		clearInterval(auto);
+		auto=0;
+		jQuery('#auto').prop('checked', false);
+	}
 	getList();
 }
 
@@ -94,21 +100,24 @@ function getList()
 	var sitI=getSiteIndex(jQuery('#site option:selected').val());
 	var sec='';
 	var sit='';
-	if (secI>=0)
-		sec="&sec="+sections[secI][2];
 	if (sitI>=0)
-		sit="&field="+sites[sitI][2]+"&region="+sites[sitI][3]+"&district="+sites[sitI][4]+"&location="+sites[sitI][5];
+		sit="&location="+sites[sitI][2];
+	else if (secI>=0)
+		sec="&district="+sections[secI][2];
 	var searchtext="&searchtext=" + jQuery('#searchtext').val();
 	var s = jQuery('#setdate').val();
 	var d = Date.UTC(parseInt(s.substr(6,4)),parseInt(s.substr(3,2))-1,parseInt(s.substr(0,2)));
 	var t = d/1000;
 	var eventdate = '&eventdate='+t;
+	var eventindex='';
+	if (auto)
+		eventindex = '&eventindex=' + (msgList.length?msgList[0].EVENTINDEX:0);
 	jQuery.ajax({
 		cache : false,
 		type : 'POST',
 		dataType : 'json',
 		url : responseUrl + 'task=response.queryalarmhistory&format=json',
-		data : 'limit=' + limit + '&start=' + start + sec + sit + eventdate + searchtext,
+		data : 'limit=' + limit + '&start=' + start + sec + sit + eventdate + eventindex + searchtext,
 		timeout : 60000,
 		success : function(json)
 		{
@@ -118,7 +127,10 @@ function getList()
 			} else
 			{
 				/* Response ok */
-				msgList=json;
+				if (auto)
+					msgList=json.concat(msgList).slice(0,limit);
+				else
+					msgList=json;
 				showList();
 			}
 			jQuery('#refreshing').html("");
@@ -149,13 +161,27 @@ function getSiteIndex(id)
 function showList()
 {
 	var miss;
+	var t;
+	var color;
+	var interval=0;
+	var title;
 	var list = "<table class='table-hover table-condensed'>";
 	for (var i=0;i<msgList.length;i++)
 	{
+		t=messageType(i);
+		if (t>=0)
+		{
+			color=types[t][2];
+			title=types[t][1];
+		}else
+		{
+			color=defColor;
+			title="Ukjent";
+		}
 		if (debug)
-			list+="<tr style='color:" + messageStyle(i) + "' onclick='showProperty(" + i + ");return false;'>";
+			list+="<tr title=" + title + " style='color:" + color + "' onclick='showProperty(" + i + ");return false;'>";
 		else
-			list+="<tr style='color:" + messageStyle(i) + "'>";
+			list+="<tr title=" + title + " style='color:" + color + "'>";
 		list+="<td>";
 		if (debug)
 		{
@@ -182,10 +208,10 @@ function checkIfExist(index)
 	// type
 	for (i=0;i<types.length;i++)
 	{
-		if ((types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT)) &&
-			(types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS)) &&
-			(types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE)) &&
-			(types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY)))
+		if (((types[i][3] == '*') || (types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT))) &&
+			((types[i][4] == '*') || (types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS))) &&
+			((types[i][5] == '*') || (types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE))) &&
+			((types[i][6] == '*') || (types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY))))
 		{
 			typ='';
 			break;
@@ -195,9 +221,7 @@ function checkIfExist(index)
 	// Område
 	for (i=0;i<sections.length;i++)
 	{
-		if ((sections[i][2]==msgList[index].SEC1) ||
-			(sections[i][2]==msgList[index].SEC2) ||
-			(sections[i][2]==msgList[index].SEC3))
+		if (sections[i][2]==msgList[index].DISTRICT)
 		{
 			sec='';
 			break;
@@ -207,10 +231,7 @@ function checkIfExist(index)
 	// Site
 	for (i=0;i<sites.length;i++)
 	{
-		if ((sites[i][2]==msgList[index].FIELD) &&
-			(sites[i][3]==msgList[index].REGION) &&
-			(sites[i][4]==msgList[index].DISTRICT) &&
-			(sites[i][5]==msgList[index].LOCATION))
+		if (sites[i][2]==msgList[index].LOCATION)
 		{
 			sit='';
 			break;
@@ -224,15 +245,30 @@ function messageStyle(index)
 {
 	for (i=0;i<types.length;i++)
 	{
-		if ((types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT)) &&
-			(types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS)) &&
-			(types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE)) &&
-			(types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY)))
+		if (((types[i][3] == '*') || (types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT))) &&
+			((types[i][4] == '*') || (types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS))) &&
+			((types[i][5] == '*') || (types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE))) &&
+			((types[i][6] == '*') || (types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY))))
 		{
 			return types[i][2];
 		}
 	}
 	return '#000000';
+}
+
+function messageType(index)
+{
+	for (i=0;i<types.length;i++)
+	{
+		if (((types[i][3] == '*') || (types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT))) &&
+			((types[i][4] == '*') || (types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS))) &&
+			((types[i][5] == '*') || (types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE))) &&
+			((types[i][6] == '*') || (types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY))))
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 function messageClass(i)
@@ -252,9 +288,7 @@ function showProperty(index)
 	var s='';
 	for (i=0;i<sections.length;i++)
 	{
-		if ((sections[i][2]==msgList[index].SEC1) ||
-			(sections[i][2]==msgList[index].SEC2) ||
-			(sections[i][2]==msgList[index].SEC3))
+		if (sections[i][2]==msgList[index].DISTRICT)
 		{
 			s+=sections[i][1]+'('+sections[i][0]+') ';
 		}
@@ -264,10 +298,7 @@ function showProperty(index)
 	s='';
 	for (i=0;i<sites.length;i++)
 	{
-		if ((sites[i][2]==msgList[index].FIELD) &&
-			(sites[i][3]==msgList[index].REGION) &&
-			(sites[i][4]==msgList[index].DISTRICT) &&
-			(sites[i][5]==msgList[index].LOCATION))
+		if (sites[i][2]==msgList[index].LOCATION)
 		{
 			s+=sites[i][1]+'('+sites[i][0]+') ';
 		}
@@ -277,10 +308,10 @@ function showProperty(index)
 	s='';
 	for (i=0;i<types.length;i++)
 	{
-		if ((types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT)) &&
-				(types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS)) &&
-				(types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE)) &&
-				(types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY)))
+		if (((types[i][3] == '*') || (types[i][3]==((msgList[index].UNIT==null)?'':msgList[index].UNIT))) &&
+			((types[i][4] == '*') || (types[i][4]==((msgList[index].ALMSTATUS==null)?'':msgList[index].ALMSTATUS))) &&
+			((types[i][5] == '*') || (types[i][5]==((msgList[index].MSGTYPE==null)?'':msgList[index].MSGTYPE))) &&
+			((types[i][6] == '*') || (types[i][6]==((msgList[index].PRIORITY==null)?'':msgList[index].PRIORITY))))
 		{
 			s+=types[i][1]+'('+types[i][0]+') ';
 		}

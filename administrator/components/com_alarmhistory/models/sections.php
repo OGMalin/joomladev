@@ -21,7 +21,7 @@ class AlarmhistoryModelSections extends JModelList
  			$config['filter_fields'] = array(
  					'id', 'a.id',
  					'title', 'a.title',
- 					'SEC', 'a.SEC',
+ 					'DISTRICT', 'a.DISTRICT',
  					'ordering', 'a.ordering'
  			);
  		}

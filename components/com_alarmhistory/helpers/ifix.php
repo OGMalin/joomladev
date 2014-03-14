@@ -16,13 +16,11 @@ class iFixHelper
 {
 	public $limit=10;
 	public $eventdate=0;
-	public $sec='';
-	public $district='';
-	public $location='';
-	public $field='';
-	public $region='';
+	public $district=0;
+	public $location=0;
 	public $searchtext='';
 	public $start=1;
+	public $eventindex=0;
 	protected $username="";
 	protected $password="";
 	protected $connection="";
@@ -47,13 +45,26 @@ class iFixHelper
 			return 0;
 		
 		$first=$this->start;
-		$last=$this->limit+$first;
+		$last=$this->limit+$first-1;
 		
 		$this->makeWhere();
 
-		$c=$this->countInEvents($conn);
+		// Søk i begge tabellene (UNION) er veldig tregt.
+// 		$data=$this->readFromScadaFull($conn,$first,$last);
+// 		oci_close($conn);
+// 		return $data;
 		
 		$data1=array();
+		
+		$c=$this->countInEvents($conn);
+		
+		if ($this->eventindex)
+		{
+			if (!$c)
+				return $data1;
+			return $this->readFromScada($conn,'EVENTS',$first,$last);
+		}
+		
 		// Det finnes data i første tabell
 		if ($first < $c)
 			$data1=$this->readFromScada($conn,'EVENTS',$first,$last);
@@ -67,8 +78,8 @@ class iFixHelper
 		}
 		
 		$first-=$c;
-		$first+=$i;
-		$last=$this->limit+$first-$i;
+//		$first+=$i;
+		$last-=$c;
 		$data2=$this->readFromScada($conn,'EVENTS_HIS',$first,$last);
 		oci_close($conn);
 		return array_merge($data1,$data2);
@@ -88,23 +99,90 @@ class iFixHelper
 		return $row[0];
 	}
 	
+	protected function readFromScadaFull($conn, $first, $last)
+	{
+		// select *
+		//   from ( select /*+ FIRST_ROWS(n) */
+		//   a.*, ROWNUM rnum
+		//       from ( your_query_goes_here,
+		//       with order by ) a
+		//       where ROWNUM <=
+		//       :MAX_ROW_TO_FETCH )
+		// where rnum  >= :MIN_ROW_TO_FETCH;
+	
+		$data=array();
+	
+		$select = "SELECT";
+		$select.=" EVENTINDEX";
+		$select.=",NODENAME";
+		$select.=",TAG";
+		$select.=",DESCRIPTION";
+		$select.=",VALUEASC";
+		$select.=",UNIT";
+		$select.=",ALMSTATUS";
+		$select.=",MSGTYPE";
+		$select.=",PRIORITY";
+		$select.=",LOCATION";
+		$select.=",DISTRICT";
+		$select.=",REGION";
+		$select.=",FIELD";
+		$select.=",OPERATOR";
+		$select.=",NODEOPER";
+		$select.=",NODEPHYS";
+		$select.=",ALMX1";
+		$select.=",ALMX2";
+		$select.=",TO_CHAR(CAST((EVENTTIME AT LOCAL) AS DATE),'DD-MM-YYYY HH24:MI:SS') AS EVENTDATE";
+		$select.=",EVENTTIME";
+		$select.=",COMMENTED";
+		$select.=",SYNT";
+		$select.=",SEC1";
+		$select.=",SEC2";
+		$select.=",SEC3";
+	
+ 		$select.= " FROM";
+	
+		$sql="SELECT * FROM (SELECT a.*, ROWNUM rnum FROM (";
+ 		$sql.= "(" . $select . " EVENTS" . $this->where . ")";
+ 		$sql.=" UNION ALL ";
+ 		$sql.= "(" . $select . " EVENTS_HIS" . $this->where . ")";
+ 		$sql.=" ORDER BY EVENTTIME DESC";
+		$sql.=") a WHERE ROWNUM <= " . $last . ") WHERE rnum >= " . $first;
+	
+		$stid=oci_parse($conn, $sql);
+		if (!$stid)
+		{
+			oci_free_statement($stid);
+			return $data;
+		}
+		if (!oci_execute($stid))
+		{
+			oci_free_statement($stid);
+			return $data;
+		}
+		$i=0;
+		while ($row=oci_fetch_assoc($stid))
+		{
+			$data[$i++]=$row;
+		}
+		//		$data[0]['DESCRIPTION']=$first . ", " . $last . " - " .$sql;//urlencode($sql);
+		oci_free_statement($stid);
+		return $data;
+	}
+	
+	
 	protected function makeWhere()
 	{
 		$where = array();
 		$whereId = 0;
-		if ($this->sec!='')
- 			$where[$whereId++]="((SEC1 = '" . $this->sec . "') OR (SEC2 = '" . $this->sec . "') OR (SEC3 = '" . $this->sec . "'))";
  		if ($this->district>0)
  			$where[$whereId++]="(DISTRICT = " . $this->district . ")";
- 		if ($this->district>0)
- 			$where[$whereId++]="(FIELD = " . $this->field . ")";
- 		if ($this->district>0)
- 			$where[$whereId++]="(REGION = " . $this->region . ")";
- 		if ($this->district>0)
+ 		if ($this->location>0)
  			$where[$whereId++]="(LOCATION = " . $this->location . ")";
  		if ($this->searchtext!='')
- 			$where[$whereId++]="(DESCRIPTION LIKE '%" . $this->searchtext . "%')";
-		if ($this->eventdate)
+ 			$where[$whereId++]="(UPPER(DESCRIPTION) LIKE '%" . strtoupper($this->searchtext) . "%')";
+ 		if ($this->eventindex)
+ 			$where[$whereId++]="(EVENTINDEX > " . $this->eventindex . ")"; 
+ 		else if ($this->eventdate)
 			$where[$whereId++] ="(EVENTTIME < '".date("d.m.Y H:i:s,0",$this->eventdate+(24*60*60))."')";
 		if (count($where))
 		{

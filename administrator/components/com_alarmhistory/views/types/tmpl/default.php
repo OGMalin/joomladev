@@ -41,6 +41,9 @@ $sortFields = $this->getSortFields();
 		<?php echo $this->sidebar; ?>
 	</div>
 	<div id="j-main-container" class="span10">
+		<div class="btn-group pull-right">
+			<?php echo $this->pagination->getLimitBox(); ?>
+		</div>
 		<div class="clearfix"> </div>
 		<table class="table table-striped" id="typeList">
 			<thead>
@@ -74,6 +77,13 @@ $sortFields = $this->getSortFields();
 					</th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="10">
+						<?php echo $this->pagination->getListFooter(); ?>
+					</td>
+				</tr>
+			</tfoot>
 			<tbody>
 				<?php foreach ($this->items as $i => $item) :
 				 ?>

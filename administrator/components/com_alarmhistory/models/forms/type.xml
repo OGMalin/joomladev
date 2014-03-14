@@ -9,29 +9,58 @@
       size="40" label="JGLOBAL_TITLE"
       description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
 
-    <!--  field name="style" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_STYLE_LABEL"
-      description="COM_ALARMHISTORY_FIELD_STYLE_DESC" / -->
-
     <field name="style" type="color" default="#000000"
       label="COM_ALARMHISTORY_STYLE_LABEL"
       description="COM_ALARMHISTORY_FIELD_STYLE_DESC" />
 
-    <field name="UNIT" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_UNIT_LABEL"
-      description="COM_ALARMHISTORY_FIELD_UNIT_DESC" />
+    <field name="UNIT" type="list" default="*"
+      label="COM_ALARMHISTORY_UNIT_LABEL"
+      description="COM_ALARMHISTORY_FIELD_UNIT_DESC">
+ 			<option value="*">*</option>
+ 			<option value="">(Blank)</option>
+ 			<option value="NCS"></option>
+ 			<option value="NFE"></option>
+ 			<option value="RTU"></option>
+		</field>
 
-    <field name="ALMSTATUS" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_ALMSTATUS_LABEL"
-      description="COM_ALARMHISTORY_FIELD_ALMSTATUS_DESC" />
+    <field name="ALMSTATUS" type="list" default="*"
+      label="COM_ALARMHISTORY_ALMSTATUS_LABEL"
+      description="COM_ALARMHISTORY_FIELD_ALMSTATUS_DESC">
+ 			<option value="*">*</option>
+ 			<option value="">(Blank)</option>
+ 			<option value="CFN">CFN</option>
+ 			<option value="COS">COS</option>
+ 			<option value="HI">HI</option>
+ 			<option value="HIHI">HIHI</option>
+ 			<option value="LO">LO</option>
+ 			<option value="LOLO">LOLO</option>
+ 			<option value="OK">OK</option>
+ 			<option value="TIME">TIME</option>
+		</field>
 
-    <field name="MSGTYPE" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_MSGTYPE_LABEL"
-      description="COM_ALARMHISTORY_FIELD_MSGTYPE_DESC" />
+    <field name="MSGTYPE" type="list" default="*"
+			label="COM_ALARMHISTORY_MSGTYPE_LABEL"
+			description="COM_ALARMHISTORY_FIELD_MSGTYPE_DESC">
+ 			<option value="*">*</option>
+ 			<option value="ALARM">Alarm</option>
+ 			<option value="EVENT">Event</option>
+ 			<option value="NETWORK">Network</option>
+ 			<option value="OPERATOR">Operator</option>
+ 			<option value="SYSALM">SysAlm</option>
+ 			<option value="TEXT">Text</option>
+		</field>
 
-    <field name="PRIORITY" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_PRIORITY_LABEL"
-      description="COM_ALARMHISTORY_FIELD_PRIORITY_DESC" />
-
+ 		<field name="PRIORITY" type="list" default="*"
+ 			label="COM_ALARMHISTORY_PRIORITY_LABEL"
+ 			description="COM_ALARMHISTORY_FIELD_PRIORITY_DESC">
+ 			<option value="*">*</option>
+ 			<option value="INFO">Info</option>
+ 			<option value="LOLO">LoLo</option>
+ 			<option value="LOW">Low</option>
+ 			<option value="MEDIUM">Medium</option>
+ 			<option value="HIGH">High</option>
+ 			<option value="HIHI">HiHi</option>
+ 			<option value="CRITICAL">Critical</option>
+ 		</field>
   </fieldset>
 </form>

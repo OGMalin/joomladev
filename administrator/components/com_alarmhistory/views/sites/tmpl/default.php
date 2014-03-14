@@ -41,6 +41,9 @@ $sortFields = $this->getSortFields();
 		<?php echo $this->sidebar; ?>
 	</div>
 	<div id="j-main-container" class="span10">
+		<div class="btn-group pull-right">
+			<?php echo $this->pagination->getLimitBox(); ?>
+		</div>
 		<div class="clearfix"> </div>
 		<table class="table table-striped" id="siteList">
 			<thead>
@@ -55,15 +58,6 @@ $sortFields = $this->getSortFields();
 						<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 					</th>
 					<th class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_FIELD', 'a.FIELD', $listDirn, $listOrder); ?>
-					</th>
-					<th class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_REGION', 'a.REGION', $listDirn, $listOrder); ?>
-					</th>
-					<th class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_DISTRICT', 'a.DISTRICT', $listDirn, $listOrder); ?>
-					</th>
-					<th class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_ALARMHISTORY_HEADING_LOCATION', 'a.LOCATION', $listDirn, $listOrder); ?>
 					</th>
 					<th class="nowrap">
@@ -74,6 +68,13 @@ $sortFields = $this->getSortFields();
 					</th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="10">
+						<?php echo $this->pagination->getListFooter(); ?>
+					</td>
+				</tr>
+			</tfoot>
 			<tbody>
 				<?php foreach ($this->items as $i => $item) :
 				 ?>
@@ -99,9 +100,6 @@ $sortFields = $this->getSortFields();
 								<?php echo $this->escape($item->title); ?>
 							</a>
 						</td>
-						<td><?php echo $this->escape($item->FIELD); ?></td>
-						<td><?php echo $this->escape($item->REGION); ?></td>
-						<td><?php echo $this->escape($item->DISTRICT); ?></td>
 						<td><?php echo $this->escape($item->LOCATION); ?></td>
 						<td><?php echo $this->escape($item->section); ?></td>
 						<td><?php echo $this->escape($item->id); ?></td>

@@ -9,18 +9,6 @@
       size="40" label="JGLOBAL_TITLE"
       description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
 
-    <field name="FIELD" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_FIELD_LABEL"
-      description="COM_ALARMHISTORY_FIELD_FIELD_DESC" />
-
-    <field name="REGION" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_REGION_LABEL"
-      description="COM_ALARMHISTORY_FIELD_REGION_DESC" />
-
-    <field name="DISTRICT" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_DISTRICT_LABEL"
-      description="COM_ALARMHISTORY_FIELD_DISTRICT_DESC" />
-
     <field name="LOCATION" type="text" class="inputbox"
       size="40" label="COM_ALARMHISTORY_LOCATION_LABEL"
       description="COM_ALARMHISTORY_FIELD_LOCATION_DESC" />

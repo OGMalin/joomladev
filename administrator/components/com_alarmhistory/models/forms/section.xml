@@ -9,9 +9,9 @@
       size="40" label="JGLOBAL_TITLE"
       description="COM_ALARMHISTORY_FIELD_TITLE_DESC" required="true" />
 
-    <field name="SEC" type="text" class="inputbox"
-      size="40" label="COM_ALARMHISTORY_SEC_LABEL"
-      description="COM_ALARMHISTORY_FIELD_SEC_DESC" />
+    <field name="DISTRICT" type="text" class="inputbox"
+      size="40" label="COM_ALARMHISTORY_DISTRICT_LABEL"
+      description="COM_ALARMHISTORY_FIELD_DISTRICT_DESC" />
 
   </fieldset>
 </form>

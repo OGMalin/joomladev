@@ -38,7 +38,7 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 		
 		// Hent områder
 		$query=$db->getQuery(true);
-		$query->select('id, title, SEC');
+		$query->select('id, title, DISTRICT');
 		$query->from('#__alarmhistory_section');
 		$query->order('ordering');
 		$db->setQuery($query);
@@ -53,7 +53,7 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 		
 		// Hent stasjoner
 		$query=$db->getQuery(true);
-		$query->select('id, title, FIELD, REGION, DISTRICT, LOCATION, section');
+		$query->select('id, title, LOCATION, section');
 		$query->from('#__alarmhistory_site');
 		$query->order('ordering');
 		$db->setQuery($query);
@@ -66,10 +66,7 @@ class AlarmhistoryViewAlarmhistory extends JViewLegacy
 						$result[0]."','".
 						$result[1]."','".
 						$result[2]."','".
-						$result[3]."','".
-						$result[4]."','".
-						$result[5]."','".
-						$result[6]."'));");
+						$result[3]."'));");
 			}
 		};
 		
