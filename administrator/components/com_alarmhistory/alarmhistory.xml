@@ -46,7 +46,6 @@
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
-			<filename>script.php</filename>
 			<folder>controllers</folder>
 			<folder>language</folder>
 			<folder>helpers</folder>
@@ -56,4 +55,10 @@
 			<folder>views</folder>
 		</files>
 	</administration>
+
+	<media destination="com_alarmhistory" folder="media">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
 </extension>

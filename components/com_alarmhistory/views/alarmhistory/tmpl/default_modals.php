@@ -9,6 +9,9 @@ defined('_JEXEC') or die;
 	</div>
 	<div class="modal-body">
 		<table class="well">
+			<tr><td>Section:</td><td id="msgSection"></td></tr>
+			<tr><td>Site:</td><td id="msgSite"></td></tr>
+			<tr><td>Type:</td><td id="msgType"></td></tr>
 			<tr><td>ROW:</td><td id="ROW"></td></tr>
 			<tr><td>EVENTINDEX:</td><td id="EVENTINDEX"></td></tr>
 			<tr><td>NODENAME:</td><td id="NODENAME"></td></tr>

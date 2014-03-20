@@ -6,6 +6,15 @@
 		<field description="Beskrivelse" label="COM_ALARMHISTORY_SCADA_SERVER" name="scada_server" default="" type="text" size="40"/>
 		<field description="Beskrivelse" label="COM_ALARMHISTORY_SCADA_USER" name="scada_user" default="" type="text" size="40"/>
 		<field description="Beskrivelse" label="COM_ALARMHISTORY_SCADA_PASSWORD" name="scada_password" default="" type="text" size="40"/>
+    <field name="section" type="sql" default="0"
+      label="COM_ALARMHISTORY_DEFSECTION_LABEL"
+      description="COM_ALARMHISTORY_DEFSECTION_DESC"
+      query="SELECT id AS value, title AS section FROM #__alarmhistory_section ORDER BY ordering" />
+    <field name="defcolor" type="color" default="#000000"
+      label="COM_ALARMHISTORY_DEFCOLOR_LABEL"
+      description="COM_ALARMHISTORY_DEFCOLOR_DESC" />
+		<field description="COM_ALARMHISTORY_REFRESH_DESC" label="COM_ALARMHISTORY_REFRESH_LABEL" name="refreshinterval" default="60" type="text" size="40"/>
+		<field name="debug" type="checkbox" class="inputbox" label="Debug" description="debug" value="false" filter="boolean" />
 	</fieldset>
 
 	<fieldset name="permissions"
