@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.3" type="template" client="site">
+	<name>vadsosjakk_01</name>
+	<version>1.0</version>
+	<creationDate>2/12-2014</creationDate>
+	<author>Odd Gunnar Malin</author>
+	<authorEmail>oddg@sjakk.biz</authorEmail>
+	<copyright>Copyright (C) 2014.</copyright>
+	<description>TPL_VADSOSJAKK_01_XML_DESCRIPTION</description>
+	<files>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>templateDetails.xml</filename>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>js</folder>
+		<folder>language</folder>
+		<folder>less</folder>
+	</files>
+	<positions>
+		<position>banner</position>
+		<position>debug</position>
+		<position>search</position>
+		<position>navigation</position>
+		<position>breadcrumb</position>
+		<position>left</position>
+		<position>right</position>
+		<position>top</position>
+		<position>footer</position>
+	</positions>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_protostar.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_protostar.sys.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.tpl_protostar.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.tpl_protostar.sys.ini</language>
+	</languages>
+</extension>
