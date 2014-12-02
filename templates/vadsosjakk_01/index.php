@@ -63,8 +63,8 @@ if ($this->countModules('right') && $this->countModules('left'))
 	</head>
 	<body>
 		<div class="body">
-			<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
-			<header class="header" role="banner">
+			<div class="container>
+			<header class="header">
 				<div class="header-inner clearfix">
 					<div class="header-search pull-right">
 						<jdoc:include type="modules" name="search" style="none" />
