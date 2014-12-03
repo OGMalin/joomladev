@@ -31,4 +31,9 @@ Templates:
 		Just a template
 	Folders
 		templates/polartemplate
+
+	vadsosjakk
+		Template for use on vadsosjakk.no
+	Folders
+		templates/vadsosjakk
 </pre>
