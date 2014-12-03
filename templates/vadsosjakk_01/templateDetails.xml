@@ -27,6 +27,9 @@
 		<position>left</position>
 		<position>right</position>
 		<position>top</position>
+		<position>above</position>
+		<position>below</position>
+		<position>bottom</position>
 		<position>footer</position>
 	</positions>
 	<languages folder="language">
