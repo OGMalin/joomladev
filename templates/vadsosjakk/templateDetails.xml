@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.3" type="template" client="site">
-	<name>vadsosjakk_01</name>
+	<name>vadsosjakk</name>
 	<version>1.0</version>
 	<creationDate>2/12-2014</creationDate>
 	<author>Odd Gunnar Malin</author>
 	<authorEmail>oddg@sjakk.biz</authorEmail>
 	<copyright>Copyright (C) 2014.</copyright>
-	<description>TPL_VADSOSJAKK_01_XML_DESCRIPTION</description>
+	<description>TPL_VADSOSJAKK_XML_DESCRIPTION</description>
 	<files>
 		<filename>index.html</filename>
 		<filename>index.php</filename>
@@ -33,9 +33,9 @@
 		<position>footer</position>
 	</positions>
 	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.tpl_protostar.ini</language>
-		<language tag="en-GB">en-GB/en-GB.tpl_protostar.sys.ini</language>
-		<language tag="nb-NO">nb-NO/nb-NO.tpl_protostar.ini</language>
-		<language tag="nb-NO">nb-NO/nb-NO.tpl_protostar.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_vadsosjakk.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_vadsosjakk.sys.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.tpl_vadsosjakk.ini</language>
+		<language tag="nb-NO">nb-NO/nb-NO.tpl_vadsosjakk.sys.ini</language>
 	</languages>
 </extension>

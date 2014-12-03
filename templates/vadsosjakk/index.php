@@ -1,7 +1,7 @@
 <?php
 /**
 * @package Joomla.Site
-* @subpackage Templates.vadsosjakk_01
+* @subpackage Templates.vadsosjakk
 *
 * @copyright Copyright (C) 2014.
 */
