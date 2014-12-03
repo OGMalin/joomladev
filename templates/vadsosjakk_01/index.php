@@ -70,7 +70,7 @@ $center='span'.(12-$useleft-$useright);
 				<?php endif ?>
 				<?php if ($this->countModules('navigation')) : ?>
 				<div class="row">
-					<jdoc:include type="modules" name="navigation" style="none" />
+					<jdoc:include type="modules" name="navigation" style="xhtml" />
 				</div>
 				<?php endif ?>
 				<?php if ($this->countModules('top')) : ?>
