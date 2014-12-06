@@ -109,7 +109,7 @@ $center='span'.(12-$useleft-$useright);
 				</div>
 				<?php endif; ?>
 				
-				<div class="container">
+				<div class="row">
 					<?php if ($useleft) : ?>
 		  		<div class="span3">
 			 			<jdoc:include type="modules" name="left" style="none" />
@@ -136,11 +136,15 @@ $center='span'.(12-$useleft-$useright);
 					<jdoc:include type="modules" name="bottom" style="none" />
 				</div>
 				<?php endif; ?>
+				<hr />
 	 			<?php if ($this->countModules('footer')) : ?>
 				<div class="container">
 					<jdoc:include type="modules" name="footer" style="none" />
+					<p class="pull-right">
+					&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
+					</p>
 				</div>
-	 			<?php endif; ?>
+				<?php endif; ?>
 				</div>
 			</div>
 			<jdoc:include type="modules" name="debug" style="none" />
