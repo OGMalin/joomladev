@@ -65,7 +65,7 @@ $center='span'.(12-$useleft-$useright);
 		<div class="body">
 			<div class="container">
 				<?php if ($this->countModules('banner')) : ?>
-				<div class="row">
+				<div class="container">
 					<jdoc:include type="modules" name="banner" style="none" />
 				</div>
 				<?php endif; ?>
@@ -79,7 +79,7 @@ $center='span'.(12-$useleft-$useright);
 								<span class="icon-bar"></span>
 							</a>
 							<?php if ($this->params->get('menusite')) : ?>
-							<a class="brand" href="/joomladev/"><?php echo $sitename ?></a>
+							<a class="brand" href="index.php"><?php echo $sitename ?></a>
 							<?php endif; ?>
   	          <div class="nav-collapse collapse">
 								<jdoc:include type="modules" name="navigation" style="none" />
@@ -99,17 +99,17 @@ $center='span'.(12-$useleft-$useright);
 				</nav>
 				<?php endif; ?>
 				<?php if ($this->countModules('top')) : ?>
-				<div class="row">
+				<div class="container">
 					<jdoc:include type="modules" name="top" style="none" />
 				</div>
 				<?php endif; ?>
 				<?php if ($this->countModules('breadcrumb')) : ?>
-				<div class="row">
+				<div class="container">
 					<jdoc:include type="modules" name="breadcrumb" style="none" />
 				</div>
 				<?php endif; ?>
 				
-				<div class="row">
+				<div class="container">
 					<?php if ($useleft) : ?>
 		  		<div class="span3">
 			 			<jdoc:include type="modules" name="left" style="none" />
@@ -132,12 +132,12 @@ $center='span'.(12-$useleft-$useright);
 					<?php endif; ?>
 				</div>
 				<?php if ($this->countModules('bottom')) : ?>
-				<div class="row">
+				<div class="container">
 					<jdoc:include type="modules" name="bottom" style="none" />
 				</div>
 				<?php endif; ?>
 	 			<?php if ($this->countModules('footer')) : ?>
-				<div class="row">
+				<div class="container">
 					<jdoc:include type="modules" name="footer" style="none" />
 				</div>
 	 			<?php endif; ?>
