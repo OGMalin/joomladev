@@ -68,9 +68,9 @@ $center='span'.(12-$useleft-$useright);
 				<div class="row">
 					<jdoc:include type="modules" name="banner" style="none" />
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if ($this->countModules('navigation')) : ?>
-				<nav class="navbar navbar-inverse">
+				<nav class="navbar">
 					<div class="navbar-inner">
 						<div class="container">
 							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -80,57 +80,67 @@ $center='span'.(12-$useleft-$useright);
 							</a>
 							<?php if ($this->params->get('menusite')) : ?>
 							<a class="brand" href="/joomladev/"><?php echo $sitename ?></a>
-							<?php endif ?>
+							<?php endif; ?>
   	          <div class="nav-collapse collapse">
 								<jdoc:include type="modules" name="navigation" style="none" />
+								<?php if ($this->params->get('menulogin')) : ?>
+									<?php if ($user->guest) : ?>
+										<a href="index.php?option=com_users&view=login" class="pull-right">Logg inn</a>
+									<?php else: ?>
+										<div class="userlogin pull-right">
+										<span class="icon-user"></span> <?php echo $user->name ?> - 
+										<a href="index.php?option=com_users&view=login"><strong>Logg ut</strong></a>
+										</div>
+									<?php endif; ?>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
 				</nav>
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if ($this->countModules('top')) : ?>
 				<div class="row">
 					<jdoc:include type="modules" name="top" style="none" />
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 				<?php if ($this->countModules('breadcrumb')) : ?>
 				<div class="row">
 					<jdoc:include type="modules" name="breadcrumb" style="none" />
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 				
 				<div class="row">
 					<?php if ($useleft) : ?>
 		  		<div class="span3">
 			 			<jdoc:include type="modules" name="left" style="none" />
 		 			</div>
-		  		<?php endif ?>
+		  		<?php endif; ?>
 		  		<div class="<?php echo $center ?>">
 		  			<?php if ($this->countModules('above')) : ?>
 			 			<jdoc:include type="modules" name="above" style="none" />
-						<?php endif ?>
+						<?php endif; ?>
 						<jdoc:include type="message" />
 						<jdoc:include type="component" />
 			 			<?php if ($this->countModules('below')) : ?>
 			 			<jdoc:include type="modules" name="below" style="none" />
-						<?php endif ?>
+						<?php endif; ?>
 					</div>
 					<?php if ($useright) : ?>
 			  	<div class="span3">
 						<jdoc:include type="modules" name="right" style="none" />
 					</div>
-					<?php endif ?>
+					<?php endif; ?>
 				</div>
 				<?php if ($this->countModules('bottom')) : ?>
 				<div class="row">
 					<jdoc:include type="modules" name="bottom" style="none" />
 				</div>
-				<?php endif ?>
+				<?php endif; ?>
 	 			<?php if ($this->countModules('footer')) : ?>
 				<div class="row">
 					<jdoc:include type="modules" name="footer" style="none" />
 				</div>
-	 			<?php endif ?>
+	 			<?php endif; ?>
 				</div>
 			</div>
 			<jdoc:include type="modules" name="debug" style="none" />
