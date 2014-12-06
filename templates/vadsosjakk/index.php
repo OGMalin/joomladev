@@ -18,19 +18,20 @@ $this->language = $doc->language;
 $params = $app->getTemplate(true)->params;
 
 // Detecting Active Variables
-$option = $app->input->getCmd('option', '');
-$view = $app->input->getCmd('view', '');
-$layout = $app->input->getCmd('layout', '');
-$task = $app->input->getCmd('task', '');
-$itemid = $app->input->getCmd('Itemid', '');
+//$option = $app->input->getCmd('option', '');
+//$view = $app->input->getCmd('view', '');
+//$layout = $app->input->getCmd('layout', '');
+//$task = $app->input->getCmd('task', '');
+//$itemid = $app->input->getCmd('Itemid', '');
 $sitename = $app->get('sitename');
-if($task == "edit" || $layout == "form" )
-{
-	$fullWidth = 1;
-}else
-{
-	$fullWidth = 0;
-}
+
+// if($task == "edit" || $layout == "form" )
+// {
+// 	$fullWidth = 1;
+// }else
+// {
+// 	$fullWidth = 0;
+// }
 
 // Legg til JavaScript Frameworks
 JHtml::_('bootstrap.framework');
@@ -69,9 +70,23 @@ $center='span'.(12-$useleft-$useright);
 				</div>
 				<?php endif ?>
 				<?php if ($this->countModules('navigation')) : ?>
-				<div class="row">
-					<jdoc:include type="modules" name="navigation" style="xhtml" />
-				</div>
+				<nav class="navbar navbar-inverse">
+					<div class="navbar-inner">
+						<div class="container">
+							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</a>
+							<?php if ($this->params->get('menusite')) : ?>
+							<a class="brand" href="/joomladev/"><?php echo $sitename ?></a>
+							<?php endif ?>
+  	          <div class="nav-collapse collapse">
+								<jdoc:include type="modules" name="navigation" style="none" />
+							</div>
+						</div>
+					</div>
+				</nav>
 				<?php endif ?>
 				<?php if ($this->countModules('top')) : ?>
 				<div class="row">

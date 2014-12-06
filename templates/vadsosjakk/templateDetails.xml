@@ -38,4 +38,35 @@
 		<language tag="nb-NO">nb-NO/nb-NO.tpl_vadsosjakk.ini</language>
 		<language tag="nb-NO">nb-NO/nb-NO.tpl_vadsosjakk.sys.ini</language>
 	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+				<field name="logoFile" class="" type="media" default=""
+					label="TPL_VADSOSJAKK_LOGO_LABEL"
+					description="TPL_VADSOSJAKK_LOGO_DESC" />
+				<field name="menulogin"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_VADSOSJAKK_MENULOGIN_LABEL"
+					description="TPL_VADSOSJAKK_MENULOGIN_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="menusite"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_VADSOSJAKK_MENUSITE_LABEL"
+					description="TPL_VADSOSJAKK_MENUSITE_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+
 </extension>
