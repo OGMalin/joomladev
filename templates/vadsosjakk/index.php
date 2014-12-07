@@ -65,7 +65,7 @@ $center='span'.(12-$useleft-$useright);
 		<div class="body">
 			<div class="container">
 				<?php if ($this->countModules('banner')) : ?>
-				<div class="container">
+				<div class="row">
 					<jdoc:include type="modules" name="banner" style="none" />
 				</div>
 				<?php endif; ?>
@@ -99,12 +99,12 @@ $center='span'.(12-$useleft-$useright);
 				</nav>
 				<?php endif; ?>
 				<?php if ($this->countModules('top')) : ?>
-				<div class="container">
+				<div class="row">
 					<jdoc:include type="modules" name="top" style="none" />
 				</div>
 				<?php endif; ?>
 				<?php if ($this->countModules('breadcrumb')) : ?>
-				<div class="container">
+				<div class="row">
 					<jdoc:include type="modules" name="breadcrumb" style="none" />
 				</div>
 				<?php endif; ?>
@@ -132,13 +132,13 @@ $center='span'.(12-$useleft-$useright);
 					<?php endif; ?>
 				</div>
 				<?php if ($this->countModules('bottom')) : ?>
-				<div class="container">
+				<div class="row">
 					<jdoc:include type="modules" name="bottom" style="none" />
 				</div>
 				<?php endif; ?>
 				<hr />
 	 			<?php if ($this->countModules('footer')) : ?>
-				<div class="container">
+				<div class="row">
 					<jdoc:include type="modules" name="footer" style="none" />
 					<p class="pull-right">
 					&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
