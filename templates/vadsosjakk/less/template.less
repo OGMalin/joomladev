@@ -93,7 +93,8 @@
 @import "../../../media/jui/less/responsive-767px-max.joomla.less";
 
 // Icon Font
-@import "../../../media/jui/less/icomoon.less";
+//@import "../../../media/jui/less/icomoon.less";
+@import "icomoon.less";
 // < Joomla JUI
 
 // Skjuler et felt.
@@ -102,10 +103,14 @@
 }
 
 // Brukernavn og Logg inn/ut i menylinjen.
-.userlogin {
+.userlogin, {
 	font-size: 12px;
-	line-height: 35px;
+	line-height: @navbarHeight;
+	color: @navbarInverseText;
 }
+.userlogin > a, .userlogin > a:link, .userlogin > a:hover {
+	 color: @navbarInverseText;
+ }
 
 // Bilde css er kopi fra protostar
 /* Caption fixes */
@@ -155,4 +160,43 @@ figcaption {
 // Lag ramme på bilder
 figure > img {
 	border: 1px solid black;
+}
+
+// Moduler
+.boks {
+	padding: 3px;
+	background-color: @bodyBackground;
+}
+  
+.moduletable.boks {
+	border: 1px solid black;
+	padding: 0px;
+	background-color: @navbarInverseBackground;
+	border-radius: 4px;
+}
+
+.bokshode {
+	padding-left: 3px;
+	color: @navbarInverseText;
+	margin: 0px;
+	font-size: 20px;
+	font-weight: 200;
+	text-shadow: 0px 1px 0px @navbarInverseBackgroundHighlight;
+	line-height: 30px;
+}
+
+/* Container */
+//.container{
+//	max-width: 960px;
+//}
+.main {
+	background-color: @bodyBackground;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.05);
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.05);
 }

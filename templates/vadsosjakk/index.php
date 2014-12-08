@@ -41,8 +41,8 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/js/template
 
 // Legg til Stylesheets
 $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/template.css');
-if (JPath::find($this->baseurl . 'templates/' . $this->template . '/css/', 'custom.css'))
-	$doc->addStyleSheet($this->baseurl . 'templates/'.$this->template.'/css/custom.css');
+//if (JPath::find($this->baseurl . '/templates/' . $this->template . '/css', 'custom.css'))
+	$doc->addStyleSheet($this->baseurl . '/templates/'.$this->template.'/css/custom.css');
 
 // Finn bredden på Innholdsboksen
 $useleft=($this->countModules('left')>0)?3:0;
@@ -63,14 +63,14 @@ $center='span'.(12-$useleft-$useright);
 
 	<body>
 		<div class="body">
-			<div class="container">
+			<div class="container main">
 				<?php if ($this->countModules('banner')) : ?>
 				<div class="row">
 					<jdoc:include type="modules" name="banner" style="none" />
 				</div>
 				<?php endif; ?>
 				<?php if ($this->countModules('navigation')) : ?>
-				<nav class="navbar">
+				<nav class="navbar navbar-inverse">
 					<div class="navbar-inner">
 						<div class="container">
 							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -112,7 +112,7 @@ $center='span'.(12-$useleft-$useright);
 				<div class="row">
 					<?php if ($useleft) : ?>
 		  		<div class="span3">
-			 			<jdoc:include type="modules" name="left" style="none" />
+			 			<jdoc:include type="modules" name="left" style="html5" />
 		 			</div>
 		  		<?php endif; ?>
 		  		<div class="<?php echo $center ?>">
@@ -127,7 +127,7 @@ $center='span'.(12-$useleft-$useright);
 					</div>
 					<?php if ($useright) : ?>
 			  	<div class="span3">
-						<jdoc:include type="modules" name="right" style="none" />
+						<jdoc:include type="modules" name="right" style="html5" />
 					</div>
 					<?php endif; ?>
 				</div>
@@ -139,10 +139,10 @@ $center='span'.(12-$useleft-$useright);
 				<hr />
 	 			<?php if ($this->countModules('footer')) : ?>
 				<div class="row">
-					<jdoc:include type="modules" name="footer" style="none" />
 					<p class="pull-right">
 					&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
 					</p>
+					<jdoc:include type="modules" name="footer" style="none" />
 				</div>
 				<?php endif; ?>
 				</div>
