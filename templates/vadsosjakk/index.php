@@ -45,8 +45,8 @@ $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/tem
 	$doc->addStyleSheet($this->baseurl . '/templates/'.$this->template.'/css/custom.css');
 
 // Finn bredden på Innholdsboksen
-$useleft=($this->countModules('left')>0)?3:0;
-$useright=($this->countModules('right')>0)?3:0;
+$useleft=($this->countModules('left')>0)?$this->params->get('leftsize'):0;
+$useright=($this->countModules('right')>0)?$this->params->get('rightsize'):0;
 $center='span'.(12-$useleft-$useright);
 
 ?>
@@ -67,7 +67,10 @@ $center='span'.(12-$useleft-$useright);
 				<?php if ($this->countModules('banner')) : ?>
 				<div class="row">
 					<jdoc:include type="modules" name="banner" style="none" />
-				</div>
+					<?php if ($this->params->get('datebanner')) : ?>
+						<span class="bannerdato"><?php echo date('d.m.Y'); ?></span>
+					<?php endif; ?>
+					</div>
 				<?php endif; ?>
 				<?php if ($this->countModules('navigation')) : ?>
 				<nav class="navbar navbar-inverse">
@@ -111,11 +114,11 @@ $center='span'.(12-$useleft-$useright);
 				
 				<div class="row">
 					<?php if ($useleft) : ?>
-		  		<div class="span3">
+		  		<div class="span<?php echo $useleft; ?>">
 			 			<jdoc:include type="modules" name="left" style="html5" />
 		 			</div>
 		  		<?php endif; ?>
-		  		<div class="<?php echo $center ?>">
+		  		<div class="<?php echo $center; ?>">
 		  			<?php if ($this->countModules('above')) : ?>
 			 			<jdoc:include type="modules" name="above" style="none" />
 						<?php endif; ?>
@@ -126,7 +129,7 @@ $center='span'.(12-$useleft-$useright);
 						<?php endif; ?>
 					</div>
 					<?php if ($useright) : ?>
-			  	<div class="span3">
+		  		<div class="span<?php echo $useright; ?>">
 						<jdoc:include type="modules" name="right" style="html5" />
 					</div>
 					<?php endif; ?>

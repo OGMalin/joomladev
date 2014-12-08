@@ -41,9 +41,16 @@
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
-				<field name="logoFile" class="" type="media" default=""
-					label="TPL_VADSOSJAKK_LOGO_LABEL"
-					description="TPL_VADSOSJAKK_LOGO_DESC" />
+				<field name="datebanner"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_VADSOSJAKK_DATEBANNER_LABEL"
+					description="TPL_VADSOSJAKK_DATEBANNER_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
 				<field name="menulogin"
 					type="radio"
 					class="btn-group btn-group-yesno"
@@ -64,6 +71,14 @@
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
+				<field name="leftsize" type="integer" default="3"
+					label="TPL_VADSOSJAKK_LEFTSIZE_LABEL"
+					description="TPL_VADSOSJAKK_LEFTSIZE_DESC"
+					first="0" last="12" step="1" />
+				<field name="rightsize" type="integer" default="3"
+					label="TPL_VADSOSJAKK_RIGHTSIZE_LABEL"
+					description="TPL_VADSOSJAKK_RIGHTSIZE_DESC"
+					first="0" last="12" step="1" />
 			</fieldset>
 		</fields>
 	</config>
