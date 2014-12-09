@@ -224,10 +224,10 @@ figure > img {
 // JEvent.
 .mod_events_monthyear {
 	background-color: @bodyBackground;
-	width: 165px !important;
 }
 
 .mod_events_link {
+	cursor: pointer;
   color: @linkColor;
   &:hover,
   &:link,
@@ -238,7 +238,7 @@ figure > img {
   
 .mod_events_table {
 	background-color: @bodyBackground;
-	width: 165px !important;
+	text-align: center;
 }
 
 .mod_events_dayname {
@@ -260,15 +260,15 @@ figure > img {
 }
 
 .mod_events_td_daywithevents {
-	background-color: #ff0;
+	background-color: #ccf;
 }
 
 .mod_events_td_todaynoevents {
-	background-color: #fcc;
+	background-color: #ff3;
 }
 
 .mod_events_td_todaywithevents {
-	background-color: #cc9;
+	background-color: #cc6;
 }
 
 .mod_events_daylink {
@@ -278,4 +278,27 @@ figure > img {
 	color: #999;
 }
 
+.mod_events_latest_table {
+  #gradient > .vertical(@navbarInverseBackgroundHighlight, @navbarInverseBackground);
+	color: @navbarInverseText;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @navbarInverseLinkColorHover;
+    }
+}
 
+.mod_events_latest_content > a ,.mod_events_latest_first > a, .mod_events_latest > a {
+	color: @navbarInverseText;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @navbarInverseLinkColorHover !important;
+    }
+}
+
+hr {
+	margin: 0px;
+	border-width: 2px;
+	border-color: @navbarInverseBorder;
+}
