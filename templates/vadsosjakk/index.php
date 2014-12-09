@@ -20,18 +20,18 @@ $params = $app->getTemplate(true)->params;
 // Detecting Active Variables
 //$option = $app->input->getCmd('option', '');
 //$view = $app->input->getCmd('view', '');
-//$layout = $app->input->getCmd('layout', '');
-//$task = $app->input->getCmd('task', '');
+$layout = $app->input->getCmd('layout', '');
+$task = $app->input->getCmd('task', '');
 //$itemid = $app->input->getCmd('Itemid', '');
 $sitename = $app->get('sitename');
 
-// if($task == "edit" || $layout == "form" )
-// {
-// 	$fullWidth = 1;
-// }else
-// {
-// 	$fullWidth = 0;
-// }
+if($task == "edit" || $layout == "edit" )
+{
+	$fullWidth = 1;
+}else
+{
+	$fullWidth = 0;
+}
 
 // Legg til JavaScript Frameworks
 JHtml::_('bootstrap.framework');
@@ -41,12 +41,17 @@ $doc->addScript($this->baseurl . '/templates/' . $this->template . '/js/template
 
 // Legg til Stylesheets
 $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/template.css');
-//if (JPath::find($this->baseurl . '/templates/' . $this->template . '/css', 'custom.css'))
-	$doc->addStyleSheet($this->baseurl . '/templates/'.$this->template.'/css/custom.css');
+$doc->addStyleSheet($this->baseurl . '/templates/'.$this->template.'/css/custom.css');
 
 // Finn bredden på Innholdsboksen
-$useleft=($this->countModules('left')>0)?$this->params->get('leftsize'):0;
-$useright=($this->countModules('right')>0)?$this->params->get('rightsize'):0;
+if ($fullWidth)
+{
+	$useleft=0;
+	$useright=0;
+}else{
+	$useleft=($this->countModules('left')>0)?$this->params->get('leftsize'):0;
+	$useright=($this->countModules('right')>0)?$this->params->get('rightsize'):0;
+}
 $center='span'.(12-$useleft-$useright);
 
 ?>
@@ -57,7 +62,7 @@ $center='span'.(12-$useleft-$useright);
 		<jdoc:include type="head" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
  		<!--[if lt IE 9]>
-			<script src="media/jui/js/html5.js"></script>
+			<script src="<?php echo $this->baseurl; ?>/media/jui/js/html5.js"></script>
 		<![endif]-->
 	</head>
 
@@ -88,11 +93,11 @@ $center='span'.(12-$useleft-$useright);
 								<jdoc:include type="modules" name="navigation" style="none" />
 								<?php if ($this->params->get('menulogin')) : ?>
 									<?php if ($user->guest) : ?>
-										<a href="index.php?option=com_users&view=login" class="pull-right">Logg inn</a>
+										<a href="index.php?option=com_users&view=login" class="userlogin pull-right">Logg inn</a>
 									<?php else: ?>
 										<div class="userlogin pull-right">
 										<span class="icon-user"></span> <?php echo $user->name ?> - 
-										<a href="index.php?option=com_users&view=login"><strong>Logg ut</strong></a>
+										<a href="index.php?option=com_users&view=login" class="userlogin">Logg ut</a>
 										</div>
 									<?php endif; ?>
 								<?php endif; ?>

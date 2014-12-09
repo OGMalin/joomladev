@@ -61,6 +61,7 @@
 
 // Utility classes
 @import "../../../media/jui/less/utilities.less"; // Has to be last to override when necessary
+@import "../../../media/jui/less/responsive-utilities.less";
 
 
 // > Joomla JUI
@@ -106,11 +107,14 @@
 .userlogin, {
 	font-size: 12px;
 	line-height: @navbarHeight;
-	color: @navbarInverseText;
+  color: @navbarInverseLinkColor;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @navbarInverseLinkColorHover;
+    font-weight: bold;
+  }
 }
-.userlogin > a, .userlogin > a:link, .userlogin > a:hover {
-	 color: @navbarInverseText;
- }
 
 // Bilde css er kopi fra protostar
 /* Caption fixes */
@@ -216,3 +220,60 @@ figure > img {
 
 .toppbanner {
 } 
+
+// JEvent.
+.mod_events_monthyear {
+	background-color: @bodyBackground;
+}
+
+.mod_events_link {
+  color: @linkColor;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @linkColorHover;
+    }
+}
+  
+.mod_events_table {
+	background-color: @bodyBackground;
+}
+
+.mod_events_dayname {
+}
+
+.mod_events_td_dayname {
+	color: #090;
+}
+
+.mod_events_td_dayname > .saturday {
+	color: #009;
+}
+
+.mod_events_td_dayname > .sunday {
+	color: #f00;
+}
+
+.mod_events_td_daynoevents {
+}
+
+.mod_events_td_daywithevents {
+	background-color: #ff0;
+}
+
+.mod_events_td_todaynoevents {
+	background-color: #fcc;
+}
+
+.mod_events_td_todaywithevents {
+	background-color: #cc9;
+}
+
+.mod_events_daylink {
+}
+
+.mod_events_td_dayoutofmonth {
+	color: #999;
+}
+
+
