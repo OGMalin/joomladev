@@ -7671,6 +7671,7 @@ figure > img {
 }
 .mod_events_monthyear {
   background-color: #ffffff;
+  width: 165px !important;
 }
 .mod_events_link {
   color: #0088cc;
@@ -7682,6 +7683,7 @@ figure > img {
 }
 .mod_events_table {
   background-color: #ffffff;
+  width: 165px !important;
 }
 .mod_events_td_dayname {
   color: #090;
