@@ -25,14 +25,6 @@ $task = $app->input->getCmd('task', '');
 //$itemid = $app->input->getCmd('Itemid', '');
 $sitename = $app->get('sitename');
 
-if($task == "edit" || $layout == "edit" )
-{
-	$fullWidth = 1;
-}else
-{
-	$fullWidth = 0;
-}
-
 // Legg til JavaScript Frameworks
 JHtml::_('bootstrap.framework');
 
@@ -44,14 +36,8 @@ $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/tem
 $doc->addStyleSheet($this->baseurl . '/templates/'.$this->template.'/css/custom.css');
 
 // Finn bredden på Innholdsboksen
-if ($fullWidth)
-{
-	$useleft=0;
-	$useright=0;
-}else{
-	$useleft=($this->countModules('left')>0)?$this->params->get('leftsize'):0;
-	$useright=($this->countModules('right')>0)?$this->params->get('rightsize'):0;
-}
+$useleft=($this->countModules('left')>0)?$this->params->get('leftsize'):0;
+$useright=($this->countModules('right')>0)?$this->params->get('rightsize'):0;
 $center='span'.(12-$useleft-$useright);
 
 ?>
