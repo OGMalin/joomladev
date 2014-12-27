@@ -98,6 +98,10 @@
 @import "icomoon.less";
 // < Joomla JUI
 
+h2 {
+	font-size: @baseFontSize*2;
+}
+
 // Skjuler et felt.
 .hide {
     display: none !important;
@@ -105,7 +109,7 @@
 
 // Brukernavn og Logg inn/ut i menylinjen.
 .userlogin, {
-	font-size: 12px;
+	font-size: @fontSizeSmall;
 	line-height: @navbarHeight;
   color: @navbarInverseLinkColor;
   &:hover,
@@ -155,6 +159,12 @@ img.pull-center {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+figure.pull-left,
+img.pull-center {
+	margin: 10px 20px 10px 0px;
+}
+
 figcaption {
 	display: table-caption;
 	caption-side: bottom;
@@ -311,9 +321,44 @@ hr {
 }
 
 p.category-name {
+	margin-top: 20px;
 	margin-bottom: -15px;
+	font-weight: 600;
 }
 
 span.modified {
 	color: #f66;
 	}
+	
+	/* For resultatlister etc. */
+.tt_table {
+}
+
+.tt_header {
+  background-color : @navbarInverseBackground; 
+  color : @navbarInverseText;
+  font-weight : bold;
+}
+
+.tt_line1 {
+}
+
+.tt_line2 {
+  background-color:@grayLighter;
+}
+
+.form-search{
+	margin: 0px;
+}
+.navsearch{
+	float: right;
+	margin-left: 10px;
+	margin-right: -10px;
+	margin-top: 5px;
+}
+
+.navsearch > .search-query{
+	height: 10px;
+	width: 75px;
+	font-size: @fontSizeSmall;
+}

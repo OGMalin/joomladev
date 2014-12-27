@@ -172,7 +172,6 @@ $info    = $this->item->params->get('info_block_position', 0);
 	endif; ?>
 
 	<?php echo JLayoutHelper::render('joomla.content.readmore', array('item' => $this->item, 'params' => $params, 'link' => $link)); ?>
-
 <?php endif; ?>
 
 <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())
