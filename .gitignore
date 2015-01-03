@@ -13,15 +13,10 @@
 !/components/com_alarmhistory
 !/components/com_polarbook
 
-!/libraries
-/libraries
-!/libraries/polarchess
-
 !/media
 /media
 !/media/com_alarmistory
 !/media/com_polarbook
-!/media/polarchess
 !/media/polarstrap
 
 !/modules
