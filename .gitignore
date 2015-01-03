@@ -13,6 +13,10 @@
 !/components/com_alarmhistory
 !/components/com_polarbook
 
+!/libraries
+/libraries
+!/libraries/polarchess
+
 !/media
 /media
 !/media/com_alarmistory
@@ -27,7 +31,7 @@
 /plugins
 !/plugins/system
 /plugins/system
-!/plugina/system/polarstrap
+!/plugins/system/polarstrap
 
 !/templates
 /templates
