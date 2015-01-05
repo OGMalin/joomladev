@@ -7,11 +7,13 @@
 /administrator/components
 !/administrator/components/com_alarmhistory
 !/administrator/components/com_polarbook
+!/administrator/components/com_polartour
 
 !/components
 /components
 !/components/com_alarmhistory
 !/components/com_polarbook
+!/components/com_polartour
 
 !/media
 /media

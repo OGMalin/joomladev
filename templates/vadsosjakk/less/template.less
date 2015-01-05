@@ -186,7 +186,8 @@ figure > img {
 	border: 1px solid @navbarInverseBorder;
 	padding: 0px;
 	background-color: @navbarInverseBackground;
-	border-radius: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
 }
 
 .bokshode {
@@ -314,6 +315,35 @@ figure > img {
     }
 }
 
+// Gjør JEvents kalenderen responsive
+@media (max-width: 1199px) {
+	.mod_events_table > tbody > tr > td{
+		font-size: 12px;
+		padding: 0px;
+	}
+	.mod_events_monthyear{
+		font-size: 12px;
+	}
+}
+@media (max-width: 979px) {
+	.mod_events_table > tbody > tr > td{
+		font-size: 10px;
+		padding: 0px;
+	}
+	.mod_events_monthyear{
+		font-size: 10px;
+	}
+}
+@media (max-width: 767px) {
+	.mod_events_table > tbody > tr > td{
+		font-size: 14px;
+		padding: 2px;
+	}
+	.mod_events_monthyear{
+		font-size: 14px;
+	}
+}
+
 hr {
 	margin: 0px;
 	border-width: 2px;
@@ -369,4 +399,12 @@ td.white {
 
 td.black {
   background-color: #AF7A53;
+}
+
+.feeddate{
+	color: gray;
+	font-size: 0.9em;
+	font-style: italic;
+	float: left;
+	margin-right: 5px;
 }
