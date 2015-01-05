@@ -17,6 +17,7 @@
 /media
 !/media/com_alarmistory
 !/media/com_polarbook
+!/media/polarchess
 !/media/polarstrap
 
 !/modules
@@ -25,6 +26,9 @@
 
 !/plugins
 /plugins
+!/plugins/content
+/plugins/content
+!/plugins/content/polarchess
 !/plugins/system
 /plugins/system
 !/plugins/system/polarstrap
