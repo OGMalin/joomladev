@@ -100,6 +100,7 @@ else
 				$text = !empty($feed[$i]->content) ||  !is_null($feed[$i]->content) ? $feed[$i]->content : $feed[$i]->description;
 			?>
 				<li>
+					<pre> <?php var_dump($feed[$i]); ?></pre>
 					<span class="feeddate"><?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $feed[$i]->date, JText::_('d.m.y'))); ?></span>
 					<?php if (!empty($uri)) : ?>
 						<h5 class="feed-link">
