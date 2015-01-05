@@ -25,7 +25,13 @@ Plugins:
 	Folders
 		media/polarstrap
 		plugins/system/polarstrap
-		
+
+	Polarchess
+		Content plugin to catch chess related tags.
+	Folders
+		media/polarchess
+		plugins/content/polarchess
+				
 Templates:
 	polartemplate
 		Just a template
