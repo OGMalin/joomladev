@@ -28,7 +28,6 @@
 	<files folder="site">
 		<filename>alarmhistory.php</filename>
 		<filename>controller.php</filename>
-		<filename>index.html</filename>
 		<folder>controllers</folder>
 		<folder>helpers</folder>
 		<folder>language</folder>
