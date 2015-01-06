@@ -8,7 +8,6 @@
 	<copyright>Copyright (C) 2014.</copyright>
 	<description>TPL_VADSOSJAKK_XML_DESCRIPTION</description>
 	<files>
-		<filename>index.html</filename>
 		<filename>index.php</filename>
 		<filename>favicon.ico</filename>
 		<filename>templateDetails.xml</filename>
