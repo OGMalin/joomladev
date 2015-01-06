@@ -100,14 +100,13 @@ else
 				$text = !empty($feed[$i]->content) ||  !is_null($feed[$i]->content) ? $feed[$i]->content : $feed[$i]->description;
 			?>
 				<li>
-					<pre> <?php var_dump($feed[$i]); ?></pre>
-					<span class="feeddate"><?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $feed[$i]->date, JText::_('d.m.y'))); ?></span>
+					<span class="feeddate"><?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $feed[$i]->publishedDate, JText::_('d.m.y'))); ?></span>
 					<?php if (!empty($uri)) : ?>
-						<h5 class="feed-link">
+						<div class="feed-link">
 						<a href="<?php echo htmlspecialchars($uri); ?>" target="_blank">
-						<?php echo $feed[$i]->title; ?></a></h5>
+						<?php echo $feed[$i]->title; ?></a></div>
 					<?php else : ?>
-						<h5 class="feed-link"><?php  echo $feed[$i]->title; ?></h5>
+						<div class="feed-link"><?php  echo $feed[$i]->title; ?></div>
 					<?php  endif; ?>
 					<?php if ($params->get('rssitemdesc') && !empty($text)) : ?>
 						<div class="feed-item-description">
