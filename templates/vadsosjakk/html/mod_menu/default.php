@@ -56,8 +56,14 @@ foreach ($list as $i => &$item)
 
 	if ($item->deeper)
 	{
-//**** Endret  $class .= ' deeper';
-		$class .= ' deeper dropdown';
+		//** Endret  $class .= ' deeper';
+		if ($item->level <2)
+		{
+			$class .= ' deeper dropdown';
+		}else
+		{
+			$class .= ' deeper dropdown-submenu';
+		}
 	}
 
 	if ($item->parent)
