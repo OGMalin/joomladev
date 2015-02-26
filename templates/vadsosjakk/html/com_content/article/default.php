@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,9 +19,6 @@ $canEdit = $params->get('access-edit');
 $user    = JFactory::getUser();
 $info    = $params->get('info_block_position', 0);
 JHtml::_('behavior.caption');
-$useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date')
-	|| $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
-
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="http://schema.org/Article">
 	<meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language; ?>" />
@@ -30,11 +27,16 @@ $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_da
 		<h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
 	</div>
 	<?php endif;
-if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->paginationposition && $this->item->paginationrelative)
-{
-	echo $this->item->pagination;
-}
-?>
+	if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->paginationposition && $this->item->paginationrelative)
+	{
+		echo $this->item->pagination;
+	}
+	?>
+
+	<?php // Todo Not that elegant would be nice to group the params ?>
+	<?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date')
+	|| $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') ); ?>
+
 	<?php if (!$useDefList && $this->print) : ?>
 		<div id="pop-print" class="btn hidden-print">
 			<?php echo JHtml::_('icon.print_screen', $this->item, $params); ?>
@@ -65,7 +67,7 @@ if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->
 		<?php if (strtotime($this->item->publish_up) > strtotime(JFactory::getDate())) : ?>
 			<span class="label label-warning"><?php echo JText::_('JNOTPUBLISHEDYET'); ?></span>
 		<?php endif; ?>
-		<?php if ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != '0000-00-00 00:00:00') : ?>
+		<?php if ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate()) : ?>
 			<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
 		<?php endif; ?>
 	</div>
@@ -83,45 +85,7 @@ if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->
 	<?php endif; ?>
 
 	<?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
-		<div class="article-info muted">
-		<?php if ($params->get('show_author') && !empty($this->item->author )) : ?>
-			<span class="createdby" itemprop="author" itemscope itemtype="http://schema.org/Person">
-				<?php $author = ($this->item->created_by_alias) ? $this->item->created_by_alias : $this->item->author; ?>
-				<?php $author = '<span itemprop="name">' . $author . '</span>'; ?>
-				<?php if (!empty($this->item->contact_link) && $params->get('link_author') == true) : ?>
-					<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', JHtml::_('link', $this->item->contact_link, $author, array('itemprop' => 'url'))); ?>
-				<?php else: ?>
-					<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
-				<?php endif; ?>
-			</span>
-		<?php endif; ?>
-
-		<?php if ($params->get('show_publish_date')) : ?>
-			<span class="published">
-				<time datetime="<?php echo JHtml::_('date', $this->item->publish_up, 'c'); ?>" itemprop="datePublished">
-					<?php if (new JDate($this->item->publish_up) > new JDate('now - 1 day')) : ?>
-						<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('d.m.y H:i'))); ?>
-					<?php else : ?>
-						<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('d.m.y'))); ?> 
-					<?php endif; ?>
-				</time>
-			</span>
-		<?php endif; ?>
-
-		<?php if ($info == 0) : ?>
-			<?php if (($params->get('show_modify_date')) && (new JDate($this->item->publish_up) != new JDate($this->item->modified))) : ?>
-				<span class="modified">
-					<time datetime="<?php echo JHtml::_('date', $this->item->modified, 'c'); ?>" itemprop="dateModified">
-						<?php if (new JDate($this->item->modified) > new JDate('now - 1 day')) : ?>
-							<?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('d.m.y H:i'))); ?>
-						<?php else : ?>
-							<?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('d.m.y'))); ?> 
-						<?php endif; ?>
-					</time>
-				</span>
-			<?php endif; ?>
-		<?php endif; ?>
-		</div>
+		<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
 	<?php endif; ?>
 
 	<?php if ($info == 0 && $params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) : ?>
@@ -142,7 +106,7 @@ if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->
 	<?php $imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext; ?>
 	<div class="pull-<?php echo htmlspecialchars($imgfloat); ?> item-image"> <img
 	<?php if ($images->image_fulltext_caption):
-		echo 'class="caption"'.' title="' .htmlspecialchars($images->image_fulltext_caption) . '"';
+		echo 'class="caption"' . ' title="' . htmlspecialchars($images->image_fulltext_caption) . '"';
 	endif; ?>
 	src="<?php echo htmlspecialchars($images->image_fulltext); ?>" alt="<?php echo htmlspecialchars($images->image_fulltext_alt); ?>" itemprop="image"/> </div>
 	<?php endif; ?>
@@ -159,51 +123,13 @@ if (!empty($this->item->pagination) && $this->item->pagination && !$this->item->
 	</div>
 
 	<?php if ($useDefList && ($info == 1 || $info == 2)) : ?>
-	<div class="article-info  muted">
-		<?php if ($info == 1) : ?>
-			<?php if ($params->get('show_author') && !empty($this->item->author )) : ?>
-				<span class="createdby" itemprop="author" itemscope itemtype="http://schema.org/Person">
-					<?php $author = ($this->item->created_by_alias) ? $this->item->created_by_alias : $this->item->author; ?>
-					<?php $author = '<span itemprop="name">' . $author . '</span>'; ?>
-					<?php if (!empty($this->item->contact_link) && $params->get('link_author') == true) : ?>
-						<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', JHtml::_('link', $this->item->contact_link, $author, array('itemprop' => 'url'))); ?>
-					<?php else: ?>
-						<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
-					<?php endif; ?>
-				</span>
-			<?php endif; ?>
-
-			<?php if ($params->get('show_publish_date')) : ?>
-				<span class="published">
-					<time datetime="<?php echo JHtml::_('date', $this->item->publish_up, 'c'); ?>" itemprop="datePublished">
-						<?php if (new JDate($this->item->publish_up) > new JDate('now - 1 day')) : ?>
-							<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('d.m.y H:i'))); ?>
-						<?php else : ?>
-							<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('d.m.y'))); ?> 
-						<?php endif; ?>
-					</time>
-				</span>
-			<?php endif; ?>
-		<?php endif; ?>
-
-		<?php if (($params->get('show_modify_date')) && (new JDate($this->item->publish_up) != new JDate($this->item->modified))) : ?>
-			<span class="modified">
-				<time datetime="<?php echo JHtml::_('date', $this->item->modified, 'c'); ?>" itemprop="dateModified">
-					<?php if (new JDate($this->item->modified) > new JDate('now - 1 day')) : ?>
-						<?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('d.m.y H:i'))); ?>
-					<?php else : ?>
-						<?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('d.m.y'))); ?> 
-					<?php endif; ?>
-				</time>
-			</span>
-		<?php endif; ?>
-	</div>
+		<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
 	<?php endif; ?>
 
 	<?php
-if (!empty($this->item->pagination) && $this->item->pagination && $this->item->paginationposition && !$this->item->paginationrelative):
-	echo $this->item->pagination;
-?>
+	if (!empty($this->item->pagination) && $this->item->pagination && $this->item->paginationposition && !$this->item->paginationrelative):
+		echo $this->item->pagination;
+	?>
 	<?php endif; ?>
 	<?php if (isset($urls) && ((!empty($urls->urls_position) && ($urls->urls_position == '1')) || ($params->get('urls_position') == '1'))) : ?>
 	<?php echo $this->loadTemplate('links'); ?>
@@ -237,8 +163,10 @@ if (!empty($this->item->pagination) && $this->item->pagination && $this->item->p
 	<?php endif; ?>
 	<?php endif; ?>
 	<?php
-if (!empty($this->item->pagination) && $this->item->pagination && $this->item->paginationposition && $this->item->paginationrelative) :
-	echo $this->item->pagination;
-?>
+	if (!empty($this->item->pagination) && $this->item->pagination && $this->item->paginationposition && $this->item->paginationrelative) :
+		echo $this->item->pagination;
+	?>
 	<?php endif; ?>
-	<?php echo $this->item->event->afterDisplayContent; ?> </div>
+	<?php echo $this->item->event->afterDisplayContent; ?>
+</div>
+
