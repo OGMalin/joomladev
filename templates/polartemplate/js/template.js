@@ -1,0 +1,2 @@
+/** Felles Javascript for nettsidene
+*/

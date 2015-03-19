@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  mod_menu
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,16 +14,19 @@ defined('_JEXEC') or die;
 <?php // The menu class is deprecated. Use nav instead. ?>
 <ul class="nav menu<?php echo $class_sfx;?>"<?php
 	$tag = '';
+
 	if ($params->get('tag_id') != null)
 	{
-		$tag = $params->get('tag_id').'';
-		echo ' id="'.$tag.'"';
+		$tag = $params->get('tag_id') . '';
+		echo ' id="' . $tag . '"';
 	}
 ?>>
 <?php
-foreach ($list as $i => &$item) :
-	$class = 'item-'.$item->id;
-	if ($item->id == $active_id)
+foreach ($list as $i => &$item)
+{
+	$class = 'item-' . $item->id;
+
+	if (($item->id == $active_id) OR ($item->type == 'alias' AND $item->params->get('aliasoptions') == $active_id))
 	{
 		$class .= ' current';
 	}
@@ -35,6 +38,7 @@ foreach ($list as $i => &$item) :
 	elseif ($item->type == 'alias')
 	{
 		$aliasToId = $item->params->get('aliasoptions');
+
 		if (count($path) > 0 && $aliasToId == $path[count($path) - 1])
 		{
 			$class .= ' active';
@@ -52,7 +56,14 @@ foreach ($list as $i => &$item) :
 
 	if ($item->deeper)
 	{
-		$class .= ' deeper dropdown';
+		//** Endret  $class .= ' deeper';
+		if ($item->level <2)
+		{
+			$class .= ' deeper dropdown';
+		}else
+		{
+			$class .= ' deeper dropdown-submenu';
+		}
 	}
 
 	if ($item->parent)
@@ -62,10 +73,10 @@ foreach ($list as $i => &$item) :
 
 	if (!empty($class))
 	{
-		$class = ' class="'.trim($class) .'"';
+		$class = ' class="' . trim($class) . '"';
 	}
 
-	echo '<li'.$class.'>';
+	echo '<li' . $class . '>';
 
 	// Render the menu item.
 	switch ($item->type) :
@@ -73,7 +84,7 @@ foreach ($list as $i => &$item) :
 		case 'url':
 		case 'component':
 		case 'heading':
-			require JModuleHelper::getLayoutPath('mod_menu', 'default_'.$item->type);
+			require JModuleHelper::getLayoutPath('mod_menu', 'default_' . $item->type);
 			break;
 
 		default:
@@ -84,17 +95,19 @@ foreach ($list as $i => &$item) :
 	// The next item is deeper.
 	if ($item->deeper)
 	{
+//**** Endret		echo '<ul class="nav-child unstyled small">';
 		echo '<ul class="nav-child unstyled small dropdown-menu">';
 	}
-	// The next item is shallower.
 	elseif ($item->shallower)
 	{
+		// The next item is shallower.
 		echo '</li>';
 		echo str_repeat('</ul></li>', $item->level_diff);
 	}
-	// The next item is on the same level.
-	else {
+	else
+	{
+		// The next item is on the same level.
 		echo '</li>';
 	}
-endforeach;
+}
 ?></ul>

@@ -10,7 +10,7 @@
 	<copyright>Copyright (C) 2015</copyright>
 	<description>TPL_POLARTEMPLATE_XML_DESCRIPTION</description>
 	<files>
-		<filename>index.html</filename>
+		<filename>component.php</filename>
 		<filename>index.php</filename>
 		<filename>templateDetails.xml</filename>
 		<folder>css</folder>
@@ -41,4 +41,48 @@
 		<language tag="nb-NO">nb-NO/nb-NO.tpl_polartemplate.ini</language>
 		<language tag="nb-NO">nb-NO/nb-NO.tpl_polartemplate.sys.ini</language>
 	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+				<field name="datebanner"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_POLARTEMPLATE_DATEBANNER_LABEL"
+					description="TPL_POLARTEMPLATE_DATEBANNER_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="menulogin"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_POLARTEMPLATE_MENULOGIN_LABEL"
+					description="TPL_POLARTEMPLATE_MENULOGIN_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="menusite"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_POLARTEMPLATE_MENUSITE_LABEL"
+					description="TPL_POLARTEMPLATE_MENUSITE_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="leftsize" type="integer" default="3"
+					label="TPL_POLARTEMPLATE_LEFTSIZE_LABEL"
+					description="TPL_POLARTEMPLATE_LEFTSIZE_DESC"
+					first="0" last="12" step="1" />
+				<field name="rightsize" type="integer" default="3"
+					label="TPL_POLARTEMPLATE_RIGHTSIZE_LABEL"
+					description="TPL_POLARTEMPLATE_RIGHTSIZE_DESC"
+					first="0" last="12" step="1" />
+			</fieldset>
+		</fields>
+	</config>
 </extension>

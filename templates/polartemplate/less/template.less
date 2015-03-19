@@ -51,7 +51,7 @@
 @import "../../../media/jui/less/popovers.less";
 
 // Components: Misc
-@import "../../../media/jui/less/thumbnails.less";
+// @import "../../../media/jui/less/thumbnails.less";
 @import "../../../media/jui/less/media.less";
 @import "../../../media/jui/less/labels-badges.less";
 @import "../../../media/jui/less/progress-bars.less";
@@ -61,12 +61,10 @@
 
 // Utility classes
 @import "../../../media/jui/less/utilities.less"; // Has to be last to override when necessary
-
-// RESPONSIVE CLASSES
-// ------------------
-
 @import "../../../media/jui/less/responsive-utilities.less";
 
+
+// > Joomla JUI
 
 // MEDIA QUERIES
 // ------------------
@@ -89,10 +87,353 @@
 
 // Extended for JUI
 @import "../../../media/jui/less/bootstrap-extended.less"; // Has to be last to override when necessary
-// div.modal (instead of .modal)
+
+/* Joomla JUI NOTE: Original .modal definition has to be commented in modals.less and responsive-767px-max.less */
+
 @import "../../../media/jui/less/modals.joomla.less";
 @import "../../../media/jui/less/responsive-767px-max.joomla.less";
 
 // Icon Font
-@import "../../../media/jui/less/icomoon.less";
+//@import "../../../media/jui/less/icomoon.less";
+@import "icomoon.less";
+// < Joomla JUI
 
+h2 {
+	font-size: @baseFontSize*2;
+}
+
+// Skjuler et felt.
+.hide {
+    display: none !important;
+}
+
+// Brukernavn og Logg inn/ut i menylinjen.
+.userlogin, {
+	font-size: @fontSizeSmall;
+	line-height: @navbarHeight;
+  color: @navbarInverseLinkColor;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @navbarInverseLinkColorHover;
+    font-weight: bold;
+  }
+}
+
+// Bilde css er kopi fra protostar
+/* Caption fixes */
+.img_caption .left {
+	float: left;
+	margin-right: 1em;
+}
+
+.img_caption .right {
+	float: right;
+	margin-left: 1em;
+}
+
+.img_caption .left p {
+	clear: left;
+	text-align: center;
+}
+
+.img_caption .right p {
+	clear: right;
+	text-align: center;
+}
+
+.img_caption  {
+	text-align: center!important;
+}
+
+.img_caption.none {
+	margin-left:auto;
+	margin-right:auto;
+}
+/* New captions */
+figure {
+	display: table;
+}
+figure.pull-center,
+img.pull-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figure.pull-left,
+img.pull-center {
+	margin: 10px 20px 10px 0px;
+}
+
+figcaption {
+	display: table-caption;
+	caption-side: bottom;
+	font-style: italic;
+}
+
+// Lag ramme på bilder
+figure > img {
+	border: 1px solid black;
+}
+
+// Moduler
+.boks {
+	padding: 3px;
+	background-color: @bodyBackground;
+}
+  
+.moduletable.boks {
+	border: 1px solid @navbarInverseBorder;
+	padding: 0px;
+	// background-color: @navbarInverseBackground;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.bokshode {
+	padding-left: 3px;
+	color: @navbarInverseText;
+	margin: 0px;
+	font-size: 20px;
+	font-weight: 200;
+	text-shadow: 0px 1px 0px @navbarInverseBackgroundHighlight;
+	line-height: 30px;
+  #gradient > .vertical(@navbarInverseBackgroundHighlight, @navbarInverseBackground);
+}
+
+/* Container */
+//.container{
+//	max-width: 960px;
+//}
+.main {
+	background-color: @bodyBackground;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.05);
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.05);
+}
+
+// Banner
+.bannerdato {
+	position: relative;
+	top: -90px;
+	float: right;
+	font-weight: bold;
+	margin-right: 8px;
+	background-color: @navbarInverseBackground;
+	border: 2px outset @navbarInverseBorder;
+	padding: 2px;
+}
+
+.toppbanner {
+} 
+
+// JEvent.
+.mod_events_monthyear {
+	background-color: @bodyBackground;
+}
+
+.mod_events_link {
+	cursor: pointer;
+  color: @linkColor;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @linkColorHover;
+    }
+}
+  
+.mod_events_table {
+	background-color: @bodyBackground;
+	text-align: center;
+}
+
+.mod_events_dayname {
+}
+
+.mod_events_td_dayname {
+	color: #090;
+}
+
+.mod_events_td_dayname > .saturday {
+	color: #009;
+}
+
+.mod_events_td_dayname > .sunday {
+	color: #f00;
+}
+
+.mod_events_td_daynoevents {
+}
+
+.mod_events_td_daywithevents {
+	background-color: #ccf;
+}
+
+.mod_events_td_todaynoevents {
+// border på innsiden
+	-webkit-box-shadow:inset 0px 0px 0px 2px  @navbarInverseBorder;
+	-moz-box-shadow:inset 0px 0px 0px 2px  @navbarInverseBorder;
+	box-shadow:inset 0px 0px 0px 2px  @navbarInverseBorder;
+}
+
+.mod_events_td_todaywithevents {
+	background-color: #ccf;
+// border på innsiden
+	-webkit-box-shadow:inset 0px 0px 0px 2px  @navbarInverseBorder;
+	-moz-box-shadow:inset 0px 0px 0px 2px  @navbarInverseBorder;
+	box-shadow:inset 0px 0px 0px 2px  @navbarInverseBorder;
+}
+
+.mod_events_daylink {
+}
+
+.mod_events_td_dayoutofmonth {
+	color: #999;
+}
+
+.mod_events_latest_table {
+  #gradient > .vertical(@navbarInverseBackgroundHighlight, @navbarInverseBackground);
+	color: @navbarInverseText;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @navbarInverseLinkColorHover;
+    }
+}
+
+.mod_events_latest_content > a ,.mod_events_latest_first > a, .mod_events_latest > a {
+	color: @navbarInverseText;
+  &:hover,
+  &:link,
+  &:focus {
+    color: @navbarInverseLinkColorHover !important;
+    }
+}
+
+// Gjør JEvents kalenderen responsive
+@media (max-width: 1199px) {
+	.mod_events_table > tbody > tr > td{
+		font-size: 12px;
+		padding: 0px;
+	}
+	.mod_events_monthyear{
+		font-size: 12px;
+	}
+}
+@media (max-width: 979px) {
+	.mod_events_table > tbody > tr > td{
+		font-size: 10px;
+		padding: 0px;
+	}
+	.mod_events_monthyear{
+		font-size: 10px;
+	}
+}
+@media (max-width: 767px) {
+	.mod_events_table > tbody > tr > td{
+		font-size: 14px;
+		padding: 2px;
+	}
+	.mod_events_monthyear{
+		font-size: 14px;
+	}
+}
+
+hr {
+	margin: 0px;
+	border-width: 2px;
+	border-color: @navbarInverseBorder;
+}
+
+p.category-name {
+	margin-top: 20px;
+	margin-bottom: -15px;
+	font-weight: 600;
+}
+
+span.modified {
+	color: #f66;
+	}
+	
+	/* For resultatlister etc. */
+.tt_table {
+}
+
+.tt_header {
+  background-color : @navbarInverseBackground; 
+  color : @navbarInverseText;
+  font-weight : bold;
+}
+
+.tt_line1 {
+}
+
+.tt_line2 {
+  background-color:@grayLighter;
+}
+
+.form-search{
+	margin: 0px;
+}
+.navsearch{
+	float: right;
+	margin-left: 10px;
+	margin-right: -10px;
+	margin-top: 5px;
+}
+
+.navsearch > .search-query{
+	height: 10px;
+	width: 75px;
+	font-size: @fontSizeSmall;
+}
+
+td.white {
+  background-color: #FFE7AC;
+}
+
+td.black {
+  background-color: #AF7A53;
+}
+
+ul.newsfeed{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.newsfeed > li {
+	margin-bottom: 10px;
+}
+
+.feeddate{
+	color: @gray;
+	font-size: 0.9em;
+	font-style: italic;
+	float: left;
+	margin-right: 5px;
+}
+
+// Gamle resultatlister
+.tt_table {
+	padding: 0px;
+	margin-left: 5px;
+}
+
+.tt_header {
+  background-color : #3e72c5; 
+  color : #f6f6ff;
+  font-weight : bold;
+}
+
+.tt_line1 {
+}
+
+.tt_line2 {
+  background-color: #e0e0e0;
+}
