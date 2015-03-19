@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  com_content
- *
+ * @version			3.4.0
  * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -40,7 +40,7 @@ JFactory::getDocument()->addScriptDeclaration("
 ");
 ?>
 <div class="edit item-page<?php echo $this->pageclass_sfx; ?>">
-	<?php if ($params->get('show_page_heading', 1)) : ?>
+	<?php if ($params->get('show_page_heading')) : ?>
 	<div class="page-header">
 		<h1>
 			<?php echo $this->escape($params->get('page_heading')); ?>
