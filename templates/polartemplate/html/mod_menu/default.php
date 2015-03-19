@@ -96,7 +96,7 @@ foreach ($list as $i => &$item)
 	if ($item->deeper)
 	{
 //**** Endret		echo '<ul class="nav-child unstyled small">';
-		echo '<ul class="nav-child unstyled small dropdown-menu">';
+		echo '<ul class="nav-child unstyled dropdown-menu">';
 	}
 	elseif ($item->shallower)
 	{
