@@ -39,7 +39,5 @@
 /templates
 !/templates/polartemplate
 /templates/polartemplate/css
-!/templates/polartemplate/css/index.html
 !/templates/vadsosjakk
 /templates/vadsosjakk/css
-!/templates/vadsosjakk/css/index.html
